@@ -1,0 +1,19 @@
+.jumbotron {
+    background: none;
+    text-align: center;
+    margin-top: 15vh;
+}
+
+.robot {
+    max-width: 192px;
+    margin-bottom: 5px;
+}
+
+p:not(.lead) {
+    color: var(--secondary);
+    cursor: pointer;
+}
+
+footer {
+    z-index: 1 !important;
+}

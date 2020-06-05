@@ -1,0 +1,27 @@
+span { cursor: pointer; }
+
+.expanded { background-color: #f0f0f027; }
+.zippy {
+    margin: 15px 0;
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+}
+.zippy-heading
+{
+    font-weight: bold;
+    padding: 20px;
+    cursor: pointer;
+}
+.zippy-body 
+{
+    padding: 20px;
+    overflow-y: hidden;
+}
+
+.expanded i {
+    transform: rotate(180deg);
+}
+i {
+    transition: 300ms all ease;
+    transform: rotate(0deg);
+}

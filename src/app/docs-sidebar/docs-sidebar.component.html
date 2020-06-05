@@ -1,0 +1,41 @@
+<mat-sidenav-container fullscreen>
+    <mat-sidenav #drawer mode="side" opened>
+        <div class="side-nav navbar-dark">
+            <h2 class="m-4">2PG <i class="fa fa-book" aria-hidden="true"></i></h2>
+            <hr>
+            <div class="navbar-nav mt-5">
+                <p class="category">Getting Started <i class="fa fa-arrow-right" aria-hidden="true"></i></p>
+                <a class="nav-link" 
+                    routerLink="/docs/getting-started" routerLinkActive="active">Getting Started</a>
+                    
+                <p class="category">Modules <i class="fa fa-star" aria-hidden="true"></i></p>
+                <a class="nav-link" 
+                    routerLink="/docs/music" routerLinkActive="active">Music</a>                
+
+                <p class="category">Other <i class="fa fa-info-circle" aria-hidden="true"></i></p>
+                <a class="nav-link"
+                    routerLink="/docs/changelog" routerLinkActive="active">Changelog</a>
+                <a class="nav-link"
+                    routerLink="/docs/api" routerLinkActive="active">API</a>
+
+                <p class="category">2PG Code <i class="fa fa-code" aria-hidden="true"></i></p>
+                <a class="nav-link" 
+                    routerLink="/docs/setup" routerLinkActive="active">Setup</a>
+                <a class="nav-link" 
+                    routerLink="/docs/bot" routerLinkActive="active">Bot</a>
+            </div>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <navbar></navbar>
+        <button class="toggle">
+            <div id="nav-icon1" class="open"
+                (click)="toggle($event.target)">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+        </button>
+        <ng-content select="#content"></ng-content>
+    </mat-sidenav-content>
+</mat-sidenav-container>
