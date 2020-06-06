@@ -51,6 +51,10 @@ import { environment } from 'src/environments/environment';
 import { SnakeToSentenceCasePipe } from './pipes/snake-to-sentence-case.pipe';
 import { TruncatedPipe } from './pipes/truncated.pipe';
 import { DurationStringPipe } from './pipes/duration-string.pipe';
+import { HomeFooterComponent } from './home-footer/home-footer.component';
+import { WavesComponent } from './waves/waves.component';
+import { AddBotComponent } from './dashboard/add-bot/add-bot.component';
+import { BotPreviewComponent } from './bot-preview/bot-preview.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
@@ -112,7 +116,11 @@ export class AlertErrorHandler implements ErrorHandler {
     MiniDatePipe,
     SnakeToSentenceCasePipe,
     TruncatedPipe,
-    DurationStringPipe
+    DurationStringPipe,
+    HomeFooterComponent,
+    WavesComponent,
+    AddBotComponent,
+    BotPreviewComponent
   ],
   imports: [
     AppRoutingModule,

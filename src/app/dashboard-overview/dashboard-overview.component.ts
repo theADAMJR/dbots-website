@@ -10,7 +10,7 @@ export class DashboardComponent implements OnInit {
   get user() { return this.userService.user; }
 
   constructor(private userService: UserService) {
-    document.title = '2PG - Dashboard';
+    document.title = 'DBots - Dashboard';
   }
 
   ngOnInit() {

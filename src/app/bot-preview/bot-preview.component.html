@@ -1,0 +1,10 @@
+<div>
+    <img [src]="user.avatarURL">
+    <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
+    <span><i class="fas fa-server" matTooltip="Servers"></i> {{ serverCount }}</span>
+    <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ votes }}</span>
+</div>
+
+<hr>
+
+<div id="markdown" class="mt-5">{{ body }}</div>

@@ -1,0 +1,11 @@
+img {
+    float: left;
+
+    margin-right: 15px;
+    border-radius: 10px;
+    width: 128px;
+}
+
+#markdown {
+  word-wrap: break-word;
+}

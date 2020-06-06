@@ -1,0 +1,37 @@
+<guild-sidebar>
+    <div class="container">
+            <div class="d-flex justify-content-between">
+                <h1 class="display-3">Add Bot</h1>
+            </div>
+        <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <form #f="ngForm" [formGroup]="form">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Bot ID</mat-label>
+                        <input formControlName="botId" type="text" matInput>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Client ID</mat-label>
+                        <input formControlName="clientId" type="text" matInput>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Prefix</mat-label>
+                        <input formControlName="prefix" type="text" matInput>
+                    </mat-form-field>
+                    <div>
+                        <label for="editor">Body</label>
+                        <textarea id="editor" formControlName="body" placeholder="300 characters minimum (markdown allowed)"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 border-left">
+                <bot-preview [body]="form.get('body').value"></bot-preview>
+            </div>
+        </div>
+        <button id="submit" (click)="submit()"
+            color="success" mat-button>Add</button>
+    </div>
+</guild-sidebar>

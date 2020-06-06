@@ -1,7 +1,5 @@
-.jumbotron {
-    background: none;
-    text-align: center;
-    margin-top: 15vh;
+header {
+    background-color: var(--background-secondary);
 }
 
 .robot {
@@ -14,6 +12,15 @@ p:not(.lead) {
     cursor: pointer;
 }
 
-footer {
-    z-index: 1 !important;
+mat-chip {
+    cursor: pointer;
+    background-color: var(--primary) !important;
+}
+
+.more {
+    background-color: var(--tertiary) !important;    
+}
+
+#content {
+    min-height: 40vh;
 }

@@ -6,19 +6,19 @@
 @include mat-core();
 
 :root {
-    --font: #F4F2F3;
-    --plus: green;
+    --heading: #ffffff;
+    --font: #99AAB5;
 
     --danger: darkred;
     --muted: grey;
 
-    --primary: #46828D;
+    --primary: #7289DA;
     --secondary: #276C8A;
     --tertiary: #36E2CA;
-
-    --background-primary: #15244B;
-    --background-secondary: #0a193a;
-    --background-tertiary: #081536;
+    
+    --background-primary: #36393F;
+    --background-secondary: rgb(37, 38, 42);
+    --background-tertiary: #202225;
 }
 
 $primary-palette: (
@@ -100,4 +100,10 @@ $theme: mat-dark-theme($primary, $secondary, $warn);
 .mat-success {
     background-color: green;
     color: #fff;
+}
+
+// overrides
+
+h1,h2,h3,h4,h5 {
+    color: var(--heading) !important;
 }

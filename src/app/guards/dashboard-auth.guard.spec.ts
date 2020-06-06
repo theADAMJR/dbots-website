@@ -13,34 +13,22 @@ describe('DashboardAuthGuard', () => {
   });
 
   it('should be created', () => {
-    const fakeAuth = {
+    const fakeUserService = {
       updateUser: () => {},
       user: null
     } as any;
-    guard = new DashboardAuthGuard(fakeAuth);
+    guard = new DashboardAuthGuard(fakeUserService, {} as any);
 
     expect(guard).toBeTruthy();
   });
 
   it('null user is denied', async () => {
-    const fakeAuth = {
-      updateUser: () => {},
-      user: null
-    } as any;
-    guard = new DashboardAuthGuard(fakeAuth);
-
     const result = await guard.canActivate();
 
     expect(result).toBeFalsy();
   });
 
   it('existing user is not denied', async () => {
-    const fakeAuth = {
-      updateUser: () => {},
-      user: {}
-    } as any;
-    guard = new DashboardAuthGuard(fakeAuth);
-
     const result = await guard.canActivate();
 
     expect(result).toBeTruthy();

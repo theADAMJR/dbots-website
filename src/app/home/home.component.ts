@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +6,22 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  version = environment.version;
+  placeholder: string;
+
+  tags = [
+    'music',
+    'moderation',
+    'social',
+    'util'
+  ];
 
   constructor() {
-    document.title = '2PG - Discord Bot';
+    document.title = 'DBots - Find Discord Bots';
+    this.placeholder = this.getRandomPlaceholder();
+  }
+
+  getRandomPlaceholder() {
+    const i = Math.floor(Math.random() * (this.tags.length - 1));
+    return this.tags[i];
   }
 }

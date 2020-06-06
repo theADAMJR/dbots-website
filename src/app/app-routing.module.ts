@@ -26,6 +26,7 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { PlusComponent } from './plus/plus.component';
 import { DocsComponent } from './docs/docs.component';
 import { CanDeactivateDashboard } from './guards/can-deactivate-dashboard.guard';
+import { AddBotComponent } from './dashboard/add-bot/add-bot.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -39,7 +40,9 @@ const routes: Routes = [
   { path: 'leaderboard/:id', component: LeaderboardModuleComponent, canActivate: [LeaderboardAuthGuard] },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [DashboardAuthGuard] },
-  { path: 'dashboard/xp-card', component: XPCardComponent, canActivate: [DashboardAuthGuard] },
+  
+  { path: 'dashboard/bots/add', component: AddBotComponent, canActivate: [DashboardAuthGuard] },
+  { path: 'dashboard/bots/:id', component: XPCardComponent, canActivate: [DashboardAuthGuard] },
 
   { path: 'servers/:id', component: GuildComponent, canActivate: [GuildAuthGuard], canDeactivate: [CanDeactivateDashboard] },
   { path: 'servers/:id/announce', component: AnnounceModuleComponent, canActivate: [GuildAuthGuard], canDeactivate: [CanDeactivateDashboard] },

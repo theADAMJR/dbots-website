@@ -1,16 +1,36 @@
-<navbar></navbar>
-<header class="container">
-    <div class="jumbotron">
-        <img src="assets/img/2PGAvatarTransparent.png" alt="2PG Discord Bot" class="float robot">
-        <p class="lead">Simple, powerful Discord bot</p>
-        <hr class="my-2">
-        <p>Announce, General, Music, XP, and more!</p>
-        <p class="lead">
-            <a class="btn btn-primary" routerLink="/invite">Add</a>
-        </p>
+<header>
+    <navbar></navbar>
+    <div class="container jumbotron mb-0">
+        <h1 class="text-center">Find a Bot</h1>
+        <div class="d-flex justify-content-center">
+            <mat-form-field appearance="outline">
+                <mat-label for="search">Search</mat-label>
+                <input id="search" type="search" [placeholder]="placeholder" matInput>
+            </mat-form-field>
+        </div>
+        <div class="d-flex justify-content-center">
+            <mat-chip-list>
+                <mat-chip>Top <i class="pl-1 fas fa-trophy"></i></mat-chip>
+                <mat-chip>New <i class="pl-1 fas fa-star"></i></mat-chip>
+                <mat-chip>Music <i class="pl-1 fas fa-music"></i></mat-chip>
+                <mat-chip class="more"><i class="fa fa-plus" aria-hidden="true"></i></mat-chip>
+            </mat-chip-list>
+        </div>
     </div>
 </header>
-<footer>
-    <p routerLink="/docs/changelog"
-        class="float-right">{{ version }}</p>
-</footer>
+<waves inverted="true"></waves>
+
+<div id="content" class="container">
+    <div>
+        <h2>Top</h2>
+    </div>
+
+    <div>
+        <h2>Tags</h2>
+        <mat-chip-list>
+            <mat-chip *ngFor="let tag of tags">{{ tag }}</mat-chip>
+        </mat-chip-list>
+    </div>
+</div>
+
+<home-footer></home-footer>

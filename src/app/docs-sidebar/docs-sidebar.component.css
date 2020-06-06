@@ -1,5 +1,5 @@
 mat-sidenav {
-    background-color: var(--background-primary);
+    background-color: var(--background-secondary) !important;
 }
 
 [opened] {
