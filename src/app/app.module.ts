@@ -55,6 +55,7 @@ import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { WavesComponent } from './waves/waves.component';
 import { AddBotComponent } from './dashboard/add-bot/add-bot.component';
 import { BotPreviewComponent } from './bot-preview/bot-preview.component';
+import { BotCardComponent } from './bot-card/bot-card.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
@@ -120,7 +121,8 @@ export class AlertErrorHandler implements ErrorHandler {
     HomeFooterComponent,
     WavesComponent,
     AddBotComponent,
-    BotPreviewComponent
+    BotPreviewComponent,
+    BotCardComponent
   ],
   imports: [
     AppRoutingModule,

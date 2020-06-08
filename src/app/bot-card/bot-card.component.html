@@ -1,0 +1,24 @@
+<div class="text-center rounded-lg card shadow text-white bg-dark">
+  <div class="d-flex justify-content-center">
+    <img class="shadow rounded-lg card-img-top" [src]="user.avatarURL" alt="">
+  </div>
+  <div class="status" [ngClass]="{
+      'status-online': user.presence === 'ONLINE',
+      'status-dnd': user.presence === 'DND'
+    }" [matTooltip]="user.presence"></div>
+  <div class="card-body">
+    <h4 class="card-title">{{ user.username }}</h4>
+    <div class="card-text">
+        <p class="d-flex justify-content-around">
+          <span class="badge badge-secondary cursor-pointer" matTooltip="Servers">
+            <i class="fas fa-server"></i> {{ bot.guildCount }}
+          </span>
+          <span class="badge badge-secondary cursor-pointer" matTooltip="Votes">
+            <i class="fa fa-chevron-circle-up" aria-hidden="true"></i> {{ bot.votes.length }}
+          </span>
+        </p>
+        <p class="color-muted">{{ bot.listing.overview }}</p>
+        <p class="color-secondary">{{ bot.listing.tags.join(', ') }}</p>
+    </div>
+  </div>
+</div>

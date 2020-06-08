@@ -22,11 +22,18 @@
 
 <div id="content" class="container">
     <div>
-        <h2>Top</h2>
+        <h2 class="pt-5 pb-4">Top</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <bot-card></bot-card>
+            </div>
+        </div>
     </div>
 
+    <hr class="py-5">
+
     <div>
-        <h2>Tags</h2>
+        <h2 class="pb-2">Tags</h2>
         <mat-chip-list>
             <mat-chip *ngFor="let tag of tags">{{ tag }}</mat-chip>
         </mat-chip-list>

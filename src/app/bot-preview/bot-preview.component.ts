@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import marked from 'marked';
 
 @Component({
   selector: 'bot-preview',
@@ -8,11 +9,16 @@ import { Component, Input } from '@angular/core';
 export class BotPreviewComponent {
   serverCount = 100;
   votes = 0;
-  @Input() body = 'Lollipop gingerbread carrot cake. Sugar plum pastry wafer brownie. Gingerbread fruitcake jelly-o donut muffin sugar plum cookie sesame snaps candy canes. Bear claw sweet roll sugar plum brownie chocolate cake cupcake pastry topping candy. Candy canes cake gingerbread sweet tootsie roll apple pie chupa chups. Cotton candy pie fruitcake. Marzipan oat cake powder bear claw marshmallow soufflé cake jelly. Chocolate wafer soufflé lemon drops. Tiramisu liquorice sugar plum cake carrot cake. Pastry bonbon liquorice. Cheesecake fruitcake carrot cake. Sesame snaps ice cream lemon drops candy cotton candy chocolate bar. Oat cake chocolate lemon drops caramels carrot cake donut chupa chups tootsie roll donut. Toffee jelly liquorice jelly-o chocolate cake toffee tootsie roll apple pie.';;
+  tags = ['music', 'moderation', 'utility'];
+  @Input() body = '';
 
   @Input() user = {
     avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
     username: 'Bot User',
     discriminator: '0000'
+  }
+
+  get markdown() {
+    return marked(this.body, { breaks: true });
   }
 }

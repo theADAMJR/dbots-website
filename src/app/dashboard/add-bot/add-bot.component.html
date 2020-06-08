@@ -21,14 +21,32 @@
                         <mat-label>Prefix</mat-label>
                         <input formControlName="prefix" type="text" matInput>
                     </mat-form-field>
-                    <div>
+                    <div class="editor-container">
                         <label for="editor">Body</label>
                         <textarea id="editor" formControlName="body" placeholder="300 characters minimum (markdown allowed)"></textarea>
                     </div>
+
+                    <hr>
+                    
+                    <!-- <mat-form-field appearance="outline">
+                        <mat-label>Tags</mat-label>
+                        <mat-chip-list formControlName="tags"
+                            #tags aria-label="Tag selection">
+                            <mat-chip *ngFor="let tag of tags" selectable
+                                    removable (removed)="remove(tag, tags)">
+                                {{ tag }}
+                                <mat-icon matChipRemove>x</mat-icon>
+                            </mat-chip>
+                            <input placeholder="New tag..."
+                                    [matChipInputFor]="tags"
+                                    matChipInputAddOnBlur
+                                    (matChipInputTokenEnd)="add($event, tags)">
+                        </mat-chip-list>
+                    </mat-form-field> -->
                 </form>
             </div>
             <div class="col-lg-6 border-left">
-                <bot-preview [body]="form.get('body').value"></bot-preview>
+                <bot-preview [body]="body"></bot-preview>
             </div>
         </div>
         <button id="submit" (click)="submit()"

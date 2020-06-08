@@ -7,4 +7,10 @@
 
 <hr>
 
-<div id="markdown" class="mt-5">{{ body }}</div>
+<div id="markdown" class="mt-5" [innerHTML]="markdown"></div>
+
+<hr>
+
+<mat-chip-list>
+    <mat-chip *ngFor="let tag of tags">{{ tag }}</mat-chip>
+</mat-chip-list>

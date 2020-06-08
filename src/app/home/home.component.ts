@@ -12,7 +12,7 @@ export class HomeComponent {
     'music',
     'moderation',
     'social',
-    'util'
+    'utility'
   ];
 
   constructor() {

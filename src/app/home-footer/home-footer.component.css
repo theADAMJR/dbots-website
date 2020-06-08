@@ -1,7 +1,6 @@
 .content {
-  position:relative;
-  height:10vh;
-  text-align:center;
+  position: relative;
+  height: 10vh;
   background-color: var(--background-secondary);
 }
 footer {  
