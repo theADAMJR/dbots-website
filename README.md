@@ -1,7 +1,7 @@
-# 2PG Dashboard
-Dashboard to customize 2PG; made with TypeScript + Angular 9 -> https://2pg.xyz
+# DBots Dashboard
+Dashboard to customize DBots; made with TypeScript + Angular 9 -> https://DBots.xyz
 
-![Guild Dashboard](https://2pg.xyz/assets/docs/img/dashboard-v0.1.0b.png)
+![Guild Dashboard](https://DBots.xyz/assets/docs/img/dashboard-v0.1.0b.png)
 
 ## Discord Bot Setup
 Make sure you have redirects set to the /auth link you will be using.

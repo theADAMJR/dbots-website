@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { BotsComponent } from '../bots/bots.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -6,22 +8,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  placeholder: string;
-
-  tags = [
-    'music',
-    'moderation',
-    'social',
-    'utility'
-  ];
-
   constructor() {
     document.title = 'DBots - Find Discord Bots';
-    this.placeholder = this.getRandomPlaceholder();
-  }
-
-  getRandomPlaceholder() {
-    const i = Math.floor(Math.random() * (this.tags.length - 1));
-    return this.tags[i];
   }
 }

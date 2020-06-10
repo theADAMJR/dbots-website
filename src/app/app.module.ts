@@ -56,18 +56,21 @@ import { WavesComponent } from './waves/waves.component';
 import { AddBotComponent } from './dashboard/add-bot/add-bot.component';
 import { BotPreviewComponent } from './bot-preview/bot-preview.component';
 import { BotCardComponent } from './bot-card/bot-card.component';
+import { SeoService } from './services/seo.service';
+import { BotsComponent } from './bots/bots.component';
+import { SearchWrapperComponent } from './bots/search-wrapper/search-wrapper.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
     try {
-      alert(error?.rejection?.error ?? error?.message ?? error);
+      // alert(error?.rejection?.error ?? error?.message ?? error);
 
-      const key = localStorage.getItem('key');
-      await fetch(`${environment.endpoint}/error?key=${key}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: error.message })
-      });
+      // const key = localStorage.getItem('key');
+      // await fetch(`${environment.endpoint}/error?key=${key}`, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ message: error.message })
+      // });
     } finally {
       console.log(error);
     }
@@ -122,7 +125,9 @@ export class AlertErrorHandler implements ErrorHandler {
     WavesComponent,
     AddBotComponent,
     BotPreviewComponent,
-    BotCardComponent
+    BotCardComponent,
+    BotsComponent,
+    SearchWrapperComponent
   ],
   imports: [
     AppRoutingModule,
@@ -137,6 +142,7 @@ export class AlertErrorHandler implements ErrorHandler {
   ],
   exports: [PremiumDirective],
   providers: [
+    SeoService,
     { provide: ErrorHandler, useClass: AlertErrorHandler },
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     {

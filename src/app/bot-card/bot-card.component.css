@@ -6,10 +6,10 @@ img {
 
 .status {
     position: absolute;
-    right: 30px;
-    top: 40%;
 
-    border-radius: 50%;
+    top: 35%;
+    right: 10%;
+
     width: 42px;
     height: 42px;
 
@@ -21,4 +21,16 @@ img {
 }
 .status-dnd {
     background-color: red;
+}
+
+.stats {
+    margin: 0;
+    margin-bottom: 5px;
+}
+.card-body {
+    padding-top: 10px;
+}
+
+.card {
+    width: 256px;
 }

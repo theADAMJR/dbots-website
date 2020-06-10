@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GuildService } from './services/guild.service';
 import { UserService } from './services/user.service';
-import { CommandsService } from './services/commands.service';
+import { SeoService } from './services/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +9,17 @@ import { CommandsService } from './services/commands.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private commandService: CommandsService,
+    private seo: SeoService,
     private userService: UserService) {}
 
   async ngOnInit() {
-    await this.commandService.updateCommands();
     await this.userService.updateUser();
     await this.userService.updateSavedUser();
+
+    this.seo.setTags({
+      description: 'Find the best Discord bots easily and quickly for your servers.',
+      titleSuffix: 'Discord Bot',
+      url: '/'
+    });
   } 
 }

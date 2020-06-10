@@ -10,6 +10,7 @@ import { DashboardAuthGuard } from './guards/dashboard-auth.guard';
 import { XPCardComponent } from './xp-card/xp-card.component';
 import { DocsComponent } from './docs/docs.component';
 import { AddBotComponent } from './dashboard/add-bot/add-bot.component';
+import { SearchWrapperComponent } from './bots/search-wrapper/search-wrapper.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,10 +19,13 @@ const routes: Routes = [
   { path: 'docs/:page', component: DocsComponent },
   { path: 'login', component: LoginComponent },
 
+  { path: 'search', component: SearchWrapperComponent },
+  { path: 'tags/:tag', component: SearchWrapperComponent },
+
   { path: 'dashboard', component: DashboardComponent, canActivate: [DashboardAuthGuard] },
   
-  { path: 'dashboard/bots/add', component: AddBotComponent, canActivate: [DashboardAuthGuard] },
-  { path: 'dashboard/bots/:id', component: XPCardComponent, canActivate: [DashboardAuthGuard] },
+  { path: 'dashboard/bots/new', component: AddBotComponent, canActivate: [DashboardAuthGuard] },
+  { path: 'dashboard/bots/:id', component: AddBotComponent, canActivate: [DashboardAuthGuard] },
 
   { path: '**', component: NotFoundComponent }
 ];

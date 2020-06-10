@@ -1,9 +1,9 @@
 img {
-    float: left;
+  float: left;
 
-    margin-right: 15px;
-    border-radius: 10px;
-    width: 128px;
+  margin-right: 15px;
+  border-radius: 10px;
+  width: 128px;
 }
 
 #markdown {

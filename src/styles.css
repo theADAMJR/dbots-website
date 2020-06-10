@@ -170,3 +170,8 @@ mat-paginator {
 .cm-spell-error {
     background-color: rgba(255, 230, 0, 0.15) !important;
 }
+
+/* paginator */
+.mat-paginator-page-size {
+    display: none !important;
+}

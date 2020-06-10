@@ -17,36 +17,46 @@
                         <mat-label>Client ID</mat-label>
                         <input formControlName="clientId" type="text" matInput>
                     </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Overview</mat-label>
+                        <textarea formControlName="overview" type="text" matInput></textarea>
+                    </mat-form-field>
+
                     <mat-form-field appearance="outline">
                         <mat-label>Prefix</mat-label>
                         <input formControlName="prefix" type="text" matInput>
                     </mat-form-field>
+
                     <div class="editor-container">
                         <label for="editor">Body</label>
-                        <textarea id="editor" formControlName="body" placeholder="300 characters minimum (markdown allowed)"></textarea>
+                        <textarea id="editor" formControlName="body" placeholder="300 characters minimum (markdown allowed)" hidden></textarea>
                     </div>
 
                     <hr>
                     
-                    <!-- <mat-form-field appearance="outline">
+                    <mat-form-field appearance="outline">
                         <mat-label>Tags</mat-label>
-                        <mat-chip-list formControlName="tags"
-                            #tags aria-label="Tag selection">
-                            <mat-chip *ngFor="let tag of tags" selectable
-                                    removable (removed)="remove(tag, tags)">
-                                {{ tag }}
-                                <mat-icon matChipRemove>x</mat-icon>
-                            </mat-chip>
-                            <input placeholder="New tag..."
-                                    [matChipInputFor]="tags"
-                                    matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, tags)">
-                        </mat-chip-list>
-                    </mat-form-field> -->
+                        <mat-select multiple
+                            formControlName="tags">
+                            <mat-option *ngFor="let tag of tags" 
+                                [value]="tag">{{ tag }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </form>
             </div>
             <div class="col-lg-6 border-left">
-                <bot-preview [body]="body"></bot-preview>
+                <bot-card [bot]="{
+                    listing: form.value,
+                    guildCount: 100,
+                    votes: toIterable(100)
+                }"></bot-card>
+                <hr>
+                <bot-preview class="rounded-lg" [bot]="{
+                    listing: form.value,
+                    guildCount: 100,
+                    votes: toIterable(100)
+                }"></bot-preview>
             </div>
         </div>
         <button id="submit" (click)="submit()"

@@ -9,6 +9,7 @@
     --heading: #ffffff;
     --font: #99AAB5;
 
+    --success: green;
     --danger: darkred;
     --muted: grey;
 
@@ -98,7 +99,11 @@ $theme: mat-dark-theme($primary, $secondary, $warn);
 // css styles
 
 .mat-success {
-    background-color: green;
+    background-color: var(--success);
+    color: #fff;
+}
+.mat-danger {
+    background-color: var(--danger);
     color: #fff;
 }
 
@@ -116,4 +121,11 @@ h1,h2,h3,h4,h5 {
 
 .color-muted {
     color: var(--muted) !important;
+}
+
+// backgrounds
+
+.bg-secondary {
+    background-color: var(--secondary);
+    color: #fff;
 }

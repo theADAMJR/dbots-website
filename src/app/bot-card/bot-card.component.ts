@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './bot-card.component.html',
   styleUrls: ['./bot-card.component.css']
 })
-export class BotCardComponent {
+export class BotCardComponent {  
   @Input() user = {
     avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
     username: 'Username',
@@ -18,6 +18,6 @@ export class BotCardComponent {
       overview: 'A good bot I guess...',
       tags: ['Economy', 'Moderation']
     },
-    votes: ['218459216145285121'],
+    votes: ['218459216145285121']
   }
 }

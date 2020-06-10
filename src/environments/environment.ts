@@ -6,9 +6,10 @@ export const environment = {
   production: false,
   endpoint: 'http://localhost:3000/api',
   discordInvite: 'https://discord.gg/24tycau',
-  githubURL: 'https://github.com/theADAMJR/2PG',
+  githubURL: 'https://github.com/theADAMJR/DBots',
   stripePublicKey: 'pk_test_rjQKo5c9pcHvDFjFe1mfdKib00Es3eJ831',
   version: 'v0.0.1a',
+  url: 'https://3pg.xyz',
   test: {
     guildId: '685862664223850497'
   }

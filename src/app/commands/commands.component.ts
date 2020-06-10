@@ -24,9 +24,9 @@ export class CommandsComponent implements OnInit {
     
     this.dataSource = new MatTableDataSource(this.commands);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;    
+    this.dataSource.sort = this.sort;
 
-    document.title = '2PG - Commands';
+    document.title = 'DBots - Commands';
   }
 
   applyFilter(event: Event) {

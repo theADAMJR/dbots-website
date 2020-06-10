@@ -1,0 +1,47 @@
+<header>
+    <navbar></navbar>
+    <div class="container jumbotron mb-0">
+        <h1 class="text-center">Find a Discord Bot</h1>
+        <h2></h2>
+        <div class="d-flex justify-content-center">
+            <mat-form-field appearance="outline">
+                <mat-label for="search">Search</mat-label>
+                <input #searchInput
+                    (keyup.enter)="search(searchInput.value)"               
+                    id="search" type="search" [placeholder]="placeholder" matInput>
+            </mat-form-field>
+            <button id="searchButton"
+                (click)="search(searchInput.value)" 
+                mat-button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <mat-chip-list>
+                <mat-chip>Top <i class="pl-1 fas fa-trophy"></i></mat-chip>
+                <mat-chip>New <i class="pl-1 fas fa-star"></i></mat-chip>
+                <mat-chip>Music <i class="pl-1 fas fa-music"></i></mat-chip>
+                <mat-chip class="more"><i class="fa fa-plus" aria-hidden="true"></i></mat-chip>
+            </mat-chip-list>
+        </div>
+    </div>
+</header>
+<waves inverted="true"></waves>
+
+<div id="content" class="container">
+    <bots></bots>
+
+    <div class="fade-out" *ngIf="!searchInput.value">
+        <hr class="mb-5">
+
+        <h2 class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
+        <mat-chip-list>
+            <mat-chip *ngFor="let tag of tags"
+                class="cursor-pointer" [routerLink]="['/tags/', tag.name]">{{ tag.name }}</mat-chip>
+        </mat-chip-list>
+
+        <div class="d-flex justify-content-center mt-5 mb-2">
+            <button class="rounded-lg py-2 px-4" color="success" mat-button>View All</button>
+        </div>
+    </div>
+</div>
+
+<home-footer></home-footer>

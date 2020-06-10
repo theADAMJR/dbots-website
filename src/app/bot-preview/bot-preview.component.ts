@@ -6,11 +6,16 @@ import marked from 'marked';
   templateUrl: './bot-preview.component.html',
   styleUrls: ['./bot-preview.component.css']
 })
-export class BotPreviewComponent {
-  serverCount = 100;
-  votes = 0;
-  tags = ['music', 'moderation', 'utility'];
-  @Input() body = '';
+export class BotPreviewComponent {  
+  @Input() bot = {
+    listing: {
+      body: '',
+      prefix: '/',
+      tags: ['music', 'moderation', 'utility']
+    },
+    guildCount: 100,
+    votes: ['218459216145285121']
+  }
 
   @Input() user = {
     avatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
@@ -19,6 +24,6 @@ export class BotPreviewComponent {
   }
 
   get markdown() {
-    return marked(this.body, { breaks: true });
+    return marked(this.bot.listing.body, { breaks: true });
   }
 }
