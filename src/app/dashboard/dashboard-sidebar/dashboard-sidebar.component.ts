@@ -13,8 +13,7 @@ export class DashboardSidebarComponent implements OnInit {
   constructor(private userService: UserService) {
     document.title = 'DBots - Dashboard';
   }
-
   ngOnInit(): void {
+    throw new Error("Method not implemented.");
   }
-
 }

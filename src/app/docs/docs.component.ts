@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import marked from 'marked';
 import { map } from 'rxjs/operators';
-import { SeoService } from '../services/seo.service';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-docs',
@@ -21,7 +21,7 @@ export class DocsComponent implements OnInit {
   }
 
   constructor(
-    private seo: SeoService,
+    private seo: SEOService,
     private route: ActivatedRoute,
     router: Router) {
     route.paramMap.subscribe(paramMap => {      

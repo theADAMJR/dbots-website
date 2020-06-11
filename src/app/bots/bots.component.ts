@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { DataSource } from '@angular/cdk/table';
-import { ActivatedRoute } from '@angular/router';
+import { BotsService, Tag } from './bots.service';
 
 @Component({
   selector: 'bots',
@@ -11,56 +10,16 @@ import { ActivatedRoute } from '@angular/router';
 export class BotsComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
 
-  loaded = false;
-  tag = '';
   title = 'Top';
+  description = 'The highest rated bots this week.';
   query = '';
 
-  bots = [
-    {
-      _id: '321',
-      guildCount: 10,
-      listing: {
-        overview: 'A good bot I guess...',
-        tags: ['Economy', 'Moderation']
-      },
-      votes: ['218459216145285121', '218459216145285121']
-    },
-    {
-      _id: '122',
-      guildCount: 69420,
-      listing: {
-        overview: 'Another good bot I guess...',
-        tags: ['Leveling', 'Memes']
-      },
-      votes: ['218459216145285121', '218459216145285121', '218459216145285121', '218459216145285121', '218459216145285121']
-    },
-    {
-      _id: '123',
-      guildCount: 20,
-      listing: {
-        overview: 'Another good bot I guess...',
-        tags: ['Leveling', 'Memes']
-      },
-      votes: ['218459216145285121']
-    }
-  ];
+  tag: Tag;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(public service: BotsService) {}
 
   ngOnInit() {
-    this.bots.sort((a, b) => b.votes.length - a.votes.length);
-    setTimeout(() => this.loaded = true, 1000);
-    
-    this.route.queryParamMap.subscribe(queryMap => {
-      const query = queryMap.get('q');
-      const page = queryMap.get('p');
-
-      if (query)
-        this.search(query);
-      if (page)
-        this.goToPage(+page);
-    });
+    this.service.bots.sort((a, b) => b.votes.length - a.votes.length);
   }
 
   search(query: string) {
@@ -73,7 +32,7 @@ export class BotsComponent implements OnInit {
       // this.bots = // get new bots, with query, from API
       
       const resultsSize = 8;
-      this.paginator.pageIndex = this.bots.length / resultsSize;
+      this.paginator.pageIndex = this.service.bots.length / resultsSize;
     } else {
       this.title = 'Top';
 
@@ -83,8 +42,9 @@ export class BotsComponent implements OnInit {
     this.query = query;
   }
 
-  searchByTag(tag: string) {
-    this.title = `Bots tagged '${tag}'`;
+  searchByTag(tag: Tag) {
+    this.title = `Bots tagged '${tag.name}'`;
+    this.description = tag.description;
     this.tag = tag;
   }
 

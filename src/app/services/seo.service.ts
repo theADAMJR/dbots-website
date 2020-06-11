@@ -19,10 +19,10 @@ export interface TypingName {
 }
 
 @Injectable()
-export class SeoService {
+export class SEOService {
   base = {
-    title: '3PG',
-    titleSuffix: 'Discord Bot'
+    title: 'Find Discord Bots',
+    titleSuffix: 'DBots'
   }
 
   constructor(

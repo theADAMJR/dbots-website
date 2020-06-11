@@ -6,13 +6,10 @@ import { UserService } from '../services/user.service';
   templateUrl: './dashboard-overview.component.html',
   styleUrls: ['./dashboard-overview.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   get user() { return this.userService.user; }
 
   constructor(private userService: UserService) {
     document.title = 'DBots - Dashboard';
-  }
-
-  ngOnInit() {
   }
 }

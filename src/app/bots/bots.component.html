@@ -1,7 +1,8 @@
-<div *ngIf="loaded">
-    <h2 class="pt-5 pb-4"><i class="fas fa-robot"></i> {{ title }}</h2>
+<div *ngIf="service.bots">
+    <h2 class="pt-5"><i class="fas fa-robot"></i> {{ title }}</h2>
+    <p class="color-secondary pb-4">{{ description }}</p>
     <div class="row">
-        <div *ngFor="let bot of bots"
+        <div *ngFor="let bot of service.bots"
             class="col-lg-3 col-md-4 col-sm-6">
             <bot-card [bot]="bot"></bot-card>
         </div>
@@ -9,6 +10,6 @@
 
     <mat-paginator #paginator></mat-paginator>
 </div>
-<div *ngIf="!loaded">
+<div *ngIf="!service.bots">
     <spinner></spinner>
 </div>

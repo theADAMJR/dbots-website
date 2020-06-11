@@ -27,15 +27,17 @@
 <waves inverted="true"></waves>
 
 <div id="content" class="container">
-    <bots></bots>
+    <bots #bots></bots>
 
-    <div class="fade-out" *ngIf="!searchInput.value">
+    <div *ngIf="!searchInput.value">
         <hr class="mb-5">
 
         <h2 class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
         <mat-chip-list>
-            <mat-chip *ngFor="let tag of tags"
-                class="cursor-pointer" [routerLink]="['/tags/', tag.name]">{{ tag.name }}</mat-chip>
+            <mat-chip *ngFor="let tag of service.tags"
+                class="cursor-pointer" [routerLink]="['/tags/', tag.name]">{{ tag.name }}
+                <i [class]="tag.icon" class="ml-1" aria-hidden="true"></i>
+            </mat-chip>
         </mat-chip-list>
 
         <div class="d-flex justify-content-center mt-5 mb-2">

@@ -1,4 +1,4 @@
-.guild-icon {
+.icon {
     border-radius: 50%;
 
     margin: 5px;
@@ -11,11 +11,11 @@
     cursor: pointer;
 }
 
-.guild-icon img:hover, .guild-icon:hover, .guild-icon span:hover {
+.icon img:hover, .icon:hover, .icon span:hover {
     border-radius: 25%;
 }
 
-.guild-icon span {
+.icon span {
     text-align: center;
 
     font-size: 20px;
@@ -27,7 +27,7 @@
     transition: all .35s;
 }
 
-.guild-icon img {
+.icon img {
     max-width: 64px;
     border-radius: 50%;
 
@@ -42,7 +42,7 @@ button {
     font-size: 32px;
 }
 
-.guilds {
+.items {
     background-color: var(--background-tertiary);
     float: left;
     height: inherit;
@@ -73,7 +73,7 @@ mat-sidenav {
     background-color: var(--background-tertiary);
 }
 
-.guild-icon .add-guild {
+.icon .add {
     font-size: 40px;
     padding-left: 20px;
     padding-top: 0px;
@@ -81,12 +81,4 @@ mat-sidenav {
 
 .invite:hover {
     background-color: var(--tertiary);    
-}
-
-.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.cdk-drag {
-  border-radius: 50%;
 }

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { GuildService } from '../services/guild.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -11,7 +9,6 @@ import { UserService } from '../services/user.service';
 })
 export class LogoutComponent implements OnInit {
   constructor(
-    private guildService: GuildService,
     private router: Router,
     private userService: UserService) {}
 
@@ -19,7 +16,6 @@ export class LogoutComponent implements OnInit {
     localStorage.removeItem('key');
     
     await this.userService.updateUser();
-    await this.guildService.updateGuilds();
 
     this.router.navigate(['/']);
   }

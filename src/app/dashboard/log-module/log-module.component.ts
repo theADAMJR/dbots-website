@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { GuildService } from '../../services/guild.service';
 import { ActivatedRoute } from '@angular/router';
+import { BotsService } from 'src/app/bots/bots.service';
 
 @Component({
   selector: 'app-log-module',
@@ -22,16 +22,13 @@ export class LogModuleComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private guildService: GuildService,
-    private service: GuildService) {}
+    private botService: BotsService) {}
 
   async ngOnInit() { 
     const id = this.route.snapshot.paramMap.get('id');
 
-    const log = await this.service.getSavedLog(id);
+    const log = await this.botService.getSavedLog(id);
     this.changes = log.changes.reverse();
-
-    this.members = await this.guildService.getMembers(id);
     
     this.dataSource = new MatTableDataSource(this.changes);
     this.dataSource.paginator = this.paginator;
@@ -44,9 +41,5 @@ export class LogModuleComponent implements OnInit {
 
     if (this.dataSource.paginator)
       this.dataSource.paginator.firstPage();
-  }
-
-  getMember(id: string) {          
-    return this.members.find(m => m.id === id) || {};
   }
 }

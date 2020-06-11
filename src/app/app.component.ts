@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
-import { SeoService } from './services/seo.service';
+import { SEOService } from './services/seo.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { SeoService } from './services/seo.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private seo: SeoService,
+    private seo: SEOService,
     private userService: UserService) {}
 
   async ngOnInit() {

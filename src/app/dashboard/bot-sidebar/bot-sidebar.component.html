@@ -1,0 +1,24 @@
+<sidebar *ngIf="bot">
+    <div class="side-nav navbar-dark">
+        <div class="header">
+            <img *ngIf="bot.displayAvatarURL"
+                [src]="bot.displayAvatarURL" [alt]="bot.username">
+            <h4 [routerLink]="['/servers/' + bot.id]">{{ bot.username }}</h4>
+        </div>
+            <hr>
+            <div class="navbar-nav">
+                <a [routerLink]="['/servers/' + bot.id + '/edit']" routerLinkActive="active"
+                    class="nav-item nav-link">
+                    <i class="fa fa-bullhorn"></i> Edit</a>
+            </div>
+        </div>
+    <div id="content">
+        <div *ngIf="loaded">
+            <ng-content></ng-content>
+            <div class="mt-5 pt-2"></div>
+        </div>
+        <div *ngIf="!loaded">
+            <spinner></spinner>
+        </div>
+    </div>
+</sidebar>
