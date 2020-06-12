@@ -19,7 +19,7 @@ import { SidebarComponent } from './dashboard/sidebar/sidebar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { HomeComponent } from './home/home.component';
 import { LogModuleComponent } from './dashboard/log-module/log-module.component';
-import { GuildSidebarComponent } from './dashboard/bot-sidebar/bot-sidebar.component';
+import { BotSidebarComponent } from './dashboard/bots/bot-sidebar/bot-sidebar.component';
 import { DashboardSidebarComponent } from './dashboard/dashboard-sidebar/dashboard-sidebar.component';
 import { MaterialModule } from './material-module';
 import { SaveChangesComponent } from './dashboard/save-changes/save-changes.component';
@@ -31,25 +31,26 @@ import { DocsSidebarComponent } from './docs-sidebar/docs-sidebar.component';
 import { ZippyComponent } from './zippy/zippy.component';
 import { AuditLogWidgetComponent } from './dashboard/widgets/audit-log-widget/audit-log-widget.component';
 import { CommandsWidgetComponent } from './dashboard/widgets/commands-widget/commands-widget.component';
-import { MiniDatePipe } from './pipes/mini-date.pipe';
-import { SnakeToSentenceCasePipe } from './pipes/snake-to-sentence-case.pipe';
 import { TruncatedPipe } from './pipes/truncated.pipe';
 import { DurationStringPipe } from './pipes/duration-string.pipe';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
 import { WavesComponent } from './waves/waves.component';
-import { AddBotComponent } from './dashboard/add-bot/add-bot.component';
+import { AddBotComponent } from './dashboard/bots/add-bot/add-bot.component';
 import { BotPreviewComponent } from './bot-preview/bot-preview.component';
 import { BotCardComponent } from './bot-card/bot-card.component';
 import { SEOService } from './services/seo.service';
 import { BotsComponent } from './bots/bots.component';
 import { SearchWrapperComponent } from './bots/search-wrapper/search-wrapper.component';
 import { EditBotComponent } from './dashboard/bots/edit-bot/edit-bot.component';
-import { BotSettingsComponent } from './dashboard/bots/bot-settings/bot-settings.component';
+import { RocketButtonComponent } from './rocket-button/rocket-button.component';
+import { KebabToTitleCasePipe } from './pipes/kebab-to-sentence-case.pipe';
+import { MiniDatePipe } from './pipes/mini-date.pipe';
+import { BotWidgetComponent } from './dashboard/bots/bot-widget/bot-widget.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
     try {
-      alert(error?.rejection?.error ?? error?.message ?? error);
+      alert(error.rejection?.error ?? error.message ?? error);
 
       // const key = localStorage.getItem('key');
       // await fetch(`${environment.endpoint}/error?key=${key}`, {
@@ -57,9 +58,7 @@ export class AlertErrorHandler implements ErrorHandler {
       //   headers: { 'Content-Type': 'application/json' },
       //   body: JSON.stringify({ message: error.message })
       // });
-    } finally {
-      console.log(error);
-    }
+    } finally { console.log(error); }
   }
 }
 
@@ -76,7 +75,7 @@ export class AlertErrorHandler implements ErrorHandler {
     SidebarComponent,
     SpinnerComponent,
     LogModuleComponent,
-    GuildSidebarComponent,
+    BotSidebarComponent,
     DashboardSidebarComponent,
     SaveChangesComponent,
     NotFoundComponent,
@@ -87,8 +86,6 @@ export class AlertErrorHandler implements ErrorHandler {
     ZippyComponent,
     AuditLogWidgetComponent,
     CommandsWidgetComponent,
-    MiniDatePipe,
-    SnakeToSentenceCasePipe,
     TruncatedPipe,
     DurationStringPipe,
     HomeFooterComponent,
@@ -99,7 +96,10 @@ export class AlertErrorHandler implements ErrorHandler {
     BotsComponent,
     SearchWrapperComponent,
     EditBotComponent,
-    BotSettingsComponent
+    RocketButtonComponent,
+    KebabToTitleCasePipe,
+    MiniDatePipe,
+    BotWidgetComponent,
   ],
   imports: [
     AppRoutingModule,

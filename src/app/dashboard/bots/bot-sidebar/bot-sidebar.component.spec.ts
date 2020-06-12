@@ -1,23 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BotComponent } from './bot.component';
+import { BotSidebarComponent } from './bot-sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from '../../app-routing.module';
+import { AppRoutingModule } from '../../../app-routing.module';
 
-describe('BotComponent', () => {
-  let component: BotComponent;
-  let fixture: ComponentFixture<BotComponent>;
+describe('BotSidebarComponent', () => {
+  let component: BotSidebarComponent;
+  let fixture: ComponentFixture<BotSidebarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BotComponent ],
+      declarations: [ BotSidebarComponent ],
       imports: [ HttpClientModule, AppRoutingModule ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BotComponent);
+    fixture = TestBed.createComponent(BotSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

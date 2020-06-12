@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GuildService } from 'src/app/services/guild.service';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { ActivatedRoute } from '@angular/router';
+import { BotsService } from 'src/app/bots/bots.service';
 
 @Component({
   selector: 'commands-widget',
@@ -32,14 +32,14 @@ export class CommandsWidgetComponent implements OnInit {
   barChartData: ChartDataSets[] = [];
 
   constructor(
-    private guildService: GuildService,
+    private botService: BotsService,
     private route: ActivatedRoute) {}
     
   async ngOnInit() {
     this.route.paramMap.subscribe(async(val) => {
       const id = val.get('id');
 
-      const log = await this.guildService.getSavedLog(id);
+      const log = await this.botService.getSavedLog(id);
       this.commands = log.commands;
   
       this.barChartLabels = this.buildLabels();

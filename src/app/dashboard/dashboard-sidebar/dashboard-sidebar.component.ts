@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -7,13 +6,10 @@ import { UserService } from '../../services/user.service';
   templateUrl: './dashboard-sidebar.component.html',
   styleUrls: ['./dashboard-sidebar.component.css']
 })
-export class DashboardSidebarComponent implements OnInit {
+export class DashboardSidebarComponent {
   get user() { return this.userService.user ?? {}; }
 
   constructor(private userService: UserService) {
     document.title = 'DBots - Dashboard';
-  }
-  ngOnInit(): void {
-    throw new Error("Method not implemented.");
   }
 }

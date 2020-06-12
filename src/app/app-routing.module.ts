@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard-overview/dashboard-overview.component';
 import { DashboardAuthGuard } from './guards/dashboard-auth.guard';
 import { DocsComponent } from './docs/docs.component';
-import { AddBotComponent } from './dashboard/add-bot/add-bot.component';
+import { AddBotComponent } from './dashboard/bots/add-bot/add-bot.component';
 import { SearchWrapperComponent } from './bots/search-wrapper/search-wrapper.component';
 import { BotAuthGuard } from './bot-auth.guard';
 

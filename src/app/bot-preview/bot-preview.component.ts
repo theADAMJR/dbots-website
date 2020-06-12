@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterContentInit } from '@angular/core';
 import marked from 'marked';
 
 @Component({
@@ -24,6 +24,7 @@ export class BotPreviewComponent {
   }
 
   get markdown() {
-    return marked(this.bot.listing.body, { breaks: true });
+    return marked(this.bot.listing.body, { breaks: true })
+      .replace(/<a/g, '<a rel="nofollow" target="_blank" ');
   }
 }

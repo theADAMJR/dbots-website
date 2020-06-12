@@ -14,5 +14,5 @@
 <hr>
 
 <mat-chip-list>
-    <mat-chip *ngFor="let tag of bot.listing.tags">{{ tag }}</mat-chip>
+    <mat-chip *ngFor="let tagName of bot.listing.tags">{{ tagName | kebabToTitleCase }}</mat-chip>
 </mat-chip-list>

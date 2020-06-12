@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { BotsService, Tag } from './bots.service';
+import { kebabToTitleCase } from '../utils';
 
 @Component({
   selector: 'bots',
@@ -19,37 +20,38 @@ export class BotsComponent implements OnInit {
   constructor(public service: BotsService) {}
 
   ngOnInit() {
-    this.service.bots.sort((a, b) => b.votes.length - a.votes.length);
+    this.service.savedBots
+      .sort((a, b) => b.votes.length - a.votes.length);
   }
 
   search(query: string) {
+    this.query = query;
+
     if (this.paginator)
       this.paginator.firstPage();
       
-    if (query.length > 0) {
-      this.title = `Results for '${query}'`;
-      
-      // this.bots = // get new bots, with query, from API
-      
-      const resultsSize = 8;
-      this.paginator.pageIndex = this.service.bots.length / resultsSize;
-    } else {
-      this.title = 'Top';
+    (query.length > 0)
+      ? this.setSearchLayout()
+      : this.setDefaultLayout();
+  }
 
-      // get cached top 8 bots
-    }
-    
-    this.query = query;
+  private setDefaultLayout() {
+    this.title = 'Top';
+  }
+
+  private setSearchLayout() {
+    this.title = `Results for '${this.query}'`;
+    const resultsSize = 8;
+    this.paginator.pageIndex = this.service.savedBots.length / resultsSize;
   }
 
   searchByTag(tag: Tag) {
-    this.title = `Bots tagged '${tag.name}'`;
+    this.title = `Bots tagged '${kebabToTitleCase(tag.name)}'`;
     this.description = tag.description;
     this.tag = tag;
   }
 
   goToPage(number: number) {
-    // this.paginator
     alert(`go to page ${number}`);
   }
 }

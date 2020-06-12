@@ -62,6 +62,10 @@ table.dataTable tbody tr {
     background-color: transparent;
 }
 
+button {
+    border-radius: 35% !important;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar-track
 {
@@ -166,7 +170,28 @@ mat-paginator {
     background-color: rgba(255, 230, 0, 0.15) !important;
 }
 
+.cm-header-1 {
+    color: var(--heading);
+}
+
+.CodeMirror-vscrollbar {
+    display: none !important;
+}
+
 /* paginator */
 .mat-paginator-page-size {
     display: none !important;
+}
+
+/* modals */
+.modal-content,
+.modal-header,
+.modal-body {
+    background-color: var(--background-primary) !important;
+}
+
+.modal-content {    
+    min-width: 50vw;
+
+    margin: 0 !important;
 }

@@ -2,8 +2,8 @@ import { Component, ViewChild, AfterContentInit, AfterViewInit } from '@angular/
 import { BotsComponent } from '../bots.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SEOService as SEOService, TypingSEO } from 'src/app/services/seo.service';
-import { BotsService, Tag } from '../bots.service';
-import { capitalize } from 'src/app/utils';
+import { BotsService } from '../bots.service';
+import { kebabToTitleCase } from 'src/app/utils';
 
 @Component({
   selector: 'search-wrapper',
@@ -54,7 +54,7 @@ export class SearchWrapperComponent implements AfterViewInit {
 
     this.updateMetaTags({
       description: tag.description,
-      titleSuffix: `${capitalize(tag.name)} Bots`,
+      titleSuffix: `${kebabToTitleCase(tag.name)} Bots`,
       url: `tags/${tag.name}`
     });
   }

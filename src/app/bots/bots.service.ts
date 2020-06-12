@@ -21,6 +21,7 @@ export class BotsService {
   }
 
   bots = [];
+  savedBots = [];
   // TODO: include good keywords for SEO
   tags: Tag[] = [
     { name: 'anime', icon: '', description: 'A tag that needs a description with keywords.' },

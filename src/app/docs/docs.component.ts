@@ -23,7 +23,7 @@ export class DocsComponent implements OnInit {
   constructor(
     private seo: SEOService,
     private route: ActivatedRoute,
-    router: Router) {
+    private router: Router) {
     route.paramMap.subscribe(paramMap => {      
       const page = paramMap.get('page')?.toLowerCase();
       if (!page)
@@ -36,15 +36,17 @@ export class DocsComponent implements OnInit {
   }
 
   async convertToMarkdown() {
-    this.markdownPagePath$.subscribe(async(path) => {      
-      const file = await fetch(path);      
-      let md = await file.text();
-
-      md = this.setMetaVariables(md);
-      
-      document.getElementById('doc').innerHTML = marked(md, { breaks: true });
-      document.querySelector('h1').classList.add('display-3');
-    });
+    try {
+      this.markdownPagePath$.subscribe(async(path) => {      
+        const file = await fetch(path);      
+        let md = await file.text();
+  
+        md = this.setMetaVariables(md);
+        
+        document.getElementById('doc').innerHTML = marked(md, { breaks: true });
+        document.querySelector('h1').classList.add('display-3');
+      });
+    } catch { this.router.navigate(['/404']); }
   }
 
   setMetaVariables(content: string) {

@@ -1,0 +1,133 @@
+<bot-sidebar>
+    <div [hidden]="preview" class="container">
+        <div class="container">
+                <div class="d-flex justify-content-between">
+                    <h1 class="display-3">Add Bot</h1>
+                    <button id="previewButton" (click)="preview = true"
+                        class="rounded-lg mt-3" type="button" color="success" mat-button>
+                        <i class="fas fa-binoculars"></i> Preview
+                    </button>
+                </div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <form #f="ngForm" [formGroup]="form">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Bot ID</mat-label>
+                        <input formControlName="botId" type="text" matInput required>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Client ID</mat-label>
+                        <input formControlName="clientId" type="text" matInput required>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Invite</mat-label>
+                        <input formControlName="invite" type="text" matInput required>
+                    </mat-form-field>
+
+                    <span class="p-3">
+                        <a href="https://discordapi.com/permissions.html" target="_blank">Invite Generator</a>
+                    </span>
+
+                    <hr>
+                    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Overview</mat-label>
+                        <textarea formControlName="overview" type="text" matInput required></textarea>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Prefix</mat-label>
+                        <input formControlName="prefix" type="text" matInput required>
+                    </mat-form-field>
+
+                    <div class="editor-container">
+                        <label for="editor">Body</label>
+                        <textarea id="editor" formControlName="body" placeholder="300 characters minimum (markdown allowed)" hidden></textarea>
+                    </div>
+
+                    <hr>
+                    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Tags</mat-label>
+                        <mat-select multiple
+                            formControlName="tags">
+                            <input class="p-3" placeholer="Search" (input)="filterTags($event.target.value)" matInput>
+                            <mat-option *ngFor="let tag of filteredTags" 
+                                [value]="tag.name">{{ tag.name | kebabToTitleCase }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline">
+                        <mat-label>Owner IDs</mat-label>
+                        <mat-chip-list formControlName="ownerIds"
+                            #ownerIds aria-label="Owner ID selection">
+                            <mat-chip *ngFor="let id of form.get('ownerIds').value" selectable
+                                    removable (removed)="remove(id, form.get('ownerIds').value)">
+                                {{ id }}
+                                <mat-icon matChipRemove>x</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Add ID..."
+                                    [matChipInputFor]="ownerIds"
+                                    matChipInputAddOnBlur
+                                    (matChipInputTokenEnd)="add($event, form.get('ownerIds').value)">
+                        </mat-chip-list>
+                    </mat-form-field>
+
+                    <hr>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Support Server Invite</mat-label>
+                        <span matPrefix>discord.gg/</span>
+                        <input class="d-inline" formControlName="supportInvite" type="text" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Github URL</mat-label>
+                        <input formControlName="githubURL" type="text" matInput>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Website URL</mat-label>
+                        <input formControlName="websiteURL" type="text" matInput>
+                    </mat-form-field>
+
+                    <div class="d-flex justify-content-center">
+                        <rocket-button id="submit"
+                            [precondition]="form.dirty && form.value.valid"
+                            (click)="submit()"
+                            (animated)="navigateToBotListing()">Add Bot</rocket-button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6 d-none d-sm-block border-left">
+                <h3>Bot Card</h3>
+                <p>This is what your bot card will look like to new users.</p>
+                <div class="d-flex justify-content-center mb-5">
+                    <bot-card class="mt-5" [bot]="{
+                        listing: form.value,
+                        guildCount: 100,
+                        votes: toIterable(100)
+                    }"></bot-card>
+                </div>
+
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div [hidden]="!preview">
+        <div class="container">
+            <button (click)="preview = false"
+                class="float-right" color="danger" mat-button>&times;</button>
+
+            <bot-preview [bot]="{
+                listing: form.value,
+                guildCount: 100,
+                votes: toIterable(100)
+            }"></bot-preview>
+        </div>
+    </div>
+</bot-sidebar>

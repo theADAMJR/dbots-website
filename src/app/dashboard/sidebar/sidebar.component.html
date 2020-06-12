@@ -3,7 +3,7 @@
         <div class="items">
             <div class="user">
                 <div routerLink="/dashboard" class="icon">
-                    <img [src]="userService.displayAvatarURL" alt="{{ userService.username }}">
+                    <img [src]="userService.user.displayAvatarURL" alt="{{ userService.user.username }}">
                 </div>
                 <hr>
             </div>
@@ -12,7 +12,8 @@
                 <img [src]="bot.displayAvatarURL" [alt]="bot.username">
             </div>
             <div routerLink="/dashboard/bots/new" 
-                class="icon invite">
+                class="icon invite"
+                matTooltip="Add Bot">
                 <span class="add">+</span>
             </div>
             <hr>
