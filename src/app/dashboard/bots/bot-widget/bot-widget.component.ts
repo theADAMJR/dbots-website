@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-bot-widget',
+  selector: 'bot-widget',
   templateUrl: './bot-widget.component.html',
   styleUrls: ['./bot-widget.component.css']
 })
-export class BotWidgetComponent implements OnInit {
+export class BotWidgetComponent {
+  @Input() size: WidgetSize = 'md';
 
-  constructor() { }
-
-  ngOnInit(): void {
+  @Input() bot = {
+    guildCount: 10,
+    listing: {
+      overview: 'A good bot I guess...',
+      tags: ['Economy', 'Moderation']
+    },
+    votes: ['218459216145285121']
   }
-
 }
+
+export type WidgetSize = 'lg' | 'md' | 'sm';

@@ -13,8 +13,9 @@ import { MatChipInputEvent } from '@angular/material/chips';
 })
 export class AddBotComponent implements AfterViewInit {
   preview = false;
-  toIterable = toIterable;
+  editor: SimpleMDE;
 
+  toIterable = toIterable;
   filteredTags = this.botService.tags;
 
   body = `# Discord Bot Best Practices
@@ -28,18 +29,17 @@ export class AddBotComponent implements AfterViewInit {
   * Use **mentioning** the bot to help users
   
   [More Info](https://github.com/meew0/discord-bot-best-practices)`;
-  editor: SimpleMDE;
 
   form = new FormGroup({
-    body: new FormControl(this.body, [ Validators.minLength(300) ]),
+    body: new FormControl(this.body, [ Validators.required, Validators.minLength(300) ]),
     botId: new FormControl('', [ Validators.pattern(/^\d{18}$/), Validators.required ]),
     clientId: new FormControl('', [ Validators.pattern(/^\d{18}$/), Validators.required ]),
-    githubURL: new FormControl('', [ Validators.pattern(/https:[//]github.com/) ]),
-    invite: new FormControl('', [ Validators.required, Validators.pattern(/discord.gg/) ]),
-    overview: new FormControl('a good bot with no features', [ Validators.minLength(30) ]),
+    githubURL: new FormControl('', [ Validators.pattern(/https:\/\/github\.com\//) ]),
+    invite: new FormControl('', [ Validators.required, Validators.pattern(/https:\/\/discordapp.com|https:\/\/discord.com/) ]),
+    overview: new FormControl('a good bot with no features', [ Validators.maxLength(151) ]),
     ownerIds: new FormControl([], [ Validators.maxLength(3) ]),
     prefix: new FormControl('', [ Validators.required ]),
-    supportInvite: new FormControl('', [ Validators.pattern(/^`[A-Za-z0-9]{7}$/) ]),
+    supportInvite: new FormControl('', [ Validators.pattern(/^[A-Za-z0-9]{7}$/) ]),
     websiteURL: new FormControl('', [ Validators.pattern(/http/) ]),
     tags: new FormControl([], [ Validators.maxLength(5) ])
   });
@@ -49,6 +49,27 @@ export class AddBotComponent implements AfterViewInit {
     private router: Router) {}
 
   ngAfterViewInit() {
+    setTimeout(() => {
+      this.initializeEditor();
+      this.hookEvents();
+    });
+  }
+
+  private hookEvents() {
+    const container = document.querySelector('.editor-container') as HTMLElement;
+    container.onclick = container.onkeyup = () => {
+      this.form.controls.body.setValue(this.editor?.value());
+      this.updateDraft();
+    };
+
+    const draft = localStorage.getItem('botListingDraft');
+    if (draft)
+      this.form.setValue(JSON.parse(draft));
+
+    this.form.valueChanges.subscribe(() => this.updateDraft());
+  }
+
+  private initializeEditor() {
     const element = document.querySelector('#editor') as HTMLElement;
     this.editor = new SimpleMDE({
       element,
@@ -71,18 +92,6 @@ export class AddBotComponent implements AfterViewInit {
         'guide'
       ]
     });
-
-    const container = document.querySelector('.editor-container') as HTMLElement;
-    container.onclick = container.onkeyup = () => {
-      this.form.controls.body.setValue(this.editor?.value());
-      this.updateDraft();
-    };
-
-    const draft = localStorage.getItem('botListingDraft');
-    if (draft)
-      this.form.setValue(JSON.parse(draft));
-
-    this.form.valueChanges.subscribe(() => this.updateDraft());
   }
 
   private updateDraft() {
@@ -95,6 +104,13 @@ export class AddBotComponent implements AfterViewInit {
 
   submit() {
     this.form.controls.body.setValue(this.editor.value());
+
+    console.log(this.form.valid);    
+    console.log(this.form.value);
+    if (this.form.invalid)
+      return this.form.setErrors({ invalid: true });
+    
+    this.botService.createBot(this.form.value);    
   }
 
   navigateToBotListing() {
@@ -116,7 +132,7 @@ export class AddBotComponent implements AfterViewInit {
   remove(item: any, array: any[]) {
     const index = array.indexOf(item);
     if (index >= 0)
-        array.splice(index, 1);
+      array.splice(index, 1);
   }
 }
 

@@ -16,15 +16,22 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Bot ID</mat-label>
                         <input formControlName="botId" type="text" matInput required>
+                        <mat-error *ngIf="form.get('botId').invalid">Required, and should be a valid
+                            <a href="https://discord.com/developers/docs/reference#snowflakes" rel="nofollow" target="_blank">Snowflake ID.</a>
+                        </mat-error>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
                         <mat-label>Client ID</mat-label>
                         <input formControlName="clientId" type="text" matInput required>
+                        <mat-error *ngIf="form.get('clientId').invalid">Required, and should be a valid
+                            <a href="https://discord.com/developers/docs/reference#snowflakes" rel="nofollow" target="_blank">Snowflake ID.</a>
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Invite</mat-label>
                         <input formControlName="invite" type="text" matInput required>
+                        <mat-error *ngIf="form.get('invite').invalid">Required, and should be a valid discord link.</mat-error>
                     </mat-form-field>
 
                     <span class="p-3">
@@ -36,16 +43,19 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Overview</mat-label>
                         <textarea formControlName="overview" type="text" matInput required></textarea>
+                        <mat-error *ngIf="form.get('overview').invalid">Required, and should be no more than 150 characters in length.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Prefix</mat-label>
                         <input formControlName="prefix" type="text" matInput required>
+                        <mat-error *ngIf="form.get('prefix').invalid">Required.</mat-error>
                     </mat-form-field>
 
-                    <div class="editor-container">
+                    <div class="editor-container mt-3">
                         <label for="editor">Body</label>
                         <textarea id="editor" formControlName="body" placeholder="300 characters minimum (markdown allowed)" hidden></textarea>
+                        <mat-error *ngIf="form.get('body').invalid">Required, and should be at least 300 characters in length.</mat-error>
                     </div>
 
                     <hr>
@@ -58,10 +68,11 @@
                             <mat-option *ngFor="let tag of filteredTags" 
                                 [value]="tag.name">{{ tag.name | kebabToTitleCase }}</mat-option>
                         </mat-select>
+                        <mat-error *ngIf="form.get('tags').invalid">Mo more than 5 tags.</mat-error>
                     </mat-form-field>
                     
                     <mat-form-field appearance="outline">
-                        <mat-label>Owner IDs</mat-label>
+                        <mat-label>Additional Owner IDs</mat-label>
                         <mat-chip-list formControlName="ownerIds"
                             #ownerIds aria-label="Owner ID selection">
                             <mat-chip *ngFor="let id of form.get('ownerIds').value" selectable
@@ -74,6 +85,7 @@
                                     matChipInputAddOnBlur
                                     (matChipInputTokenEnd)="add($event, form.get('ownerIds').value)">
                         </mat-chip-list>
+                        <mat-error *ngIf="form.get('ownerIds').invalid">Mo more than 3 owner IDs.</mat-error>
                     </mat-form-field>
 
                     <hr>
@@ -82,17 +94,25 @@
                         <mat-label>Support Server Invite</mat-label>
                         <span matPrefix>discord.gg/</span>
                         <input class="d-inline" formControlName="supportInvite" type="text" matInput>
+                        <mat-error *ngIf="form.get('supportInvite').invalid">Should be a valid, 7 character, Discord invite code.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Github URL</mat-label>
                         <input formControlName="githubURL" type="text" matInput>
+                        <mat-error *ngIf="form.get('githubURL').invalid">Should be a valid https://github.com URL.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Website URL</mat-label>
                         <input formControlName="websiteURL" type="text" matInput>
+                        <mat-error *ngIf="form.get('websiteURL').invalid">Should be a valid URL.</mat-error>
                     </mat-form-field>
+
+                    <div *ngIf="form.hasError('invalid')"
+                        class="alert alert-error border border-danger">
+                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Some form values are invalid.
+                    </div>
 
                     <div class="d-flex justify-content-center">
                         <rocket-button id="submit"
@@ -103,6 +123,10 @@
                 </form>
             </div>
             <div class="col-lg-6 d-none d-sm-block border-left">
+                <div class="alert alert-warning border-warning">
+                    You must be in the <a href="/server">Discord server</a> to post bots, or your bots will not appear on the list.
+                </div>
+
                 <h3>Bot Card</h3>
                 <p>This is what your bot card will look like to new users.</p>
                 <div class="d-flex justify-content-center mb-5">
@@ -114,6 +138,30 @@
                 </div>
 
                 <hr>
+
+                <h3>Widgets</h3>
+                <p>Cool widgets that you can use to show off your bot.</p>
+                <div>
+                    <div class="col-3">
+                        <bot-widget size="lg" [bot]="{
+                            listing: form.value,
+                            guildCount: 100,
+                            votes: toIterable(100)
+                        }"></bot-widget></div>
+                    <div class="col-3">
+                        <bot-widget size="md" [bot]="{
+                            listing: form.value,
+                            guildCount: 100,
+                            votes: toIterable(100)
+                        }"></bot-widget></div>
+                    <div class="col-3">
+                        <bot-widget size="sm" [bot]="{
+                            listing: form.value,
+                            guildCount: 100,
+                            votes: toIterable(100)
+                        }"></bot-widget>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

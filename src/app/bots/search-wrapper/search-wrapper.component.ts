@@ -25,10 +25,12 @@ export class SearchWrapperComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.route.paramMap.subscribe(map => {
-      const tagName = map.get('tag');
-      if (tagName)
-        this.searchByTag(tagName);
+    setTimeout(() => {
+      this.route.paramMap.subscribe(map => {
+        const tagName = map.get('tag');
+        if (tagName)
+          this.searchByTag(tagName);
+      });
     });
   }
 
@@ -49,7 +51,7 @@ export class SearchWrapperComponent implements AfterViewInit {
   }
 
   searchByTag(name: string) {
-    const tag = this.service.findTag(name);
+    const tag = this.service.getTag(name);
     this.botsComponent.searchByTag(tag);
 
     this.updateMetaTags({

@@ -3,7 +3,7 @@
         <div class="items">
             <div class="user">
                 <div routerLink="/dashboard" class="icon">
-                    <img [src]="userService.user.displayAvatarURL" alt="{{ userService.user.username }}">
+                    <img [src]="userService.user.displayAvatarURL" [alt]="userService.user.username">
                 </div>
                 <hr>
             </div>

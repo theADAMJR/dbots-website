@@ -8,7 +8,7 @@
 
 /* border radius */
 .rounded {
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
 
 .rounded-lg {

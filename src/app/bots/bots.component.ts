@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component,  ViewChild, Input, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { BotsService, Tag } from './bots.service';
 import { kebabToTitleCase } from '../utils';
@@ -12,18 +12,34 @@ export class BotsComponent implements OnInit {
   @ViewChild('paginator') paginator: MatPaginator;
 
   title = 'Top';
+  icon = 'fas fa-robot';
   description = 'The highest rated bots this week.';
   query = '';
 
-  tag: Tag;
+  bots = [];
+  savedBots = [];
+  @Input() tag: Tag;
 
   constructor(public service: BotsService) {}
 
-  ngOnInit() {
-    this.service.savedBots
-      .sort((a, b) => b.votes.length - a.votes.length);
-  }
+  async ngOnInit() {
+    await this.service.init();
 
+    if (this.tag) {
+      const { bots, saved } = (this.tag.name !== 'new')
+        ? this.service.getTaggedBots(this.tag.name)
+        : this.service.getNewBots();
+      
+      this.bots = bots;
+      this.savedBots = saved;
+
+      this.searchByTag(this.tag);
+    } else {
+      this.savedBots = this.service.savedBots;
+      this.bots = this.service.bots;
+    }
+  }
+  
   search(query: string) {
     this.query = query;
 
@@ -37,16 +53,19 @@ export class BotsComponent implements OnInit {
 
   private setDefaultLayout() {
     this.title = 'Top';
+    this.icon = 'fas fa-robot';
   }
 
   private setSearchLayout() {
     this.title = `Results for '${this.query}'`;
+    this.icon = 'fas fa-search';
     const resultsSize = 8;
     this.paginator.pageIndex = this.service.savedBots.length / resultsSize;
   }
 
-  searchByTag(tag: Tag) {
-    this.title = `Bots tagged '${kebabToTitleCase(tag.name)}'`;
+  searchByTag(tag: Tag) {    
+    this.title = `${kebabToTitleCase(tag.name)} Bots`;
+    this.icon = tag.icon;
     this.description = tag.description;
     this.tag = tag;
   }

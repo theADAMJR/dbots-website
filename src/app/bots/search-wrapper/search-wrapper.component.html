@@ -29,7 +29,23 @@
 <div id="content" class="container">
     <bots #bots></bots>
 
-    <div *ngIf="!searchInput.value">
+    <div *ngIf="!searchInput.value && !bots.tag">
+        <hr>
+        
+        <bots [tag]="{
+            description: 'New bots with the most votes',
+            icon: 'fas fa-chevron-up',
+            name: 'new'
+        }"></bots>
+
+        <hr>
+
+        <bots [tag]="service.getTag('music')"></bots>
+
+        <hr>
+
+        <bots [tag]="service.getTag('moderation')"></bots>
+        
         <hr class="mb-5">
 
         <h2 class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
@@ -41,7 +57,7 @@
         </mat-chip-list>
 
         <div class="d-flex justify-content-center mt-5 mb-2">
-            <button class="rounded-lg py-2 px-4" color="success" mat-button>View All</button>
+            <button class="rounded-lg py-2 px-4" color="success" mat-button>View More</button>
         </div>
     </div>
 </div>

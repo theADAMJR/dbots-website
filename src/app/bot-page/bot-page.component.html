@@ -1,0 +1,15 @@
+<navbar></navbar>
+
+<div *ngIf="bot && user"
+  class="container">
+  <bot-preview
+    [bot]="bot"
+    [user]="user"></bot-preview>  
+</div>
+
+<div *ngIf="!bot || !user"
+  class="container">
+  <spinner></spinner>
+</div>
+
+<home-footer></home-footer>

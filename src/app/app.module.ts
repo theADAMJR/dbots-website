@@ -46,6 +46,7 @@ import { RocketButtonComponent } from './rocket-button/rocket-button.component';
 import { KebabToTitleCasePipe } from './pipes/kebab-to-sentence-case.pipe';
 import { MiniDatePipe } from './pipes/mini-date.pipe';
 import { BotWidgetComponent } from './dashboard/bots/bot-widget/bot-widget.component';
+import { BotPageComponent } from './bot-page/bot-page.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
@@ -100,6 +101,7 @@ export class AlertErrorHandler implements ErrorHandler {
     KebabToTitleCasePipe,
     MiniDatePipe,
     BotWidgetComponent,
+    BotPageComponent,
   ],
   imports: [
     AppRoutingModule,

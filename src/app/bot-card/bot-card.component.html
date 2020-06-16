@@ -1,24 +1,26 @@
 <div class="text-center rounded-lg card shadow text-white bg-dark">
   <div class="d-flex justify-content-center">
-    <img class="shadow rounded-lg card-img-top" [src]="user.avatarURL" [alt]="user.username + ' | ' + bot.listing.tags.join(', ')">
+    <img class="shadow rounded-lg card-img-top" [src]="user.displayAvatarURL" [alt]="user.username + ' | ' + bot.listing.tags.join(', ')">
     <div class="rounded-lg status" [ngClass]="{
-        'status-online': user.presence === 'ONLINE',
-        'status-dnd': user.presence === 'DND'
+        'status-online': user.presence?.status === 'online',
+        'status-dnd': user.presence?.status === 'dnd'
       }" [matTooltip]="user.presence"></div>
   </div>
   <div class="card-body">
     <p class="stats d-flex justify-content-center">
-      <span class="badge badge-secondary cursor-pointer mr-1" matTooltip="Servers">
-        <i class="fas fa-server"></i> {{ bot.guildCount | number }}
+      <span *ngIf="bot.stats?.guildCount" class="badge badge-secondary cursor-pointer mr-1" matTooltip="Servers">
+        <i class="fas fa-server"></i> {{ bot.stats.guildCount | number }}
       </span>
       <span class="badge badge-secondary cursor-pointer ml-1" matTooltip="Votes">
         <i class="fa fa-chevron-circle-up" aria-hidden="true"></i> {{ bot.votes.length | number }}
       </span>
     </p>
-    <h4 class="card-title">{{ user.username }}</h4>
+    <h4 class="card-title">
+      <a [routerLink]="['/bots/', user.id]">{{ user.username }}</a>
+    </h4>
     <div class="card-text">
         <p class="color-muted">{{ bot.listing.overview }}</p>
-        <p class="color-secondary">{{ bot.listing.tags.join(', ') }}</p>
+        <p class="color-secondary">{{ cleanTags }}</p>
     </div>
     <div class="d-flex justify-content-around">
       <button class="bg-secondary rounded-lg" mat-button>

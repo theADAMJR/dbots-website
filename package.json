@@ -34,6 +34,7 @@
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "fuse.js": "^6.0.4",
     "highlight.js": "^9.18.1",
     "jquery": "^3.5.0",
     "marked": "^0.8.2",

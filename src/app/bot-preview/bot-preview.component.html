@@ -1,18 +1,39 @@
-<div>
-    <img [src]="user.avatarURL">
+<div class="jumbotron mb-0">
+    <img [src]="user.displayAvatarURL">
     <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
-    <span><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.guildCount | number }}</span>
+    <span *ngIf="bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.guildCount | number }}</span>
+    <span *ngIf="!bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> N/A</span>
     <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>
+</div>
+    
+<div class="mx-5">
+    <span class="text-muted" role="doc-subtitle">{{ bot.listing.overview }}</span>
 </div>
 
 <hr>
 
-<span class="prefix"><strong>Prefix</strong>: <code>{{ bot.listing.prefix }}</code></span>
+<div>
+    <span class="mx-2 prefix">
+        <strong>Prefix</strong>: <code>{{ bot.listing.prefix }}</code>
+    </span>
+    <span class="mx-2">
+        <a [href]="bot.listing.websiteURL" rel="nofollow" mat-button><i class="fas fa-globe"></i> Website</a>
+    </span>
+    <span class="mx-2">
+        <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> Github</a>
+    </span>
+    <span *ngIf="canManage"
+        class="float-right">
+        <button class="color-warning" [routerLink]="['/dashboard/bots/' + user.id +'/edit']" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
+    </span>
+</div>
 
 <div id="markdown" class="mt-5" [innerHTML]="markdown"></div>
 
 <hr>
 
-<mat-chip-list>
-    <mat-chip *ngFor="let tagName of bot.listing.tags">{{ tagName | kebabToTitleCase }}</mat-chip>
-</mat-chip-list>
+<div class="mb-3">
+    <mat-chip-list>
+        <mat-chip *ngFor="let tagName of bot.listing.tags">{{ tagName | kebabToTitleCase }}</mat-chip>
+    </mat-chip-list>
+</div>

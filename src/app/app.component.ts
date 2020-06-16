@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
 import { SEOService } from './services/seo.service';
+import { BotsService } from './bots/bots.service';
 
 @Component({
   selector: 'app-root',
@@ -9,17 +10,13 @@ import { SEOService } from './services/seo.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private seo: SEOService,
+    private botService: BotsService,
     private userService: UserService) {}
 
   async ngOnInit() {
+    await this.botService.init();
+
     await this.userService.updateUser();
     await this.userService.updateSavedUser();
-
-    this.seo.setTags({
-      description: 'Find the best Discord bots easily and quickly for your servers.',
-      titleSuffix: 'Discord Bot',
-      url: '/'
-    });
   } 
 }

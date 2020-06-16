@@ -18,7 +18,7 @@
     --tertiary: #36E2CA;
     
     --background-primary: #36393F;
-    --background-secondary: rgb(37, 38, 42);
+    --background-secondary: #25262a;
     --background-tertiary: #202225;
 }
 
@@ -121,6 +121,10 @@ h1,h2,h3,h4,h5 {
 
 .color-muted {
     color: var(--muted) !important;
+}
+
+.color-warning {
+    color: var(--warning) !important;
 }
 
 // backgrounds

@@ -3,8 +3,11 @@ nav {
 }
 
 img {
+    max-width: 96px;   
+}
+.dropdown img {
     max-width: 32px;
-    border-radius: 50%;   
+    border-radius: 50%;
 }
 
 .dropdown-menu {

@@ -16,8 +16,7 @@ export class SidebarComponent implements OnInit {
     public userService: UserService) {}
 
   async ngOnInit() {
-    // update bots
-    this.botService.updateUserBots();
+    await this.botService.init();
   }
 
   toggle(el: HTMLElement) {

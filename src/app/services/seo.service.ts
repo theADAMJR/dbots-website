@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { environment } from 'src/environments/environment';
-
 export interface TypingSEO {
   titleSuffix: string;
   description: string;
@@ -22,7 +20,8 @@ export interface TypingName {
 export class SEOService {
   base = {
     title: 'Find Discord Bots',
-    titleSuffix: 'DBots'
+    titleSuffix: 'DBots',
+    url: 'https://dbots.co'
   }
 
   constructor(
@@ -30,7 +29,7 @@ export class SEOService {
     private ngTitle: Title
   ) {
     this.keywords('discord bots, discord bot maker, discord bot commands, discord bot builder, discord bot list');
-    this.image('https://3pg.xyz/assets/img/3PGAvatarTransparent.svg');
+    this.image('https://dbots.co/assets/img/logo.svg');
   }
 
   get metaInstance() {
@@ -70,7 +69,7 @@ export class SEOService {
   }
 
   private url(content: string) {
-    this.ngMeta.updateTag({ property: 'og:url', itemprop: 'url', content: `${environment.url}/${content}` });
+    this.ngMeta.updateTag({ property: 'og:url', itemprop: 'url', content: `${this.base.url}/${content}` });
   }
 
   private title(titleSuffix = this.base.titleSuffix) {
