@@ -1,4 +1,4 @@
-<div *ngIf="bots">
+<div *ngIf="initialized">
     <h2 class="pt-5"><i [class]="icon"></i> {{ title }}</h2>
     <p class="color-secondary pb-4">{{ description }}</p>
     <div class="row">
@@ -10,6 +10,6 @@
 
     <mat-paginator #paginator></mat-paginator>
 </div>
-<div *ngIf="!bots">
+<div *ngIf="!initialized">
     <spinner></spinner>
 </div>

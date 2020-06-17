@@ -1,4 +1,4 @@
-import { Component,  ViewChild, Input, OnInit } from '@angular/core';
+import { Component,  ViewChild, Input, OnInit, AfterViewInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { BotsService, Tag } from './bots.service';
 import { kebabToTitleCase } from '../utils';
@@ -8,7 +8,7 @@ import { kebabToTitleCase } from '../utils';
   templateUrl: './bots.component.html',
   styleUrls: ['./bots.component.css']
 })
-export class BotsComponent implements OnInit {
+export class BotsComponent implements OnInit, AfterViewInit {
   @ViewChild('paginator') paginator: MatPaginator;
 
   title = 'Top';
@@ -19,6 +19,8 @@ export class BotsComponent implements OnInit {
   bots = [];
   savedBots = [];
   @Input() tag: Tag;
+
+  initialized = false;
 
   constructor(public service: BotsService) {}
 
@@ -33,18 +35,40 @@ export class BotsComponent implements OnInit {
       this.bots = bots;
       this.savedBots = saved;
 
-      this.searchByTag(this.tag);
-    } else {
-      this.savedBots = this.service.savedBots;
-      this.bots = this.service.bots;
+      this.setTagLayout(this.tag);
+    } else
+      this.resetBots();
+
+    this.initialized = true;
+  }
+
+  ngAfterViewInit() {
+    this.resetPaginator();
+  }
+
+  private resetPaginator() {
+    if (this.paginator) {
+      this.paginator.firstPage();
+      this.paginator.length = this.bots.length;
+      this.paginator.pageSize = 8;
     }
+  }
+
+  private resetBots() {
+    this.savedBots = this.service.savedBots;
+    this.bots = this.service.bots;
+
+    this.resetPaginator();
   }
   
   search(query: string) {
     this.query = query;
 
-    if (this.paginator)
-      this.paginator.firstPage();
+    const { bots, saved } = this.service.searchBots(query);
+    this.bots = bots;
+    this.savedBots = saved;
+    
+    this.resetPaginator();
       
     (query.length > 0)
       ? this.setSearchLayout()
@@ -54,23 +78,23 @@ export class BotsComponent implements OnInit {
   private setDefaultLayout() {
     this.title = 'Top';
     this.icon = 'fas fa-robot';
+    this.description = 'The highest rated bots this week.'
+
+    this.resetBots();
   }
 
   private setSearchLayout() {
     this.title = `Results for '${this.query}'`;
+    this.description = `Find Discord bots similar to '${this.query}'.`
     this.icon = 'fas fa-search';
-    const resultsSize = 8;
-    this.paginator.pageIndex = this.service.savedBots.length / resultsSize;
   }
 
-  searchByTag(tag: Tag) {    
+  setTagLayout(tag: Tag) {
     this.title = `${kebabToTitleCase(tag.name)} Bots`;
     this.icon = tag.icon;
     this.description = tag.description;
     this.tag = tag;
-  }
-
-  goToPage(number: number) {
-    alert(`go to page ${number}`);
+    
+    this.resetPaginator();
   }
 }

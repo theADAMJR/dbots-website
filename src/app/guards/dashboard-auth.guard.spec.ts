@@ -17,7 +17,7 @@ describe('DashboardAuthGuard', () => {
       updateUser: () => {},
       user: null
     } as any;
-    guard = new DashboardAuthGuard(fakeUserService, {} as any);
+    guard = new DashboardAuthGuard(fakeUserService);
 
     expect(guard).toBeTruthy();
   });

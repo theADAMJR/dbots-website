@@ -1,5 +1,6 @@
 <div class="text-center rounded-lg card shadow text-white bg-dark">
-  <div class="d-flex justify-content-center">
+  <div [routerLink]="['/bots/', user.id]"
+    class="cursor-pointer d-flex justify-content-center">
     <img class="shadow rounded-lg card-img-top" [src]="user.displayAvatarURL" [alt]="user.username + ' | ' + bot.listing.tags.join(', ')">
     <div class="rounded-lg status" [ngClass]="{
         'status-online': user.presence?.status === 'online',
@@ -15,9 +16,8 @@
         <i class="fa fa-chevron-circle-up" aria-hidden="true"></i> {{ bot.votes.length | number }}
       </span>
     </p>
-    <h4 class="card-title">
-      <a [routerLink]="['/bots/', user.id]">{{ user.username }}</a>
-    </h4>
+    <h4 [routerLink]="['/bots/', user.id]"
+      class="cursor-pointer card-title">{{ user.username }}</h4>
     <div class="card-text">
         <p class="color-muted">{{ bot.listing.overview }}</p>
         <p class="color-secondary">{{ cleanTags }}</p>

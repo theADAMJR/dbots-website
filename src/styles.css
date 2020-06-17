@@ -7,6 +7,10 @@
 @import '~simplemde/dist/simplemde.min.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css';
 
+html {
+    scroll-behavior: smooth;
+}
+
 body, mat-sidenav-content {
     color: var(--font);
 

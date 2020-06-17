@@ -7,7 +7,7 @@
                 </div>
                 <hr>
             </div>
-            <div *ngFor="let bot of botService.userBots" [routerLink]="['/bots/' + bot.id]"
+            <div *ngFor="let bot of botService.userBots" [routerLink]="['/dashboard/bots/' + bot.id]"
                 class="icon">
                 <img [src]="bot.displayAvatarURL" [alt]="bot.username">
             </div>

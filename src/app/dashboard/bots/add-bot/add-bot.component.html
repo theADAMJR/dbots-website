@@ -124,42 +124,27 @@
             </div>
             <div class="col-lg-6 d-none d-sm-block border-left">
                 <div class="alert alert-warning border-warning">
-                    You must be in the <a href="/server">Discord server</a> to post bots, or your bots will not appear on the list.
+                    Make sure you are in the <a class="text-primary" href="/server">Discord server</a>, or your bots will not appear on the list.
                 </div>
 
                 <h3>Bot Card</h3>
                 <p>This is what your bot card will look like to new users.</p>
                 <div class="d-flex justify-content-center mb-5">
-                    <bot-card class="mt-5" [bot]="{
-                        listing: form.value,
-                        guildCount: 100,
-                        votes: toIterable(100)
-                    }"></bot-card>
+                    <bot-card class="mt-5" [bot]="bot"></bot-card>
                 </div>
 
                 <hr>
 
                 <h3>Widgets</h3>
-                <p>Cool widgets that you can use to show off your bot.</p>
-                <div>
+                <p>Cool widgets that you can use to show off your bot, and get more votes.</p>
+                <div class="d-flex justify-content-center">
                     <div class="col-3">
-                        <bot-widget size="lg" [bot]="{
-                            listing: form.value,
-                            guildCount: 100,
-                            votes: toIterable(100)
-                        }"></bot-widget></div>
-                    <div class="col-3">
-                        <bot-widget size="md" [bot]="{
-                            listing: form.value,
-                            guildCount: 100,
-                            votes: toIterable(100)
-                        }"></bot-widget></div>
-                    <div class="col-3">
-                        <bot-widget size="sm" [bot]="{
-                            listing: form.value,
-                            guildCount: 100,
-                            votes: toIterable(100)
-                        }"></bot-widget>
+                        <!-- <dbots-widget [botId]="form.value.botId" size="small">
+                        <pre>
+                            <code>
+                                <dbots-widget [botId]="form.value.botId" size="small">
+                            </code>
+                        </pre> -->
                     </div>
                 </div>
             </div>

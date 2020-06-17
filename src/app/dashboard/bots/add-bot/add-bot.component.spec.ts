@@ -56,4 +56,15 @@ describe('AddBotComponent', () => {
 
     expect(spy).toHaveBeenCalled();
   });
+
+  it('update button clicked in edit mode, update() is called', () => {
+    component.editing = true;
+
+    const spy = spyOn(component, 'update');
+    const el = fixture.debugElement.query(By.css('#update')).nativeElement;
+
+    el.click();
+
+    expect(spy).toHaveBeenCalled();
+  });
 });

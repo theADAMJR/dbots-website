@@ -23,9 +23,7 @@ export class BotsService {
 
   constructor(private http: HttpClient) {}
   
-  private get key() {
-    return localStorage.getItem('key');
-  }
+  private get key() { return localStorage.getItem('key'); }
 
   // TODO: include good keywords for SEO
   tags: Tag[] = [
@@ -88,12 +86,10 @@ export class BotsService {
     const ids = this.savedBots.map(b => b._id);
     this._bots = bots.users.filter(b => ids.includes(b.id));
   }
-
   async updateUserBots() {
     this._userBots = (this.key) ?
       await this.http.get(`${this.endpoint}/user?key=${this.key}`).toPromise() as any : null;
   }
-
   async updateUserSavedBots() {
     this._userSavedBots = (this.key) ?
       await this.http.get(`${this.endpoint}/user/saved?key=${this.key}`).toPromise() as any : null;
@@ -101,10 +97,6 @@ export class BotsService {
   
   getSavedLog(id: string) {
     return this.http.get(`${this.endpoint}/${id}/log?key=${this.key}`).toPromise() as Promise<any>;
-  }
-
-  createBot(value: any) {
-    return this.http.post(`${this.endpoint}?key=${this.key}`, value).toPromise() as Promise<any>;
   }
 
   getBot(id: string) {
@@ -124,7 +116,6 @@ export class BotsService {
 
     return { bots, saved: savedBots };
   }
-
   getNewBots() {
     const savedBots = this.savedBots
       .filter(b => b.approvedAt > Date.now() - (1000 * 60 * 60 * 24 * 7));
@@ -134,13 +125,32 @@ export class BotsService {
       
     return { bots, saved: savedBots };
   }
-
   searchBots(query: string) {
     const fuse = new Fuse(this.savedBots, {
-      includeScore: true
-    });
+      includeScore: true,
+      keys: [
+        { name: 'listing.overview', weight: 1 },
+        { name: 'listing.body', weight: 0.5 },
+        { name: 'listing.tags', weight: 0.3 }
+      ]
+    }); 
     
-    return fuse.search(query);
+    const saved = fuse
+      .search(query)
+      .map(r => r.item);    
+
+    const ids = saved.map(b => b._id);
+    const bots = this.bots
+      .filter(b => ids.includes(b.id));    
+
+    return { bots, saved };
+  }
+
+  createBot(value: any) {
+    return this.http.post(`${this.endpoint}?key=${this.key}`, value).toPromise() as Promise<any>;
+  }
+  updateBot(id: string, value: any) {
+    return this.http.put(`${this.endpoint}/${id}?key=${this.key}`, value).toPromise() as Promise<any>;
   }
 }
 
