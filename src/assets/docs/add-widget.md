@@ -1,10 +1,8 @@
 # Add Widget
 
 ```
-<script src="https://dbots.co/widget.js" defer></script>
-```
-
-```
+<script src="https://dbots.co/assets/js/widget.js" defer></script>
+...
 <dbots-widget botId="yourBotId"></dbots-widget>
 ```
 

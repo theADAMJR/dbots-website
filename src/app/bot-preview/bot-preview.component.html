@@ -22,9 +22,13 @@
     <span class="mx-2">
         <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> Github</a>
     </span>
-    <span *ngIf="canManage"
+    <span
         class="float-right">
-        <button class="color-warning" [routerLink]="['/dashboard/bots/' + user.id +'/edit']" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
+        <button *ngIf="canManage"
+            [routerLink]="['/dashboard/bots/' + user.id +'/edit']"
+            class="warning" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
+        <button [routerLink]="['/bots/' + user.id +'/vote']"
+            color="success" mat-button><i class="fas fa-chevron-circle-up"></i> Vote</button>
     </span>
 </div>
 

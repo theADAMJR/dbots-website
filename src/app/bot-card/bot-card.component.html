@@ -1,11 +1,16 @@
 <div class="text-center rounded-lg card shadow text-white bg-dark">
   <div [routerLink]="['/bots/', user.id]"
     class="cursor-pointer d-flex justify-content-center">
-    <img class="shadow rounded-lg card-img-top" [src]="user.displayAvatarURL" [alt]="user.username + ' | ' + bot.listing.tags.join(', ')">
-    <div class="rounded-lg status" [ngClass]="{
+    <img class="shadow rounded-lg card-img-top"
+      [src]="user.displayAvatarURL"
+      [alt]="user.username + ' | ' + bot.listing.tags.join(', ')">
+    <div class="rounded-lg status"
+      [ngClass]="{
         'status-online': user.presence?.status === 'online',
-        'status-dnd': user.presence?.status === 'dnd'
-      }" [matTooltip]="user.presence"></div>
+        'status-dnd': user.presence?.status === 'dnd',
+        'status-idle': user.presence?.status === 'idle'
+      }"
+      [matTooltip]="user.presence"></div>
   </div>
   <div class="card-body">
     <p class="stats d-flex justify-content-center">

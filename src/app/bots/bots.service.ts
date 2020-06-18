@@ -68,12 +68,12 @@ export class BotsService {
   }
 
   async init() {
-    if (!this.bots || !this.savedBots)
-      await this.updateBots();
-    if (!this.userBots)
-      await this.updateUserBots();
-    if (!this.userSavedBots)
-      await this.updateUserSavedBots();
+    try {
+      if (!this.bots || !this.savedBots)
+        await this.updateBots();
+      if (!this.userBots || !this.userSavedBots)
+        await this.updateUserBots();
+    } catch {}
   }
 
   async updateBots() {
@@ -89,12 +89,10 @@ export class BotsService {
   async updateUserBots() {
     this._userBots = (this.key) ?
       await this.http.get(`${this.endpoint}/user?key=${this.key}`).toPromise() as any : null;
-  }
-  async updateUserSavedBots() {
+
     this._userSavedBots = (this.key) ?
       await this.http.get(`${this.endpoint}/user/saved?key=${this.key}`).toPromise() as any : null;
   }
-  
   getSavedLog(id: string) {
     return this.http.get(`${this.endpoint}/${id}/log?key=${this.key}`).toPromise() as Promise<any>;
   }
@@ -104,6 +102,10 @@ export class BotsService {
   }
   getSavedBot(id: string) {
     return this.savedBots.find(b => b._id === id);
+  }
+  
+  vote(id: string) {
+    return this.http.get(`${this.endpoint}/${id}/vote?key=${this.key}`).toPromise() as Promise<any>;
   }
 
   getTaggedBots(tagName: string) {
@@ -117,8 +119,9 @@ export class BotsService {
     return { bots, saved: savedBots };
   }
   getNewBots() {
+    const oneWeekAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 7);
     const savedBots = this.savedBots
-      .filter(b => b.approvedAt > Date.now() - (1000 * 60 * 60 * 24 * 7));
+      .filter(b => b.approvedAt > oneWeekAgo);
     
     const ids = savedBots.map(b => b._id);
     const bots = this.bots.filter(b => ids.includes(b.id));

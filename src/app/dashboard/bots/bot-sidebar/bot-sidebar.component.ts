@@ -7,13 +7,9 @@ import { Component, Input } from '@angular/core';
 })
 export class BotSidebarComponent {
   @Input() loaded = true;
-  @Input() bot = {
+  @Input() user = {
     id: '',
     displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
     username: 'New Bot'
   };
-
-  constructor() {
-    document.title = 'DBots - Dashboard';
-  }
 }

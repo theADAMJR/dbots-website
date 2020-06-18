@@ -6,7 +6,7 @@ import { kebabToTitleCase } from '../utils';
   templateUrl: './bot-card.component.html',
   styleUrls: ['./bot-card.component.css']
 })
-export class BotCardComponent {  
+export class BotCardComponent {
   @Input() user = {
     id: '123',
     displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',

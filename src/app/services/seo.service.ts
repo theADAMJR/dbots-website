@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+
 export interface TypingSEO {
+  titlePrefix?: string;
   titleSuffix: string;
   description: string;
   url: string;
@@ -19,7 +21,7 @@ export interface TypingName {
 @Injectable()
 export class SEOService {
   base = {
-    title: 'Find Discord Bots',
+    titlePrefix: 'Find Discord Bots',
     titleSuffix: 'DBots',
     url: 'https://dbots.co'
   }
@@ -37,7 +39,7 @@ export class SEOService {
   }
 
   setTags(config: TypingSEO) {
-    this.title(config.titleSuffix);
+    this.title(config.titleSuffix, config.titlePrefix);
     this.description(config.description);
     this.url(config.url);
   }
@@ -72,8 +74,10 @@ export class SEOService {
     this.ngMeta.updateTag({ property: 'og:url', itemprop: 'url', content: `${this.base.url}/${content}` });
   }
 
-  private title(titleSuffix = this.base.titleSuffix) {
-    const setTitle = (titleSuffix !== undefined && titleSuffix !== '') ? `${this.base.title} - ${titleSuffix}` : this.base.title;
+  private title(titleSuffix = this.base.titleSuffix, titlePrefix = this.base.titlePrefix) {
+    const setTitle = (titleSuffix !== undefined && titleSuffix !== '')
+      ? `${titlePrefix} - ${titleSuffix}`
+      : titlePrefix;
     this.ngTitle.setTitle(setTitle);
     this.setPropertyTag({ property: 'og:title', itemprop: 'title', content: setTitle });
     this.setPropertyTag({ property: 'twitter:title', itemprop: 'title', content: setTitle });

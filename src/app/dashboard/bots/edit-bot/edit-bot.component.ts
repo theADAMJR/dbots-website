@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BotsService } from 'src/app/bots/bots.service';
 
@@ -7,13 +7,20 @@ import { BotsService } from 'src/app/bots/bots.service';
   templateUrl: './edit-bot.component.html',
   styleUrls: ['./edit-bot.component.css']
 })
-export class EditBotComponent {
-  get savedBot() { return this.service.getSavedBot(this.id) }
-  get bot() { return this.service.getBot(this.id) }
+export class EditBotComponent implements OnInit {
+  bot: any;
+  user: any;
 
   get id() { return this.route.snapshot.paramMap.get('id') }
 
   constructor(
     private route: ActivatedRoute,
     private service: BotsService) {}
+
+    async ngOnInit() {
+      await this.service.init();
+      
+      this.bot = this.service.getSavedBot(this.id);
+      this.user = this.service.getBot(this.id);
+    }
 }

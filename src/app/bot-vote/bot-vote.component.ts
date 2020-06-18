@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { BotsService } from '../bots/bots.service';
-import { SEOService } from '../services/seo.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SEOService } from '../services/seo.service';
+import { BotsService } from '../bots/bots.service';
+import { UserService } from '../services/user.service';
 
 @Component({
-  selector: 'app-bot-page',
-  templateUrl: './bot-page.component.html',
-  styleUrls: ['./bot-page.component.css']
+  selector: 'app-bot-vote',
+  templateUrl: './bot-vote.component.html',
+  styleUrls: ['./bot-vote.component.css']
 })
-export class BotPageComponent implements OnInit {
+export class BotVoteComponent implements OnInit {
   bot: any;
   user: any;
 
@@ -18,7 +19,8 @@ export class BotPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private seo: SEOService,
-    private service: BotsService) {}
+    private service: BotsService,
+    public userService: UserService) {}
 
   async ngOnInit() {
     await this.service.init();
@@ -33,5 +35,14 @@ export class BotPageComponent implements OnInit {
       titleSuffix: this.user.username,
       url: `bots/${this.id}`
     });
+  }
+
+  async vote() {
+    if (!this.userService.user) return;
+
+    await this.service.vote(this.id);
+    await this.service.updateBots();
+
+    return this.router.navigate(['/bots/' + this.id]);
   }
 }

@@ -9,14 +9,13 @@
             </div>
             <div *ngFor="let bot of botService.userBots" [routerLink]="['/dashboard/bots/' + bot.id]"
                 class="icon">
-                <img [src]="bot.displayAvatarURL" [alt]="bot.username">
+                <img *ngIf="bot" [src]="bot.displayAvatarURL" [alt]="bot.username">
             </div>
             <div routerLink="/dashboard/bots/new" 
                 class="icon invite"
                 matTooltip="Add Bot">
                 <span class="add">+</span>
             </div>
-            <hr>
         </div>
         <div class="options">
             <ng-content select=".side-nav"></ng-content>

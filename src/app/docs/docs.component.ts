@@ -10,7 +10,7 @@ import { SEOService } from '../services/seo.service';
   styleUrls: ['./docs.component.css']
 })
 export class DocsComponent implements OnInit {
-  defaultPage = 'getting-started';
+  defaultPage = 'get-started';
 
   get markdownPagePath$() {
     return this.route.paramMap.pipe(

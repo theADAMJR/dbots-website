@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BotsService } from './bots/bots.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BotAuthGuard implements CanActivate {
-  canActivate(
+  constructor(private service: BotsService) {}
+
+  async canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    state: RouterStateSnapshot) {
+    await this.service.init();
     return true;
-  }
-  
+  }  
 }

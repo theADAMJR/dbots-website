@@ -1,21 +1,24 @@
-<sidebar *ngIf="bot">
+<sidebar *ngIf="user">
     <div class="side-nav navbar-dark">
         <div class="header">
-            <img *ngIf="bot.displayAvatarURL"
-                [src]="bot.displayAvatarURL" [alt]="bot.username">
-            <h4 [routerLink]="['/bots/' + bot.id]">{{ bot.username }}</h4>
+            <img *ngIf="user.displayAvatarURL"
+                [src]="user.displayAvatarURL" [alt]="user.username">
+            <h4 [routerLink]="['/bots/' + user.id]">{{ user.username }}</h4>
         </div>
             <hr>
-            <div *ngIf="bot.id" class="navbar-nav">
-                <a [routerLink]="['/bots/' + bot.id + '/edit']" routerLinkActive="active"
+            <div *ngIf="user.id" class="navbar-nav">
+                <a [routerLink]="['/bots/' + user.id + '/edit']" routerLinkActive="active"
                     class="nav-item nav-link">
                     <i class="fas fa-pencil-alt"></i> Edit</a>
+                <a [routerLink]="['/bots/' + user.id + '/log']" routerLinkActive="active"
+                    class="nav-item nav-link">
+                    <i class="fas fa-file-alt"></i> Log</a>
             </div>
-            <div *ngIf="!bot.id" class="navbar-nav">
+            <div *ngIf="!user.id" class="navbar-nav">
                 <a [routerLink]="['/docs/guidelines']" routerLinkActive="active"
                     class="nav-item nav-link">
                     <i class="fas fa-book"></i> Guidelines</a>
-                </div>
+            </div>
         </div>
     <div id="content">
         <div *ngIf="loaded">

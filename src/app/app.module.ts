@@ -47,18 +47,22 @@ import { KebabToTitleCasePipe } from './pipes/kebab-to-sentence-case.pipe';
 import { MiniDatePipe } from './pipes/mini-date.pipe';
 import { BotWidgetComponent } from './dashboard/bots/bot-widget/bot-widget.component';
 import { BotPageComponent } from './bot-page/bot-page.component';
+import { environment } from 'src/environments/environment';
+import { BotComponent } from './dashboard/bots/bot/bot.component';
+import { BotVoteComponent } from './bot-vote/bot-vote.component';
+import { BotLogComponent } from './dashboard/bot-log/bot-log.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
     try {
       alert(error.rejection?.error ?? error.message ?? error);
 
-      // const key = localStorage.getItem('key');
-      // await fetch(`${environment.endpoint}/error?key=${key}`, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ message: error.message })
-      // });
+      const key = localStorage.getItem('key');
+      await fetch(`${environment.endpoint}/error?key=${key}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: error.message })
+      });
     } finally { console.log(error); }
   }
 }
@@ -102,6 +106,9 @@ export class AlertErrorHandler implements ErrorHandler {
     MiniDatePipe,
     BotWidgetComponent,
     BotPageComponent,
+    BotComponent,
+    BotVoteComponent,
+    BotLogComponent
   ],
   imports: [
     AppRoutingModule,

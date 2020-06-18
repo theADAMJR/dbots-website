@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-/* @import "~@angular/material/prebuilt-themes/pink-bluegrey.css"; */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~highlight.js/styles/vs2015.css';
 @import '~chart.js/dist/Chart.min.css';
@@ -70,6 +69,9 @@ table.dataTable tbody tr {
 
 button {
     border-radius: 35% !important;
+}
+button:focus {
+    outline: none !important;
 }
 
 a {

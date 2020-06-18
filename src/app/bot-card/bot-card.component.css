@@ -7,20 +7,24 @@ img {
 .status {
     position: absolute;
 
-    top: 35%;
-    right: 10%;
+    top: 37.5%;
+    right: 12.5%;
 
     width: 42px;
     height: 42px;
 
     background-color: rgb(47, 46, 46);
+    border: 5px solid #36393F;
 }
 
 .status-online {
-    background-color: green;
+    background-color: #43b581;
 }
 .status-dnd {
-    background-color: red;
+    background-color: #ff0000(240, 71, 71);
+}
+.status-idle {
+    background-color: #faa61a;
 }
 
 .stats {

@@ -48,6 +48,13 @@ export class AddBotComponent implements AfterViewInit {
     tags: new FormControl([], [ Validators.maxLength(5) ])
   });
 
+  @Input() user = {
+    id: '123',
+    displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
+    presence: { status: 'ONLINE' },
+    username: 'Username'
+  }
+
   @Input() bot = {
     listing: this.form.value,
     guildCount: 100,
