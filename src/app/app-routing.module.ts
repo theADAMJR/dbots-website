@@ -14,6 +14,7 @@ import { BotPageComponent } from './bot-page/bot-page.component';
 import { BotComponent } from './dashboard/bots/bot/bot.component';
 import { BotVoteComponent } from './bot-vote/bot-vote.component';
 import { LogoutComponent } from './logout/logout.component';
+import { EditBotComponent } from './dashboard/bots/edit-bot/edit-bot.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,7 +35,7 @@ const routes: Routes = [
   
   { path: 'dashboard/bots/new', component: AddBotComponent, canActivate: [DashboardAuthGuard] },
   { path: 'dashboard/bots/:id', component: BotComponent, canActivate: [BotAuthGuard] },
-  { path: 'dashboard/bots/:id/edit', component: AddBotComponent, canActivate: [BotAuthGuard] },
+  { path: 'dashboard/bots/:id/edit', component: EditBotComponent, canActivate: [BotAuthGuard] },
   { path: 'dashboard/bots/:id/log', component: BotComponent, canActivate: [BotAuthGuard] },
 
   { path: '**', component: NotFoundComponent }

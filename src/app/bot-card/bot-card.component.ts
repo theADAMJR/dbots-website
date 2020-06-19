@@ -8,7 +8,7 @@ import { kebabToTitleCase } from '../utils';
 })
 export class BotCardComponent {
   @Input() user = {
-    id: '123',
+    id: '',
     displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
     presence: { status: 'ONLINE' },
     username: 'Username'
@@ -16,6 +16,7 @@ export class BotCardComponent {
 
   @Input() bot = {
     listing: {
+      invite: '',
       overview: 'A good bot I guess...',
       tags: ['Economy', 'Moderation']
     },
@@ -27,7 +28,7 @@ export class BotCardComponent {
 
   get cleanTags() {
     return this.bot.listing.tags
-      .map(t => kebabToTitleCase(t))
+      ?.map(t => kebabToTitleCase(t))
       .join(', ');
   }
 }

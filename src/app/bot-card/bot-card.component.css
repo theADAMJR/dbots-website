@@ -7,7 +7,7 @@ img {
 .status {
     position: absolute;
 
-    top: 37.5%;
+    top: 128px;
     right: 12.5%;
 
     width: 42px;
@@ -37,4 +37,18 @@ img {
 
 .card {
     width: 256px;
+}
+
+/* animations */
+.fade-in {
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+        animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

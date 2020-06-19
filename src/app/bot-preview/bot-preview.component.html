@@ -1,29 +1,41 @@
 <div class="jumbotron mb-0">
     <img [src]="user.displayAvatarURL">
     <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
-    <span *ngIf="bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.guildCount | number }}</span>
-    <span *ngIf="!bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> N/A</span>
-    <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>
-</div>
-    
-<div class="mx-5">
-    <span class="text-muted" role="doc-subtitle">{{ bot.listing.overview }}</span>
+    <div>
+        <span *ngIf="bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.guildCount | number }}</span>
+        <span *ngIf="!bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> N/A</span>
+        <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>
+        <span class="border border-dark py-1 mx-4"></span>
+        <span>
+            <span *ngIf="bot.approvedAt"
+                matTooltip="Reviewed and approved."
+                class="cursor-pointer">
+                <i class="text-success fas fa-check-circle"></i>
+            </span>
+        </span>
+    </div>
+    <div>
+        <span class="text-muted" role="doc-subtitle">{{ bot.listing.overview }}</span>
+    </div>
 </div>
 
 <hr>
 
-<div>
-    <span class="mx-2 prefix">
-        <strong>Prefix</strong>: <code>{{ bot.listing.prefix }}</code>
+<div class="py-1">
+    <span class="links">
+        <span class="mx-2 prefix">
+            <strong>Prefix</strong>: <code>{{ bot.listing.prefix }}</code>
+        </span>
+        <span *ngIf="bot.listing.websiteURL"
+            class="mx-2">
+            <a [href]="bot.listing.websiteURL" rel="nofollow" mat-button><i class="fas fa-globe"></i> Website</a>
+        </span>
+        <span *ngIf="bot.listing.githubURL"
+            class="mx-2">
+            <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> Github</a>
+        </span>
     </span>
-    <span class="mx-2">
-        <a [href]="bot.listing.websiteURL" rel="nofollow" mat-button><i class="fas fa-globe"></i> Website</a>
-    </span>
-    <span class="mx-2">
-        <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> Github</a>
-    </span>
-    <span
-        class="float-right">
+    <span class="float-right">
         <button *ngIf="canManage"
             [routerLink]="['/dashboard/bots/' + user.id +'/edit']"
             class="warning" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
@@ -32,12 +44,16 @@
     </span>
 </div>
 
-<div id="markdown" class="mt-5" [innerHTML]="markdown"></div>
+<div id="markdown" class="rounded mt-4" [innerHTML]="markdown"></div>
 
 <hr>
 
 <div class="mb-3">
     <mat-chip-list>
-        <mat-chip *ngFor="let tagName of bot.listing.tags">{{ tagName | kebabToTitleCase }}</mat-chip>
+        <mat-chip *ngFor="let tagName of bot.listing.tags"
+            class="cursor-pointer"
+            [routerLink]="['/tags/', tagName]">{{ tagName | kebabToTitleCase }}
+            <i [class]="service.getTag(tagName)?.icon" class="ml-1" aria-hidden="true"></i>
+        </mat-chip>
     </mat-chip-list>
 </div>

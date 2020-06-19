@@ -68,16 +68,28 @@ table.dataTable tbody tr {
 }
 
 button {
-    border-radius: 35% !important;
+    border-radius: 25px !important;
 }
 button:focus {
     outline: none !important;
 }
 
 a {
-    color: inherit;
+    color: var(--tertiary);
     text-decoration: none !important;
     transition: all .25s;
+}
+a:hover {
+    color: var(--secondary)
+}
+
+mat-chip a {
+    color: inherit !important;
+}
+
+/* global */
+.mat-chip.mat-standard-chip {
+    background-color: var(--primary) !important;
 }
 
 /* scrollbar */
@@ -196,4 +208,14 @@ mat-paginator {
     min-width: 50vw;
 
     margin: 0 !important;
+}
+
+/* bot preview */
+
+#markdown p {
+  margin-bottom: 0 !important;
+}
+
+#markdown code {
+  color: var(--font);
 }

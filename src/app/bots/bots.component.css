@@ -19,3 +19,7 @@
   margin: 15px;
   background-color: var(--background-tertiary);
 }
+
+#paginator span {
+  font-size: 24px;
+}

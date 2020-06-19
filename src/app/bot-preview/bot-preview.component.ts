@@ -1,6 +1,7 @@
 import { Component, Input, AfterContentInit } from '@angular/core';
 import marked from 'marked';
 import { UserService } from '../services/user.service';
+import { BotsService } from '../bots/bots.service';
 
 @Component({
   selector: 'bot-preview',
@@ -9,6 +10,7 @@ import { UserService } from '../services/user.service';
 })
 export class BotPreviewComponent {  
   @Input() bot = {
+    approvedAt: null,
     listing: {
       body: '',
       githubURL: 'https://github.com/theADAMJR',
@@ -23,7 +25,7 @@ export class BotPreviewComponent {
   }
 
   @Input() user = {
-    id: '123',
+    id: '',
     displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
     username: 'Bot User',
     discriminator: '0000'
@@ -38,5 +40,7 @@ export class BotPreviewComponent {
     return this.userService.user?.id === this.bot.ownerId;
   }
 
-  constructor(private userService: UserService) {}
+  constructor(
+    public service: BotsService,
+    private userService: UserService) {}
 }

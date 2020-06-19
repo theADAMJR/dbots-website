@@ -5,6 +5,7 @@ import { toIterable } from 'src/app/utils';
 import { BotsService } from 'src/app/bots/bots.service';
 import { Router } from '@angular/router';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { SEOService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'add-bot',
@@ -19,28 +20,14 @@ export class AddBotComponent implements AfterViewInit {
   filteredTags = this.botService.tags;
 
   @Input() editing = false;
-  @Input() listing = {
-    body: `# Discord Bot Best Practices
-    * Commands should be **explicitly invoked**
-    * Use **unique prefixes**
-    * Don't overuse mentions
-    * Have an \`info\` command
-    * Don't reply with *'invalid command'*
-    * Don't destroy Discord's API 🔥🔥🔥
-    * Ignore other bots' messages
-    * Use **mentioning** the bot to help users
-    
-    [More Info](https://github.com/meew0/discord-bot-best-practices)`,
-    overview: 'a good bot with no features'
-  };
 
   form = new FormGroup({
     body: new FormControl('', [ Validators.required, Validators.minLength(300) ]),
-    botId: new FormControl('', [ Validators.pattern(/^\d{18}$/), Validators.required ]),
-    clientId: new FormControl('', [ Validators.pattern(/^\d{18}$/), Validators.required ]),
+    botId: new FormControl('', [ Validators.required, Validators.pattern(/^\d{18}$/) ]),
+    clientId: new FormControl('', [ Validators.required, Validators.pattern(/^\d{18}$/) ]),
     githubURL: new FormControl('', [ Validators.pattern(/https:\/\/github\.com\//) ]),
     invite: new FormControl('', [ Validators.required, Validators.pattern(/https:\/\/discordapp.com|https:\/\/discord.com/) ]),
-    overview: new FormControl('', [ Validators.maxLength(151) ]),
+    overview: new FormControl('', [ Validators.required, Validators.maxLength(151) ]),
     ownerIds: new FormControl([], [ Validators.maxLength(3) ]),
     prefix: new FormControl('', [ Validators.required ]),
     supportInvite: new FormControl('', [ Validators.pattern(/^[A-Za-z0-9]{7}$/) ]),
@@ -49,31 +36,66 @@ export class AddBotComponent implements AfterViewInit {
   });
 
   @Input() user = {
-    id: '123',
+    id: '',
     displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
     presence: { status: 'ONLINE' },
+    tag: 'Username#0001',
     username: 'Username'
   }
 
   @Input() bot = {
-    listing: this.form.value,
+    listing: {
+      body: `# Discord Bot Best Practices
+      * Commands should be **explicitly invoked**
+      * Use **unique prefixes**
+      * Don't overuse mentions
+      * Have an \`info\` command
+      * Don't reply with *'invalid command'*
+      * Don't destroy Discord's API 🔥🔥🔥
+      * Ignore other bots' messages
+      * Use **mentioning** the bot to help users
+      
+      [More Info](https://github.com/meew0/discord-bot-best-practices)`,
+      overview: 'a good bot with no features'
+    },
     guildCount: 100,
     votes: toIterable(100)
   };
 
   constructor(
     public botService: BotsService,
-    private router: Router) {}
+    private router: Router,
+    seo: SEOService) {
+      seo.setTags({
+        description: 'Add a bot to the bot list with this form.',
+        titlePrefix: 'Add Bot',
+        titleSuffix: 'Dashboard',
+        url: 'dashboard/bots/new'
+      });
+    }
 
   ngAfterViewInit() {
     setTimeout(async () => {
       await this.botService.init();
 
       this.initializeEditor();
+      this.initFormValue();
       this.hookEvents();
-
-      this.form.setValue(this.listing);
     });
+  }
+
+  private initFormValue() {
+    for (const key in this.bot.listing)
+      this.form.controls[key]
+        .setValue(this.bot.listing[key]);
+    
+    this.editor.value(this.bot.listing.body);
+
+    const draft = localStorage.getItem('botListingDraft');
+    console.log(JSON.parse(draft));
+    
+    if (!this.editing && draft)
+      this.form.setValue(JSON.parse(draft));
   }
 
   private hookEvents() {
@@ -82,10 +104,6 @@ export class AddBotComponent implements AfterViewInit {
       this.form.controls.body.setValue(this.editor?.value());
       this.updateDraft();
     };
-
-    const draft = localStorage.getItem('botListingDraft');
-    if (!this.editing && draft)
-      this.form.setValue(JSON.parse(draft));
 
     this.form.valueChanges.subscribe(() => this.updateDraft());
   }
@@ -116,7 +134,8 @@ export class AddBotComponent implements AfterViewInit {
   }
 
   private updateDraft() {
-    localStorage.setItem('botListingDraft', JSON.stringify(this.form.value));    
+    localStorage.setItem('botListingDraft', JSON.stringify(this.form.value));   
+    this.bot.listing = this.form.value; 
   }
   
   filterTags(filter: string): void {
@@ -128,14 +147,17 @@ export class AddBotComponent implements AfterViewInit {
     if (this.form.invalid)
       return this.form.setErrors({ invalid: true });
     
-    this.botService.createBot(this.form.value);    
+    this.botService.createBot(this.form.value);
   }
   update() {
+    console.log(this.form.controls);
+    console.log(this.form);
+    
     this.form.controls.body.setValue(this.editor.value());
     if (this.form.invalid)
       return this.form.setErrors({ invalid: true });
     
-    this.botService.updateBot(this.form.value.botId, this.form.value);    
+    this.botService.updateBot(this.form.value.botId, this.form.value);
   }
 
   navigateToBotListing() {

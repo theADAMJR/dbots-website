@@ -1,9 +1,10 @@
-<div class="text-center rounded-lg card shadow text-white bg-dark">
+<div *ngIf="bot && user"
+  class="fade-in text-center rounded-lg card shadow text-white bg-dark">
   <div [routerLink]="['/bots/', user.id]"
     class="cursor-pointer d-flex justify-content-center">
     <img class="shadow rounded-lg card-img-top"
       [src]="user.displayAvatarURL"
-      [alt]="user.username + ' | ' + bot.listing.tags.join(', ')">
+      [alt]="user.username + ' | ' + bot.listing.tags?.join(', ')">
     <div class="rounded-lg status"
       [ngClass]="{
         'status-online': user.presence?.status === 'online',
@@ -28,12 +29,15 @@
         <p class="color-secondary">{{ cleanTags }}</p>
     </div>
     <div class="d-flex justify-content-around">
-      <button class="bg-secondary rounded-lg" mat-button>
+      <button [routerLink]="['/bots/' + user.id]"
+        class="bg-secondary rounded-lg" mat-button>
         <i class="fa fa-question" aria-hidden="true"></i>
       </button>
-      <button class="rounded-lg" color="success" mat-button>
-        <i class="fa fa-plus" aria-hidden="true"></i>
+      <a [href]="bot.listing.invite">
+        <button class="rounded-lg" color="success" mat-button>
+          <i class="fa fa-plus" aria-hidden="true"></i>
       </button>
+      </a>
     </div>
   </div>
 </div>

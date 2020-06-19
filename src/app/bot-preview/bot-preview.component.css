@@ -8,4 +8,6 @@ img {
 
 #markdown {
   word-wrap: break-word;
+  background-color: var(--background-tertiary);
+  padding: 25px;
 }

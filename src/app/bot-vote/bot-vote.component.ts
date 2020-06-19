@@ -32,7 +32,8 @@ export class BotVoteComponent implements OnInit {
 
     this.seo.setTags({
       description: this.bot.listing.overview,
-      titleSuffix: this.user.username,
+      titlePrefix: this.user.username,
+      titleSuffix: 'DBots',
       url: `bots/${this.id}`
     });
   }

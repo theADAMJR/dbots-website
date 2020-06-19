@@ -1,9 +1,12 @@
-<bot-sidebar [user]="user"
-    [loaded]="bot && user">
+<bot-sidebar
+    [bot]="bot"
+    [loaded]="bot && user"
+    [user]="user">
     <div [hidden]="preview" class="container">
         <div class="container">
                 <div class="d-flex justify-content-between">
-                    <h1 class="display-3">Add Bot</h1>
+                    <h1 [textContent]="editing ? 'Edit ' + user?.username : 'Add Bot'"
+                        class="display-3">Add Bot</h1>
                     <button id="previewButton" (click)="preview = true"
                         class="rounded-lg mt-3" type="button" color="success" mat-button>
                         <i class="fas fa-binoculars"></i> Preview
@@ -49,7 +52,7 @@
                     </mat-form-field>
 
                     <span class="p-3">
-                        <a href="https://discordapi.com/permissions.html" target="_blank">Invite Generator</a>
+                        <a href="//discordapi.com/permissions.html" target="_blank">Invite Generator</a>
                     </span>
 
                     <hr>
@@ -82,7 +85,7 @@
                             <mat-option *ngFor="let tag of filteredTags" 
                                 [value]="tag.name">{{ tag.name | kebabToTitleCase }}</mat-option>
                         </mat-select>
-                        <mat-error *ngIf="form.get('tags').invalid">Mo more than 5 tags.</mat-error>
+                        <mat-error *ngIf="form.get('tags').invalid">No more than 5 tags.</mat-error>
                     </mat-form-field>
                     
                     <mat-form-field appearance="outline">
@@ -131,21 +134,21 @@
                     <div class="d-flex justify-content-center">
                         <rocket-button *ngIf="!editing"
                             id="submit"
-                            [precondition]="form.dirty && form.value.valid"
+                            [precondition]="form.valid"
                             (click)="submit()"
                             (animated)="navigateToBotListing()">Add Bot</rocket-button>
                         <rocket-button *ngIf="editing"
                             id="update"
-                            [precondition]="form.dirty && form.value.valid"
+                            [precondition]="form.valid"
                             (click)="update()"
                             (animated)="navigateToBotListing()">Update Bot</rocket-button>
                     </div>
                 </form>
             </div>
             <div class="col-lg-6 d-none d-sm-block border-left">
-                <a [routerLink]="['/docs/guidelines']" routerLinkActive="active"
+                <a [routerLink]="['/docs/bot-guidelines']" routerLinkActive="active"
                     class="nav-item nav-link">
-                    <i class="fas fa-book"></i> Guidelines</a> for adding a bot.
+                    <i class="fas fa-book"></i> Guidelines for adding a bot.</a>
                 <div class="alert alert-warning border-warning">
                     Make sure you are in the <a class="text-primary" href="/server">Discord server</a>, or your bots will not appear on the list.
                 </div>
@@ -180,11 +183,7 @@
             <button (click)="preview = false"
                 class="float-right" color="danger" mat-button>&times;</button>
 
-            <bot-preview [bot]="{
-                listing: form.value,
-                guildCount: 100,
-                votes: toIterable(100)
-            }"></bot-preview>
+            <bot-preview *ngIf="bot" [bot]="bot"></bot-preview>
         </div>
     </div>
 </bot-sidebar>

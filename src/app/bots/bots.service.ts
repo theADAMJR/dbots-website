@@ -26,42 +26,43 @@ export class BotsService {
   private get key() { return localStorage.getItem('key'); }
 
   // TODO: include good keywords for SEO
+  // TODO: include good keywords for SEO
   tags: Tag[] = [
-    { name: 'anime', icon: 'far fa-circle', description: 'A tag that needs a description with keywords.' },
-    { name: 'apex-legends', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'chat', icon: 'fas fa-comments', description: 'A tag that needs a description with keywords.' },
-    { name: 'csgo', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'customizable', icon: 'fas fa-cogs', description: 'A tag that needs a description with keywords.' },
-    { name: 'economy', icon: 'fas fa-coins', description: 'A tag that needs a description with keywords.' },
-    { name: 'fortnite', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'fun', icon: 'fas fa-grin-tears', description: 'A tag that needs a description with keywords.' },
-    { name: 'league-of-legends', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'leveling', icon: 'fas fa-trophy', description: 'A tag that needs a description with keywords.' },
-    { name: 'logging', icon: 'fas fa-tree', description: 'A tag that needs a description with keywords.' },
-    { name: 'media', icon: 'fas fa-photo-video', description: 'A tag that needs a description with keywords.' },
-    { name: 'meme', icon: 'fas fa-grin-tears', description: 'A tag that needs a description with keywords.' },
-    { name: 'minecraft', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'mixer', icon: 'fab fa-mixer', description: 'A tag that needs a description with keywords.' },
-    { name: 'moderation', icon: 'fas fa-gavel', description: 'A tag that needs a description with keywords.' },
-    { name: 'multipurpose', icon: 'fas fa-adjust', description: 'A tag that needs a description with keywords.' },
-    { name: 'music', icon: 'fas fa-music', description: 'A tag that needs a description with keywords.' },
-    { name: 'pokemon', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'pugb', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'reddit', icon: 'fab fa-reddit', description: 'A tag that needs a description with keywords.' },
-    { name: 'roblox', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'rocket-league', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'roleplay', icon: 'fas fa-theater-masks', description: 'A tag that needs a description with keywords.' },
-    { name: 'roles', icon: 'fas fa-at', description: 'A tag that needs a description with keywords.' },
-    { name: 'runescape', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'soundboard', icon: 'fas fa-volume-up', description: 'A tag that needs a description with keywords.' },
-    { name: 'twitch', icon: 'fab fa-twitch', description: 'A tag that needs a description with keywords.' },
-    { name: 'twitter', icon: 'fab fa-twitter', description: 'A tag that needs a description with keywords.' },
-    { name: 'utility', icon: 'fas fa-cogs', description: 'A tag that needs a description with keywords.' },
-    { name: 'valorant', icon: 'fas fa-gamepad', description: 'A tag that needs a description with keywords.' },
-    { name: 'verification', icon: 'fa fa-check-circle', description: 'A tag that needs a description with keywords.' },
-    { name: 'web-dashboard', icon: 'fas fa-cogs', description: 'A tag that needs a description with keywords.' },
-    { name: 'youtube', icon: 'fab fa-youtube', description: 'A tag that needs a description with keywords.' }
-  ]
+    { name: 'anime', icon: 'far fa-circle', description: 'Find the best anime Discord bots from our list of the best Discord bots.' },
+    { name: 'apex-legends', icon: 'fas fa-gamepad', description: 'Find the best Apex Legends Discord bots from our list of the best Discord bots.' },
+    { name: 'chat', icon: 'fas fa-comments', description: 'Find the best chat Discord bots from our list of the best Discord bots.' },
+    { name: 'csgo', icon: 'fas fa-gamepad', description: 'Find the best CSGO Discord bots from our list of the best Discord bots.' },
+    { name: 'customizable', icon: 'fas fa-cogs', description: 'Find the best customizable Discord bots from our list of the best Discord bots.' },
+    { name: 'economy', icon: 'fas fa-coins', description: 'Find the best economy Discord bots from our list of the best Discord bots.' },
+    { name: 'fortnite', icon: 'fas fa-gamepad', description: 'Find the best Fortnite Discord bots from our list of the best Discord bots.' },
+    { name: 'fun', icon: 'fas fa-grin-tears', description: 'Find the most fun Discord bots from our list of the best Discord bots.' },
+    { name: 'league-of-legends', icon: 'fas fa-gamepad', description: 'Find the best League of Legends Discord bots from our list of the best Discord bots.' },
+    { name: 'leveling', icon: 'fas fa-trophy', description: 'Find the most advanced Leveling Discord bots from our list of the best Discord bots.' },
+    { name: 'logging', icon: 'fas fa-tree', description: 'Find the best logging Discord bots from our list of the best Discord bots, with staff logs and more.' },
+    { name: 'media', icon: 'fas fa-photo-video', description: 'Find the best media Discord bots from our list of the best Discord bots.' },
+    { name: 'meme', icon: 'fas fa-grin-tears', description: 'Find the best EPIC meme Discord bots from our list of the best Discord bots, with bots like Dank Memer and many other classics.' },
+    { name: 'minecraft', icon: 'fas fa-gamepad', description: 'Find the best Minecraft Discord bots from our list of the best Discord bots.' },
+    { name: 'mixer', icon: 'fab fa-mixer', description: 'Find the best Mixer Discord bots from our list of the best Discord bots, and other live streaming bots.' },
+    { name: 'moderation', icon: 'fas fa-gavel', description: 'Find the best moderation Discord bots from our list of the best Discord bots, with bots like Mee6, Dyno bot and much more.' },
+    { name: 'multipurpose', icon: 'fas fa-adjust', description: 'Find the best multipurpose Discord bots from our list of the best Discord bots, with many all-in-one features.' },
+    { name: 'music', icon: 'fas fa-music', description: 'Find the best music Discord bots from our list of the best Discord bots, with bots like Groovy, Rythm, Octave, and many more epic bots.' },
+    { name: 'pokemon', icon: 'fas fa-gamepad', description: 'Find the best Pokemon Discord bots from our list of the best Discord bots.' },
+    { name: 'pugb', icon: 'fas fa-gamepad', description: 'Find the best PUBG Discord bots from our list of the best Discord bots.' },
+    { name: 'reddit', icon: 'fab fa-reddit', description: 'Find the best Reddit Discord bots from our list of the best Discord bots.' },
+    { name: 'roblox', icon: 'fas fa-gamepad', description: 'Find the best Roblox Discord bots from our list of the best Discord bots.' },
+    { name: 'rocket-league', icon: 'fas fa-gamepad', description: 'Find the best Rocket League Discord bots from our list of the best Discord bots.' },
+    { name: 'roleplay', icon: 'fas fa-theater-masks', description: 'Find the best Roleplay Discord bots from our list of the best Discord bots.' },
+    { name: 'roles', icon: 'fas fa-at', description: 'Find the best anime role management bots from our list of the best Discord bots.' },
+    { name: 'runescape', icon: 'fas fa-gamepad', description: 'Find the best Runescape Discord bots from our list of the best Discord bots.' },
+    { name: 'soundboard', icon: 'fas fa-volume-up', description: 'Find the best soundboard Discord bots from our list of the best Discord bots.' },
+    { name: 'twitch', icon: 'fab fa-twitch', description: 'Find the best Twitch bots from our list of the best Discord bots, and more live streaming bots.' },
+    { name: 'twitter', icon: 'fab fa-twitter', description: 'Find the best Twitter Discord bots from our list of the best Discord bots.' },
+    { name: 'utility', icon: 'fas fa-cogs', description: 'Find the best utility Discord bots from our list of the best Discord bots.' },
+    { name: 'valorant', icon: 'fas fa-gamepad', description: 'Find the best Valorant Discord bots from our list of the best Discord bots.' },
+    { name: 'verification', icon: 'fa fa-check-circle', description: 'Find the best verification Discord bots from our list of the best Discord bots, and more bots that can help secure your servers.' },
+    { name: 'web-dashboard', icon: 'fas fa-cogs', description: 'Find the best web dashboard Discord bots from our list of the best Discord bots.' },
+    { name: 'youtube', icon: 'fab fa-youtube', description: 'Find the best YouTube Discord bots from our list of the best Discord bots, and other music and live streaming bots.' }
+  ];
 
   getTag(name: string) {
     return this.tags.find(t => t.name === name);
@@ -80,7 +81,6 @@ export class BotsService {
     const bots = await this.http.get(`${this.endpoint}`).toPromise() as any;
 
     this._savedBots = bots.saved
-      .filter(b => b.approvedAt)
       .sort((a, b) => b.votes.length - a.votes.length);    
 
     const ids = this.savedBots.map(b => b._id);
@@ -108,8 +108,20 @@ export class BotsService {
     return this.http.get(`${this.endpoint}/${id}/vote?key=${this.key}`).toPromise() as Promise<any>;
   }
 
+  getTopBots() {
+    const savedBots = this.savedBots.filter(b => b.approvedAt);
+    const ids = savedBots.map(b => b._id);
+    const bots = [];
+    for (const id of ids)
+      bots.push(this.bots.find(b => b.id === id));
+
+    return { bots, saved: savedBots };
+  }
   getTaggedBots(tagName: string) {
-    const savedBots = this.savedBots.filter(b => b.listing.tags.some(n => n === tagName));
+    const savedBots = this.savedBots
+      .filter(b => b.approvedAt &&
+        b.listing?.tags
+        .some(n => n === tagName));
     const ids = savedBots.map(b => b._id);
 
     const bots = [];
@@ -125,7 +137,7 @@ export class BotsService {
     
     const ids = savedBots.map(b => b._id);
     const bots = this.bots.filter(b => ids.includes(b.id));
-      
+
     return { bots, saved: savedBots };
   }
   searchBots(query: string) {
@@ -138,15 +150,15 @@ export class BotsService {
       ]
     }); 
     
-    const saved = fuse
+    const savedBots = fuse
       .search(query)
       .map(r => r.item);    
 
-    const ids = saved.map(b => b._id);
+    const ids = savedBots.map(b => b._id);
     const bots = this.bots
       .filter(b => ids.includes(b.id));    
 
-    return { bots, saved };
+    return { bots, saved: savedBots };
   }
 
   createBot(value: any) {
@@ -155,6 +167,24 @@ export class BotsService {
   updateBot(id: string, value: any) {
     return this.http.put(`${this.endpoint}/${id}?key=${this.key}`, value).toPromise() as Promise<any>;
   }
+
+  approveBot(id: string, reason: string) {
+    return this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
+      approved: true,
+      reason
+    } as Judgement).toPromise() as Promise<any>;
+  }
+  declineBot(id: string, reason: string) {
+    return this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
+      approved: false,
+      reason
+    } as Judgement).toPromise() as Promise<any>;    
+  }
+}
+
+export interface Judgement {
+  approved: boolean;
+  reason: string;
 }
 
 export interface Tag {

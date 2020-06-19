@@ -28,4 +28,13 @@ describe('BotsComponent', () => {
 
     expect(component.title).toBe('Results');
   });
+
+  it('paginate, reduces array correctly', () => {
+    component.page = 2;
+    component.size = 4;
+
+    const result = component.paginate([1,2,3,4,5,6,7,8]);
+
+    expect(result).toBe([5,6,7,8]);
+  });
 });

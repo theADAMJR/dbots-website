@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BotsService } from '../bots/bots.service';
 import { SEOService } from '../services/seo.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-bot-page',
@@ -18,7 +19,8 @@ export class BotPageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private seo: SEOService,
-    private service: BotsService) {}
+    private service: BotsService,
+    public userService: UserService) {}
 
   async ngOnInit() {
     await this.service.init();
@@ -30,8 +32,24 @@ export class BotPageComponent implements OnInit {
 
     this.seo.setTags({
       description: this.bot.listing.overview,
-      titleSuffix: this.user.username,
+      titlePrefix: this.user.username,
+      titleSuffix: 'DBots',
       url: `bots/${this.id}`
     });
+  }
+
+  async approve(reason: string) {        
+    if (reason.length < 50) return;
+
+    await this.service.approveBot(this.id, reason);
+
+    this.router.navigate(['/bots/' + this.id]);
+  }
+  async decline(reason: string) {
+    if (reason.length < 50) return;
+
+    await this.service.declineBot(this.id, reason);
+
+    this.router.navigate(['/bots/' + this.id]);
   }
 }

@@ -3,13 +3,16 @@
         <div class="items">
             <div class="user">
                 <div routerLink="/dashboard" class="icon">
-                    <img [src]="userService.user.displayAvatarURL" [alt]="userService.user.username">
+                    <img [src]="userService.user?.displayAvatarURL" [alt]="userService.user?.username">
                 </div>
                 <hr>
             </div>
+            <span class="uppercase text-muted px-3"><strong>Bots</strong></span>
             <div *ngFor="let bot of botService.userBots" [routerLink]="['/dashboard/bots/' + bot.id]"
                 class="icon">
-                <img *ngIf="bot" [src]="bot.displayAvatarURL" [alt]="bot.username">
+                <img *ngIf="bot"
+                    [src]="bot.displayAvatarURL"
+                    [alt]="bot.username">
             </div>
             <div routerLink="/dashboard/bots/new" 
                 class="icon invite"

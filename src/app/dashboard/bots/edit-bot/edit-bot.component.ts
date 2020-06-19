@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BotsService } from 'src/app/bots/bots.service';
+import { SEOService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-edit-bot',
@@ -15,12 +16,20 @@ export class EditBotComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private service: BotsService) {}
+    private service: BotsService,
+    private seo: SEOService) {}
 
     async ngOnInit() {
       await this.service.init();
       
       this.bot = this.service.getSavedBot(this.id);
       this.user = this.service.getBot(this.id);
+      
+      this.seo.setTags({
+        description: 'Add a bot to the bot list with this form.',
+        titlePrefix: this.user.tag,
+        titleSuffix: 'Dashboard',
+        url: `dashboard/bots/${this.id}`
+      });
     }
 }

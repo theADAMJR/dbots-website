@@ -2,9 +2,37 @@
 
 <div *ngIf="bot && user"
   class="container">
+  <div *ngIf="!bot.approvedAt"
+    class="alert alert-info">
+    <i class="fas fa-info-circle" aria-hidden="true"></i> Your bot will visible on the bot list if it is approved.
+  </div>
   <bot-preview
     [bot]="bot"
-    [user]="user"></bot-preview>  
+    [user]="user"></bot-preview>
+
+    <div *ngIf="!bot.approvedAt
+      && (userService.savedUser?.role === 'admin'
+      || userService.savedUser?.role === 'reviewer')"
+      id="review">
+      <hr>
+      <h3 class="text-center">Review</h3>
+      <div class="d-flex justify-content-center">
+        <mat-form-field appearance="outline">
+          <mat-label>Message</mat-label>
+          <input minlength="50" type="text" placeholder="(50 characters min)" #message matInput>
+        </mat-form-field>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button id="approve"
+          (click)="approve(message.value)"
+          [disabled]="message.value.length < 50"
+          color="success" mat-button>Approve</button>  
+        <button id="decline"
+          (click)="decline(message.value)"
+          [disabled]="message.value.length < 50"
+          class="ml-2" color="danger" mat-button>Decline</button>  
+      </div>
+    </div>
 </div>
 
 <div *ngIf="!bot || !user"

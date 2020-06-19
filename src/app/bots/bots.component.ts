@@ -1,5 +1,4 @@
-import { Component,  ViewChild, Input, OnInit, AfterViewInit } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { Component,  Input, OnInit, AfterViewInit } from '@angular/core';
 import { BotsService, Tag } from './bots.service';
 import { kebabToTitleCase } from '../utils';
 
@@ -9,7 +8,8 @@ import { kebabToTitleCase } from '../utils';
   styleUrls: ['./bots.component.css']
 })
 export class BotsComponent implements OnInit, AfterViewInit {
-  @ViewChild('paginator') paginator: MatPaginator;
+  page = 1;
+  size = 8;
 
   title = 'Top';
   icon = 'fas fa-robot';
@@ -21,6 +21,8 @@ export class BotsComponent implements OnInit, AfterViewInit {
   @Input() tag: Tag;
 
   initialized = false;
+
+  get lastPage() { return Math.ceil(this.bots.length / this.size); }
 
   constructor(public service: BotsService) {}
 
@@ -37,28 +39,25 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
       this.setTagLayout(this.tag);
     } else
-      this.resetBots();
+      this.loadBots();
 
-    this.initialized = true;
+    this.initialized = true;    
   }
 
   ngAfterViewInit() {
     this.resetPaginator();
   }
 
-  private resetPaginator() {
-    if (this.paginator) {
-      this.paginator.firstPage();
-      this.paginator.length = this.bots.length;
-      this.paginator.pageSize = 8;
-    }
+  private resetPaginator(page = 1) {
+    this.page = page;
   }
 
-  private resetBots() {
-    this.savedBots = this.service.savedBots;
-    this.bots = this.service.bots;
+  private loadBots(page = 1) {
+    const { bots, saved } = this.service.getTopBots();
+    this.bots = bots;
+    this.savedBots = saved;
 
-    this.resetPaginator();
+    this.resetPaginator(page);
   }
   
   search(query: string) {
@@ -80,7 +79,7 @@ export class BotsComponent implements OnInit, AfterViewInit {
     this.icon = 'fas fa-robot';
     this.description = 'The highest rated bots this week.'
 
-    this.resetBots();
+    this.loadBots();
   }
 
   private setSearchLayout() {
@@ -96,5 +95,16 @@ export class BotsComponent implements OnInit, AfterViewInit {
     this.tag = tag;
     
     this.resetPaginator();
+  }
+
+  previousPage() {
+    this.page = Math.max(this.page - 1, 1);
+  }
+  nextPage() {
+    this.page = Math.min(this.page + 1, this.lastPage);
+  }
+  
+  paginate(array: any[]) {
+    return array.slice((this.page - 1) * this.size, this.page * this.size);
   }
 }
