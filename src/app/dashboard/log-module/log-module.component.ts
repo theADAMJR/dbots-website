@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { BotsService } from 'src/app/bots/bots.service';
 import { UserService } from 'src/app/services/user.service';
+import { SEOService } from 'src/app/services/seo.service';
 
 @Component({
   selector: 'app-log-module',
@@ -12,6 +13,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./log-module.component.css']
 })
 export class LogModuleComponent implements OnInit {
+  bot: any;
+  user: any;
+
   members: any[];
 
   displayedColumns: string[] = ['number', 'by', 'old', 'new', 'at'];
@@ -24,10 +28,22 @@ export class LogModuleComponent implements OnInit {
   constructor(
     private botService: BotsService,
     private route: ActivatedRoute,
+    private seo: SEOService,
     public userService: UserService) {}
 
-  async ngOnInit() { 
+  async ngOnInit() {
+    await this.botService.init();
+
     const id = this.route.snapshot.paramMap.get('id');
+    this.bot = this.botService.getSavedBot(id);
+    this.user = this.botService.getBot(id);
+
+    this.seo.setTags({
+      titlePrefix: 'DBots',
+      titleSuffix: `${this.user.username} Logs`,
+      description: 'View bot logs and changes to the bot listing.',
+      url: `dashboard/bots/${id}/log`
+    });
 
     const log = await this.botService.getSavedLog(id);
     this.changes = log.changes.reverse();

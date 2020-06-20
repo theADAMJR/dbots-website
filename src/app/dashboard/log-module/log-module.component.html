@@ -1,4 +1,7 @@
-<bot-sidebar>
+<bot-sidebar
+    [bot]="bot"
+    [loaded]="bot && user"
+    [user]="user">
     <div class="container">
         <header>
             <h1 class="display-3">Audit Log</h1>

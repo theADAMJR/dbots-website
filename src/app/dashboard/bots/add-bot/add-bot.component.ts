@@ -39,8 +39,8 @@ export class AddBotComponent implements AfterViewInit {
     id: '',
     displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
     presence: { status: 'ONLINE' },
-    tag: 'Username#0001',
-    username: 'Username'
+    tag: 'New Bot#0001',
+    username: 'New Bot'
   }
 
   @Input() bot = {

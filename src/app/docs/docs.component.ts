@@ -50,31 +50,28 @@ export class DocsComponent implements OnInit {
   }
 
   setMetaVariables(content: string) {
-    const tags = {
-      description: /<description>(.*)<\/description>/g,
-      title: /<title>(.*)<\/title>/g,
-      url: /<url>(.*)<\/url>/g,
-    };
-
-    if (!(tags.description.exec(content)
-      || tags.title.exec(content)
-      || tags.url.exec(content)))
-      return content;
-      
-    const description = tags.description.exec(content)[1];
-    const titleSuffix = tags.title.exec(content)[1];
-    const route = tags.url.exec(content)[1];
-
-    this.seo.setTags({
-      description,
-      titlePrefix: 'DBots',
-      titleSuffix,
-      url: `docs/${route}`
-    });
-
-    return content
-      .replace(tags.description, '')
-      .replace(tags.title, '')
-      .replace(tags.url, '');
+    try {
+      const tags = {
+        description: /<description>(.*)<\/description>/g,
+        title: /<title>(.*)<\/title>/g,
+        url: /<url>(.*)<\/url>/g,
+      };
+        
+      const description = tags.description.exec(content)[1];
+      const titleSuffix = tags.title.exec(content)[1];
+      const route = tags.url.exec(content)[1];
+  
+      this.seo.setTags({
+        description,
+        titlePrefix: 'DBots',
+        titleSuffix,
+        url: `docs/${route}`
+      });
+  
+      return content
+        .replace(tags.description, '')
+        .replace(tags.title, '')
+        .replace(tags.url, '');
+    } catch { return content; }
   }
 }

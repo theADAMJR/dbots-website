@@ -50,7 +50,6 @@ button {
 
 .options {
     background-color: var(--background-secondary) !important;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
     width: 300px;
     height: inherit;
@@ -81,4 +80,11 @@ mat-sidenav {
 
 .invite:hover {
     background-color: var(--tertiary);    
+}
+
+.close {
+    cursor: pointer;
+    font-size: 42px;
+    color: white;
+    margin-right: -35px;
 }

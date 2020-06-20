@@ -1,3 +1,7 @@
+<title>Changelog</title>
+<description>Updates to DBots and the DBots API.</description>
+<url>changelog</url>
+
 # Changelog
 
 ---

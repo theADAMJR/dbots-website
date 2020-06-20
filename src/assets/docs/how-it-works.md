@@ -1,4 +1,8 @@
-# How it works
+<title>How It Works</title>
+<description>How algorithms work on DBots, and more.</description>
+<url>how-it-works</url>
+
+# How It Works
 All searched bots are ranked by the most votes.
 
 ## New Bots

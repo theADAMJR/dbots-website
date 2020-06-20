@@ -21,6 +21,16 @@ export class BotsService {
   private _userSavedBots: any[];
   get userSavedBots() { return this._userSavedBots; }
 
+  get unreviewedBots() {
+    const savedBots = this.savedBots.filter(b => !b.approvedAt);
+    const ids = savedBots.map(b => b._id);
+    const bots = [];
+    for (const id of ids)
+      bots.push(this.bots.find(b => b.id === id));
+
+    return { bots, saved: savedBots };
+  }
+
   constructor(private http: HttpClient) {}
   
   private get key() { return localStorage.getItem('key'); }

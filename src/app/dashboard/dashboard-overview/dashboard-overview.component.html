@@ -1,8 +1,26 @@
 <dashboard-sidebar>
     <div class="container">
-        <h1 class="display-3 p-3">Hey, {{ user.username }}</h1>
+        <h1 class="display-3 p-3">Hey, {{ userService.user.username }}</h1>
         <hr>
         <h2>Welcome to the DBots dashboard!</h2>
         <p class="text-muted">Here you can manage bot listings, view bot logs, and more.</p>
+
+        <div *ngIf="userService.savedUser.role === 'admin'
+            || userService.savedUser.role === 'reviewer'">
+            <h2>Unreviewed Bots</h2>
+            <p *ngIf="unreviewedSavedBots.length <= 0">Wow! All bots are reviewed. 👍</p>
+            <ul>
+                <li *ngFor="let savedBot of unreviewedSavedBots">
+                    <a [routerLink]="['/bots/' + savedBot._id]"
+                        [class]="!botService.getBot(savedBot._id) ? 'text-warning' : ''" >{{ savedBot._id }}</a>
+                </li>
+            </ul>
+            <span><strong>Colours</strong>:</span><br>
+            <span class="text-warning">Needs to be added to the DBots Guild.</span><br>
+            <a href="#">Needs to be reviewed.</a><br><br>
+
+            <span><strong>Add Bot to DBots Guild</strong>:</span><br>
+            <code>https://discord.com/oauth2/authorize?client_id=replaceWithBotId&guild_id=236608364333891585&response_type=code&scope=bot</code>
+        </div>
     </div>
 </dashboard-sidebar>
