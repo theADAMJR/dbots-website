@@ -9,7 +9,7 @@ This guide will show you how to get started with DBots, and add a bot.
 **Join the DBots Server**
 Make sure you are in the [DBots Discord Server](/server) to enable you to add a bot.
 
-![Join the DBots Server](assets/docs/img/get-started/.png)
+![Join the DBots Server](assets/docs/img/get-started/join-the-server.png)
 
 ## Step 2
 **Add a Bot**
