@@ -2,7 +2,7 @@ import { Component, AfterViewInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import SimpleMDE from 'simplemde';
 import { toIterable } from 'src/app/utils';
-import { BotsService } from 'src/app/bots/bots.service';
+import { BotsService } from 'src/app/services/bots.service';
 import { Router } from '@angular/router';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SEOService } from 'src/app/services/seo.service';
@@ -45,17 +45,7 @@ export class AddBotComponent implements AfterViewInit {
 
   @Input() bot = {
     listing: {
-      body: `# Discord Bot Best Practices
-      * Commands should be **explicitly invoked**
-      * Use **unique prefixes**
-      * Don't overuse mentions
-      * Have an \`info\` command
-      * Don't reply with *'invalid command'*
-      * Don't destroy Discord's API 🔥🔥🔥
-      * Ignore other bots' messages
-      * Use **mentioning** the bot to help users
-      
-      [More Info](https://github.com/meew0/discord-bot-best-practices)`,
+      body: `Add something \`meaningful\` and **useful** here, to help your bot users.`,
       overview: 'a good bot with no features'
     },
     guildCount: 100,

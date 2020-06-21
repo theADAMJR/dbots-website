@@ -51,6 +51,7 @@ import { environment } from 'src/environments/environment';
 import { BotComponent } from './dashboard/bots/bot/bot.component';
 import { BotVoteComponent } from './bot-vote/bot-vote.component';
 import { BotLogComponent } from './dashboard/bot-log/bot-log.component';
+import { WidgetComponent } from './widget/widget.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
@@ -115,7 +116,8 @@ export class AlertErrorHandler implements ErrorHandler {
     BotPageComponent,
     BotComponent,
     BotVoteComponent,
-    BotLogComponent
+    BotLogComponent,
+    WidgetComponent
   ],
   imports: [
     AppRoutingModule,

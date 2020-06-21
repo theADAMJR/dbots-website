@@ -9,7 +9,7 @@ import { DashboardAuthGuard } from './guards/dashboard-auth.guard';
 import { DocsComponent } from './docs/docs.component';
 import { AddBotComponent } from './dashboard/bots/add-bot/add-bot.component';
 import { SearchWrapperComponent } from './bots/search-wrapper/search-wrapper.component';
-import { BotAuthGuard } from './bot-auth.guard';
+import { BotAuthGuard } from './guards/bot-auth.guard';
 import { BotPageComponent } from './bot-page/bot-page.component';
 import { BotComponent } from './dashboard/bots/bot/bot.component';
 import { BotVoteComponent } from './bot-vote/bot-vote.component';

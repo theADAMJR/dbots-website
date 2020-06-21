@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { BotsService } from 'src/app/bots/bots.service';
+import { BotsService } from 'src/app/services/bots.service';
 import { UserService } from 'src/app/services/user.service';
 import { SEOService } from 'src/app/services/seo.service';
 

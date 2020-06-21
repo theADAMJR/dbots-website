@@ -1,5 +1,5 @@
 import { Component,  Input, OnInit, AfterViewInit } from '@angular/core';
-import { BotsService, Tag } from './bots.service';
+import { BotsService, Tag } from '../services/bots.service';
 import { kebabToTitleCase } from '../utils';
 
 @Component({

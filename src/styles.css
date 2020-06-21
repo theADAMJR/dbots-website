@@ -209,6 +209,9 @@ pre code {
 .container .editor-toolbar a {
     color: var(--font) !important;
 }
+.CodeMirror-scroll {
+    max-height: 100vh !important;
+}
 .CodeMirror, .container .editor-toolbar {
     border-color: var(--background-tertiary) !important;
     background-color: var(--background-secondary) !important;
@@ -224,10 +227,6 @@ pre code {
 
 .cm-header-1 {
     color: var(--heading);
-}
-
-.CodeMirror-vscrollbar {
-    display: none !important;
 }
 
 /* paginator */

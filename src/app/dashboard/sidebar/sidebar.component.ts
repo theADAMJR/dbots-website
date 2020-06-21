@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { MatDrawer } from '@angular/material/sidenav';
-import { BotsService } from 'src/app/bots/bots.service';
+import { BotsService } from 'src/app/services/bots.service';
 
 @Component({
   selector: 'sidebar',

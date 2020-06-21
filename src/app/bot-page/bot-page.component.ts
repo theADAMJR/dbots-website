@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BotsService } from '../bots/bots.service';
+import { BotsService } from '../services/bots.service';
 import { SEOService } from '../services/seo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';

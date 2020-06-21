@@ -52,7 +52,7 @@
                     </mat-form-field>
 
                     <span class="p-3">
-                        <a href="//discordapi.com/permissions.html" target="_blank">Invite Generator</a>
+                        <a href="https://discordapi.com/permissions.html" target="_blank">Invite Generator</a>
                     </span>
 
                     <hr>
@@ -167,13 +167,11 @@
                 <h3>Widgets</h3>
                 <p>Cool widgets that you can use to show off your bot, and get more votes.</p>
                 <a class="text-secondary" routerLink="/docs/add-widget">
-                    <i class="fas fa-code"></i>
+                    <i class="text-info fas fa-code"></i>
                 </a>
+                <p class="text-center">(Example)</p>
                 <div class="d-flex justify-content-center">
-                    <div class="col-3">
-                        <dbots-widget *ngIf="form.value.botId"
-                            [botId]="form.value.botId"></dbots-widget>
-                    </div>
+                    <dbots-widget bot-id="525935335918665760"></dbots-widget>
                 </div>
             </div>
         </div>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { ActivatedRoute } from '@angular/router';
-import { BotsService } from 'src/app/bots/bots.service';
+import { BotsService } from 'src/app/services/bots.service';
 
 @Component({
   selector: 'commands-widget',

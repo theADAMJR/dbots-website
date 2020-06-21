@@ -1,0 +1,46 @@
+<div *ngIf="bot && user"
+  class="text-center rounded-lg card shadow text-white bg-dark">
+  <a [href]="'https://dbots.co/bots/' + user.id"
+    class="cursor-pointer d-flex justify-content-center">
+    <img class="shadow rounded-lg card-img-top"
+      [src]="user.displayAvatarURL"
+      [alt]="user.username + ' | ' + bot.listing.tags.join(', ')">
+    <div class="rounded-lg status" [ngClass]="{
+        'status-online': user.presence?.status === 'online',
+        'status-dnd': user.presence?.status === 'dnd',
+        'status-idle': user.presence?.status === 'idle'
+      }"></div>
+    </a>
+  <div class="card-body">
+    <p class="stats d-flex justify-content-center">
+      <span *ngIf="bot.stats?.guildCount" class="badge badge-secondary cursor-pointer mr-1">
+        <i class="fas fa-server"></i> {{ bot.stats.guildCount | number }}
+      </span>
+      <span class="badge badge-secondary cursor-pointer ml-1">
+        <i class="fa fa-chevron-circle-up" aria-hidden="true"></i> {{ bot.votes.length | number }}
+      </span>
+    </p>
+    <h4
+      class="cursor-pointer card-title">
+      <a [href]="'https://dbots.co/bots/' + user.id">{{ user.username }}</a>
+    </h4>
+    <div class="d-flex justify-content-around">
+      <a [href]="'https://dbots.co/bots/' + botId"
+        class="bg-success rounded-lg" color="success" mat-button>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </a>
+      <a [href]="'https://dbots.co/bots/' + botId + '/vote'"
+        class="bg-secondary rounded-lg" mat-button>
+        <i class="fa fa-chevron-up" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+  <hr class="mt-0">
+  <p>
+    <a href="https://dbots.co">DBots - Find Discord Bots</a>
+  </p>
+</div>
+
+<div *ngIf="!bot || !user">
+  <a href="https://dbots.co">No bot found with ID.</a>
+</div>

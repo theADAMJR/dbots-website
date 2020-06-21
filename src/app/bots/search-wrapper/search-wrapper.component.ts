@@ -2,7 +2,7 @@ import { Component, ViewChild, AfterContentInit, AfterViewInit } from '@angular/
 import { BotsComponent } from '../bots.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SEOService as SEOService, TypingSEO } from 'src/app/services/seo.service';
-import { BotsService } from '../bots.service';
+import { BotsService } from '../../services/bots.service';
 import { kebabToTitleCase } from 'src/app/utils';
 
 @Component({

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { BotsService } from 'src/app/bots/bots.service';
+import { BotsService } from 'src/app/services/bots.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SEOService } from 'src/app/services/seo.service';
-import { param } from 'jquery';
 
 @Component({
   selector: 'app-bot',

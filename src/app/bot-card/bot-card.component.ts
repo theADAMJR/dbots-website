@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { kebabToTitleCase } from '../utils';
 
 @Component({
@@ -6,11 +6,11 @@ import { kebabToTitleCase } from '../utils';
   templateUrl: './bot-card.component.html',
   styleUrls: ['./bot-card.component.css']
 })
-export class BotCardComponent {
+export class BotCardComponent implements AfterViewInit {
   @Input() user = {
     id: '',
     displayAvatarURL: 'https://cdn.discordapp.com/embed/avatars/0.png',
-    presence: { status: 'ONLINE' },
+    presence: { status: 'online' },
     username: 'Username'
   }
 
@@ -30,5 +30,11 @@ export class BotCardComponent {
     return this.bot.listing.tags
       ?.map(t => kebabToTitleCase(t))
       .join(', ');
+  }
+
+  ngAfterViewInit() {
+
+
+    console.log(this.user);    
   }
 }

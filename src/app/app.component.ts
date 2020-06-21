@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service';
 import { SEOService } from './services/seo.service';
-import { BotsService } from './bots/bots.service';
+import { BotsService } from './services/bots.service';
 
 @Component({
   selector: 'app-root',

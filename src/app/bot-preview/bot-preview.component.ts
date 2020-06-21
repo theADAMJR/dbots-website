@@ -1,7 +1,7 @@
 import { Component, Input, AfterContentInit } from '@angular/core';
 import marked from 'marked';
 import { UserService } from '../services/user.service';
-import { BotsService } from '../bots/bots.service';
+import { BotsService } from '../services/bots.service';
 
 @Component({
   selector: 'bot-preview',
