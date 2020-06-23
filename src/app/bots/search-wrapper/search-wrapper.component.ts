@@ -3,7 +3,7 @@ import { BotsComponent } from '../bots.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SEOService as SEOService, TypingSEO } from 'src/app/services/seo.service';
 import { BotsService } from '../../services/bots.service';
-import { kebabToTitleCase } from 'src/app/utils';
+import { kebabToLowerCase, kebabToTitleCase } from 'src/app/utils';
 
 @Component({
   selector: 'search-wrapper',
@@ -21,7 +21,7 @@ export class SearchWrapperComponent implements AfterViewInit {
     private route: ActivatedRoute,
     private router: Router,
     private seo: SEOService) {
-    this.placeholder = this.getRandomPlaceholder();
+    this.placeholder = kebabToLowerCase(this.getRandomPlaceholder());
   }
 
   ngAfterViewInit() {

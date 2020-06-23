@@ -60,7 +60,7 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Overview</mat-label>
                         <textarea formControlName="overview" type="text" matInput required></textarea>
-                        <mat-error *ngIf="form.get('overview').invalid">Required, and should be no more than 150 characters in length.</mat-error>
+                        <mat-error *ngIf="form.get('overview').invalid">Required, and should be between 64 and 128 characters in length.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
@@ -166,7 +166,7 @@
 
                 <h3>Widgets</h3>
                 <p>Cool widgets that you can use to show off your bot, and get more votes.</p>
-                <a class="text-secondary" routerLink="/docs/add-widget">
+                <a class="text-secondary" routerLink="/docs/widget">
                     <i class="text-info fas fa-code"></i>
                 </a>
                 <p class="text-center">(Example)</p>

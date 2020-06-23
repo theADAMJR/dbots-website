@@ -14,11 +14,14 @@
 `Upcoming`
 
 **Add**
+- cookie banner
 
 **Change/Fix**
 - bot status -> was not displaying correct presence
 - widgets -> were not actually working
 - add bot -> body field height was too tall (on mobile)
+- better bot card alignment
+- better mobile styling support
 
 **Remove**
 

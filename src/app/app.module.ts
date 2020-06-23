@@ -52,6 +52,7 @@ import { BotComponent } from './dashboard/bots/bot/bot.component';
 import { BotVoteComponent } from './bot-vote/bot-vote.component';
 import { BotLogComponent } from './dashboard/bot-log/bot-log.component';
 import { WidgetComponent } from './widget/widget.component';
+import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
@@ -117,7 +118,8 @@ export class AlertErrorHandler implements ErrorHandler {
     BotComponent,
     BotVoteComponent,
     BotLogComponent,
-    WidgetComponent
+    WidgetComponent,
+    CookieBannerComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,19 +1,23 @@
-import { Component, Input, AfterContentInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import marked from 'marked';
 import { UserService } from '../services/user.service';
 import { BotsService } from '../services/bots.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bot-preview',
   templateUrl: './bot-preview.component.html',
   styleUrls: ['./bot-preview.component.css']
 })
-export class BotPreviewComponent {  
+export class BotPreviewComponent implements OnInit {
+  ownerUser: any;
+
   @Input() bot = {
     approvedAt: null,
     listing: {
       body: '',
       githubURL: 'https://github.com/theADAMJR',
+      invite: '',
       overview: 'A good bot I guess...',
       prefix: '/',
       tags: ['music', 'moderation', 'utility'],
@@ -42,5 +46,18 @@ export class BotPreviewComponent {
 
   constructor(
     public service: BotsService,
-    private userService: UserService) {}
+    private router: Router,
+    public userService: UserService) {}
+
+  async ngOnInit() {
+    await this.service.init();
+
+    this.ownerUser = await this.userService.getUser(this.bot.ownerId);
+  }
+
+  async delete() {
+    await this.service.deleteBot(this.user.id);
+
+    this.router.navigate(['/dashboard']);
+  }
 }

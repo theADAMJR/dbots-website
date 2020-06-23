@@ -33,7 +33,7 @@ export class BotsComponent implements OnInit, AfterViewInit {
       const { bots, saved } = (this.tag.name !== 'new')
         ? this.service.getTaggedBots(this.tag.name)
         : this.service.getNewBots();
-      
+
       this.bots = bots;
       this.savedBots = saved;
 

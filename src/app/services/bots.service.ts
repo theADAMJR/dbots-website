@@ -143,7 +143,7 @@ export class BotsService {
   getNewBots() {
     const oneWeekAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 7);
     const savedBots = this.savedBots
-      .filter(b => b.approvedAt > oneWeekAgo);
+      .filter(b => new Date(b.approvedAt) < oneWeekAgo); 
     
     const ids = savedBots.map(b => b._id);
     const bots = this.bots.filter(b => ids.includes(b.id));
@@ -177,18 +177,26 @@ export class BotsService {
   updateBot(id: string, value: any) {
     return this.http.put(`${this.endpoint}/${id}?key=${this.key}`, value).toPromise() as Promise<any>;
   }
+  async deleteBot(id: string) {
+    await this.http.delete(`${this.endpoint}/${id}?key=${this.key}`).toPromise() as Promise<any>;
+    await this.updateBots();
+  }
 
-  approveBot(id: string, reason: string) {
-    return this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
+  async approveBot(id: string, reason: string) {
+    await this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
       approved: true,
       reason
     } as Judgement).toPromise() as Promise<any>;
+    
+    await this.updateBots();
   }
-  declineBot(id: string, reason: string) {
-    return this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
+  async declineBot(id: string, reason: string) {
+    await this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
       approved: false,
       reason
-    } as Judgement).toPromise() as Promise<any>;    
+    } as Judgement).toPromise() as Promise<any>;
+    
+    await this.updateBots();
   }
 }
 

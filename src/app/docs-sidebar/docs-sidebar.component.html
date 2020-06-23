@@ -1,7 +1,11 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #drawer mode="side" opened>
         <div class="side-nav navbar-dark">
-            <h2 class="m-4">DBots <i class="fas fa-book-open" aria-hidden="true"></i></h2>
+            <h2 class="m-4">
+                DBots <i class="fas fa-book-open" aria-hidden="true"></i>
+                <span (click)="toggle()"
+                    class="float-right d-sm-none d-block close">&times;</span>
+                </h2>
             <hr>
             <div class="navbar-nav mt-5">
                 <p class="category">General <i class="fa fa-arrow-right" aria-hidden="true"></i></p>
@@ -30,7 +34,7 @@
         <navbar></navbar>
         <button class="toggle">
             <div id="nav-icon1" class="open"
-                (click)="toggle($event.target)">
+                (click)="toggle()">
                 <span></span>
                 <span></span>
                 <span></span>

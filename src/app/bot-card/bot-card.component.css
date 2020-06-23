@@ -4,6 +4,15 @@ img {
     width: 172px;
 }
 
+p {
+    font-size: 16px;
+    margin: 0;
+}
+.card-text {
+    margin-bottom: 15px;
+    height: 200px;
+}
+
 .status {
     position: absolute;
 
@@ -21,7 +30,7 @@ img {
     background-color: #43b581;
 }
 .status-dnd {
-    background-color: #ff0000(240, 71, 71);
+    background-color: #ff0000;
 }
 .status-idle {
     background-color: #faa61a;

@@ -6,7 +6,7 @@
     class="alert alert-info">
     <i class="fas fa-info-circle" aria-hidden="true"></i> Your bot will visible on the bot list if it is approved.
   </div>
-  <bot-preview
+  <bot-preview *ngIf="bot.listing"
     [bot]="bot"
     [user]="user"></bot-preview>
 

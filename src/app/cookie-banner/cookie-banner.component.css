@@ -1,0 +1,45 @@
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.cookies {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  background: #292C30;
+  height: 80px;
+  padding: 22px 22px 22px 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(65, 72, 86, 0.06);
+  transition: all 400ms ease-in-out;
+
+  position: sticky;
+  bottom: 0;
+}
+
+.cookies-icon {
+  font-size: x-large;
+  animation: spin 2s linear infinite;
+}
+
+.cookies-message {
+  height: 36px;
+  padding: 0px 10px;
+  line-height: 36px;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

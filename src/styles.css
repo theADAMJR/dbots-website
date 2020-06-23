@@ -15,6 +15,10 @@ body, mat-sidenav-content {
 
     background: black;
     background: radial-gradient(circle, var(--background-primary) 0%, var(--background-secondary) 100%) !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100%;
+    margin: 0;
     
     overflow-x: hidden !important;
 
@@ -255,6 +259,10 @@ pre code {
 
 #markdown code {
   color: var(--font);
+}
+
+#markdown img {
+    max-width: 50vw;
 }
 
 /* media */

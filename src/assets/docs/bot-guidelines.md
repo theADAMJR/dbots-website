@@ -20,6 +20,7 @@ These guidelines apply to all listed bots, and may change at any time, without n
 - Be too similar to another bot
 - Contain malicious code
 - Contain irrelevant tags
+- Have invires with unnecessary permissions (i.e. Administrator)
   
 If a bot breaks **any** of these rules, it will be *instantly* **declined**. 
 

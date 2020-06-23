@@ -1,3 +1,5 @@
-<img *ngIf="withAvatar" [src]="member.displayAvatarURL" alt="">
-<span class="username">{{ member.username }}</span>
-<span class="tag">{{ member.tag }}</span>
+<div *ngIf="user">
+  <img *ngIf="withAvatar" [src]="user.displayAvatarURL" [alt]="user.tag">
+  <span class="username">{{ user.username }}</span>
+  <span class="tag">#{{ user.discriminator }}</span>
+</div>

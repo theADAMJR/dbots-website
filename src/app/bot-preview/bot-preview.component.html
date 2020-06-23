@@ -32,15 +32,20 @@
         </span>
         <span *ngIf="bot.listing.githubURL"
             class="mx-2">
-            <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> Github</a>
+            <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> GitHub</a>
         </span>
     </span>
     <span class="float-right">
+        <button *ngIf="canManage || userService.isAdmin(userService.savedUser)"
+            (click)="delete()"
+            id="delete" class="mr-2" color="danger" mat-button><i class="fas fa-trash"></i> Delete</button>
         <button *ngIf="canManage"
             [routerLink]="['/dashboard/bots/' + user.id +'/edit']"
-            class="warning" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
+            class="bg-warning mr-3" color="warning" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
+        <a [href]="bot.listing.invite" rel="nofollow"
+            class="rounded-lg bg-primary mr-2" mat-button><i class="fas fa-plus-circle"></i> Add</a>
         <button [routerLink]="['/bots/' + user.id +'/vote']"
-            color="success" mat-button><i class="fas fa-chevron-circle-up"></i> Vote</button>
+            class="bg-secondary" mat-button><i class="fas fa-chevron-circle-up"></i> Vote</button>
     </span>
 </div>
 
@@ -48,12 +53,16 @@
 
 <hr>
 
-<div class="mb-3">
-    <mat-chip-list>
+<div class="mb-5">
+    <mat-chip-list class="float-left">
         <mat-chip *ngFor="let tagName of bot.listing.tags"
             class="cursor-pointer"
             [routerLink]="['/tags/', tagName]">{{ tagName | kebabToTitleCase }}
             <i [class]="service.getTag(tagName)?.icon" class="ml-1" aria-hidden="true"></i>
         </mat-chip>
     </mat-chip-list>
+    <div class="float-right">
+        <span class="text-muted">Created By</span>
+        <member-username [user]="ownerUser"></member-username>
+    </div>
 </div>

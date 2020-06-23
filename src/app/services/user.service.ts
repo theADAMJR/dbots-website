@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class UserService {
   endpoint = environment.endpoint + '/user';
 
@@ -34,8 +32,16 @@ export class UserService {
       await this.http.get(`${this.endpoint}/saved?key=${this.key}`).toPromise() : null;
   }
 
+  getUser(id: string) {
+    return this.http.get(`${this.endpoint}/${id}`).toPromise();
+  }
+
   updateXPCard(xpCard: XPCard) {
     return this.http.put(`${this.endpoint}/xp-card?key=${this.key}`, xpCard).toPromise();
+  }
+
+  isAdmin(savedUser: any) {
+    return savedUser.roles.includes('admin');
   }
 
   getXPCardPreviewURL(xpCard: XPCard) {

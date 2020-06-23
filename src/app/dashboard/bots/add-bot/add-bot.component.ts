@@ -27,7 +27,7 @@ export class AddBotComponent implements AfterViewInit {
     clientId: new FormControl('', [ Validators.required, Validators.pattern(/^\d{18}$/) ]),
     githubURL: new FormControl('', [ Validators.pattern(/https:\/\/github\.com\//) ]),
     invite: new FormControl('', [ Validators.required, Validators.pattern(/https:\/\/discordapp.com|https:\/\/discord.com/) ]),
-    overview: new FormControl('', [ Validators.required, Validators.maxLength(151) ]),
+    overview: new FormControl('', [ Validators.required, Validators.minLength(64), Validators.maxLength(128) ]),
     ownerIds: new FormControl([], [ Validators.maxLength(3) ]),
     prefix: new FormControl('', [ Validators.required ]),
     supportInvite: new FormControl('', [ Validators.pattern(/^[A-Za-z0-9]{7}$/) ]),

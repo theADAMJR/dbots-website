@@ -26,3 +26,9 @@ export function kebabToTitleCase(word: string) {
     .map(w => w[0].toUpperCase() + w.slice(1).toLowerCase())
     .join(' ') ?? '';
 }
+export function kebabToLowerCase(word: string) {
+  return word
+    ?.split('-')
+    .map(w => w[0] + w.slice(1).toLowerCase())
+    .join(' ') ?? '';
+}

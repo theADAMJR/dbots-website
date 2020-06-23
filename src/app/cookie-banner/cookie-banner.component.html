@@ -1,0 +1,9 @@
+<div *ngIf="!allowedCookies"
+  class="cookies">
+  <span class="cookies-icon text-warning"><i class="fas fa-cookie"></i></span>
+  <span class="cookies-message">We use cookies to improve your experience.</span>
+  <button (click)="agree()"
+    class="cookies-accept" color="success" mat-button>
+    <i class="fas fa-check"></i>
+  </button>
+</div>

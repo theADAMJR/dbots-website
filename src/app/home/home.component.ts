@@ -1,6 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { BotsComponent } from '../bots/bots.component';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { SEOService } from '../services/seo.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor() {
-    document.title = 'DBots - Find Discord Bots';
+  constructor(seo: SEOService) {
+    seo.setTags({
+      titleSuffix: 'DBots',
+      titlePrefix: 'Find Discord Bots',
+      description: 'Find the Discord bots to add to your servers. We have many different bots including music bots, moderation bots, chat bots and more.',
+      url: '/'
+    });
   }
 }

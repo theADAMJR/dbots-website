@@ -9,8 +9,8 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class DocsSidebarComponent {
   @ViewChild('drawer') drawer: MatDrawer;
 
-  toggle(el: HTMLElement) {
-    const icon = (el.tagName !== 'DIV') ? el.parentElement : el;
+  toggle() {
+    const icon = document.querySelector('#nav-icon1');
     icon.classList.toggle('open');
     this.drawer.toggle();
   }

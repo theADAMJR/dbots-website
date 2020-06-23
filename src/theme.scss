@@ -106,6 +106,10 @@ $theme: mat-dark-theme($primary, $secondary, $warn);
     background-color: var(--danger);
     color: #fff;
 }
+.mat-warning {
+    background-color: var(--warning);
+    color: #fff;
+}
 
 // overrides
 
@@ -128,6 +132,11 @@ h1,h2,h3,h4,h5 {
 }
 
 // backgrounds
+
+.bg-secondary {
+    background-color: var(--primary);
+    color: #fff;
+}
 
 .bg-secondary {
     background-color: var(--secondary);

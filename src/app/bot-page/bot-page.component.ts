@@ -38,18 +38,18 @@ export class BotPageComponent implements OnInit {
     });
   }
 
-  async approve(reason: string) {        
+  async approve(reason: string) {   
     if (reason.length < 50) return;
 
     await this.service.approveBot(this.id, reason);
 
-    this.router.navigate(['/bots/' + this.id]);
+    this.router.navigate(['/dashboard']);
   }
   async decline(reason: string) {
     if (reason.length < 50) return;
 
     await this.service.declineBot(this.id, reason);
 
-    this.router.navigate(['/bots/' + this.id]);
+    this.router.navigate(['/dashboard']);
   }
 }
