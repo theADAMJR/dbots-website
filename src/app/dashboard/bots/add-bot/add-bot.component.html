@@ -6,7 +6,7 @@
         <div class="container">
                 <div class="d-flex justify-content-between">
                     <h1 [textContent]="editing ? 'Edit ' + user?.username : 'Add Bot'"
-                        class="display-3">Add Bot</h1>
+                        class="display-4">Add Bot</h1>
                     <button id="previewButton" (click)="preview = true"
                         class="rounded-lg mt-3" type="button" color="success" mat-button>
                         <i class="fas fa-binoculars"></i> Preview
@@ -22,14 +22,6 @@
                         <mat-label>Bot ID</mat-label>
                         <input formControlName="botId" type="text" matInput required>
                         <mat-error *ngIf="form.get('botId').invalid">Required, and should be a valid
-                            <a href="https://discord.com/developers/docs/reference#snowflakes" rel="nofollow" target="_blank">Snowflake ID.</a>
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field *ngIf="!editing"
-                        appearance="outline">
-                        <mat-label>Client ID</mat-label>
-                        <input formControlName="clientId" type="text" matInput required>
-                        <mat-error *ngIf="form.get('clientId').invalid">Required, and should be a valid
                             <a href="https://discord.com/developers/docs/reference#snowflakes" rel="nofollow" target="_blank">Snowflake ID.</a>
                         </mat-error>
                     </mat-form-field>
@@ -87,25 +79,6 @@
                         </mat-select>
                         <mat-error *ngIf="form.get('tags').invalid">No more than 5 tags.</mat-error>
                     </mat-form-field>
-                    
-                    <mat-form-field appearance="outline">
-                        <mat-label>Additional Owner IDs</mat-label>
-                        <mat-chip-list formControlName="ownerIds"
-                            #ownerIds aria-label="Owner ID selection">
-                            <mat-chip *ngFor="let id of form.get('ownerIds').value" selectable
-                                    removable (removed)="remove(id, form.get('ownerIds').value)">
-                                {{ id }}
-                                <mat-icon matChipRemove>x</mat-icon>
-                            </mat-chip>
-                            <input placeholder="Add ID..."
-                                    [matChipInputFor]="ownerIds"
-                                    matChipInputAddOnBlur
-                                    (matChipInputTokenEnd)="add($event, form.get('ownerIds').value)">
-                        </mat-chip-list>
-                        <mat-error *ngIf="form.get('ownerIds').invalid">Mo more than 3 owner IDs.</mat-error>
-                    </mat-form-field>
-
-                    <hr>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Support Server Invite</mat-label>
@@ -150,8 +123,8 @@
                     class="nav-item nav-link">
                     <i class="fas fa-book"></i> Guidelines for adding a bot.</a>
                 <div class="alert alert-warning border-warning">
-                    Make sure you are in the <a class="text-primary" href="/server">DBots Discord server</a>, or your bots will not appear on the list.
-                    You may only edit your bot once it has been added by an admin, to the <a class="text-primary" href="/server">DBots Discord server</a>.
+                    You must join and stay in the <a class="text-primary" href="/server">DBots Discord server</a>, for your bot to be accepted.
+                    You may only edit your bot once it has been invited by an admin.
                 </div>
 
                 <h3>Bot Card</h3>

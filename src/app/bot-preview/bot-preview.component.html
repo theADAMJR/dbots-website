@@ -1,27 +1,33 @@
-<div class="jumbotron mb-0">
-    <img [src]="user.displayAvatarURL">
-    <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
-    <div>
-        <span *ngIf="bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.guildCount | number }}</span>
-        <span *ngIf="!bot.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> N/A</span>
-        <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>
-        <span class="border border-dark py-1 mx-4"></span>
-        <span>
-            <span *ngIf="bot.approvedAt"
-                matTooltip="Reviewed and approved."
-                class="cursor-pointer">
-                <i class="text-success fas fa-check-circle"></i>
+<header class="jumbotron mb-0">
+    <div class="container">
+        <img [src]="user.displayAvatarURL">
+        <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
+        <div>
+            <span *ngIf="bot.stats?.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.stats?.guildCount | number }}</span>
+            <span *ngIf="!bot.stats?.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> N/A</span>
+            <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>
+            <span class="border border-dark py-1 mx-4"></span>
+            <span>
+                <span *ngIf="bot.approvedAt"
+                    matTooltip="Reviewed and approved."
+                    class="cursor-pointer">
+                    <i class="text-success fas fa-check-circle"></i>
+                </span>
+                <span *ngIf="bot.badges?.includes('featured')"
+                    matTooltip="Featured."
+                    class="ml-2 cursor-pointer">
+                    <i class="color-gold fas fa-star"></i>
+                </span>
             </span>
-        </span>
+        </div>
+        <div>
+            <span class="text-muted" role="doc-subtitle">{{ bot.listing.overview }}</span>
+        </div>
     </div>
-    <div>
-        <span class="text-muted" role="doc-subtitle">{{ bot.listing.overview }}</span>
-    </div>
-</div>
+</header>
+<waves [inverted]="true"></waves>
 
-<hr>
-
-<div class="py-1">
+<div class="container mt-3 py-1">
     <span class="links">
         <span class="mx-2 prefix">
             <strong>Prefix</strong>: <code>{{ bot.listing.prefix }}</code>
@@ -36,33 +42,50 @@
         </span>
     </span>
     <span class="float-right">
-        <button *ngIf="canManage || userService.isAdmin(userService.savedUser)"
+        <span *ngIf="userService.isAdmin"
+            class="pb-5 mr-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Add Badge</mat-label>
+                <input type="text" placeholder="Name" #badgeInput matInput>
+            </mat-form-field>
+            <button (click)="addBadge(badgeInput.value)"
+                mat-button>
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>
+            </button>
+        </span>
+        <button *ngIf="canManage || userService.isAdmin"
             (click)="delete()"
             id="delete" class="mr-2" color="danger" mat-button><i class="fas fa-trash"></i> Delete</button>
         <button *ngIf="canManage"
             [routerLink]="['/dashboard/bots/' + user.id +'/edit']"
-            class="bg-warning mr-3" color="warning" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
+            class="bg-warning mr-4" color="warning" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
         <a [href]="bot.listing.invite" rel="nofollow"
             class="rounded-lg bg-primary mr-2" mat-button><i class="fas fa-plus-circle"></i> Add</a>
         <button [routerLink]="['/bots/' + user.id +'/vote']"
             class="bg-secondary" mat-button><i class="fas fa-chevron-circle-up"></i> Vote</button>
     </span>
+    <hr>
 </div>
 
-<div id="markdown" class="rounded mt-4" [innerHTML]="markdown"></div>
+<div id="markdown" class="container rounded my-4" [innerHTML]="markdown"></div>
 
-<hr>
-
-<div class="mb-5">
-    <mat-chip-list class="float-left">
-        <mat-chip *ngFor="let tagName of bot.listing.tags"
-            class="cursor-pointer"
-            [routerLink]="['/tags/', tagName]">{{ tagName | kebabToTitleCase }}
-            <i [class]="service.getTag(tagName)?.icon" class="ml-1" aria-hidden="true"></i>
-        </mat-chip>
-    </mat-chip-list>
-    <div class="float-right">
-        <span class="text-muted">Created By</span>
-        <member-username [user]="ownerUser"></member-username>
+<div class="container mb-3">
+    <hr>
+    <div class="row">
+        <div class="col-6">
+            <mat-chip-list class="float-left">
+                <mat-chip *ngFor="let tagName of bot.listing.tags"
+                    class="cursor-pointer"
+                    [routerLink]="['/tags/', tagName]">{{ tagName | kebabToTitleCase }}
+                    <i [class]="tagService.getTag(tagName)?.icon" class="ml-1" aria-hidden="true"></i>
+                </mat-chip>
+            </mat-chip-list>
+        </div>
+        <div class="col-6">
+            <div class="float-right">
+                <span class="text-muted">Created By</span>
+                <member-username [user]="ownerUser"></member-username>
+            </div>
+        </div>
     </div>
 </div>

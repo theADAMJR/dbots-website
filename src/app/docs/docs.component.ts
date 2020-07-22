@@ -44,7 +44,7 @@ export class DocsComponent implements OnInit {
         md = this.setMetaVariables(md);
         
         document.getElementById('doc').innerHTML = marked(md, { breaks: true });
-        document.querySelector('h1').classList.add('display-3');
+        document.querySelector('h1').classList.add('display-4');
       });
     } catch { this.router.navigate(['/404']); }
   }

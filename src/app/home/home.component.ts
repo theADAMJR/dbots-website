@@ -11,7 +11,7 @@ export class HomeComponent {
     seo.setTags({
       titleSuffix: 'DBots',
       titlePrefix: 'Find Discord Bots',
-      description: 'Find the Discord bots to add to your servers. We have many different bots including music bots, moderation bots, chat bots and more.',
+      description: 'Find the best Discord bots to add to your servers. We have many different bots including music bots, moderation bots, chat bots and more.',
       url: '/'
     });
   }

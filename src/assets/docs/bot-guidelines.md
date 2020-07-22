@@ -13,6 +13,8 @@ These guidelines apply to all listed bots, and may change at any time, without n
 - Make it hard to view commands
 - Have no features 🐔
 - Be listed by a non bot admin/owner
+- Require a powerful permission for most features (e.g. ADMINISTRATOR)
+- Be offline when they are being reviewed
 
 ## Bot Listings Must Not
 - Have broken form values
@@ -20,7 +22,6 @@ These guidelines apply to all listed bots, and may change at any time, without n
 - Be too similar to another bot
 - Contain malicious code
 - Contain irrelevant tags
-- Have invires with unnecessary permissions (i.e. Administrator)
   
 If a bot breaks **any** of these rules, it will be *instantly* **declined**. 
 

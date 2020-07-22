@@ -1,6 +1,7 @@
 import { Component,  Input, OnInit, AfterViewInit } from '@angular/core';
-import { BotsService, Tag } from '../services/bots.service';
+import { BotsService } from '../services/bots.service';
 import { kebabToTitleCase } from '../utils';
+import { Tag } from '../services/tag.service';
 
 @Component({
   selector: 'bots',
@@ -30,9 +31,15 @@ export class BotsComponent implements OnInit, AfterViewInit {
     await this.service.init();
 
     if (this.tag) {
-      const { bots, saved } = (this.tag.name !== 'new')
-        ? this.service.getTaggedBots(this.tag.name)
-        : this.service.getNewBots();
+      var bots = [],
+          saved = [];
+        
+      if (this.tag.name === 'featured')
+        var { bots, saved } = this.service.getFeaturedBots();
+      else if (this.tag.name === 'new')
+        var { bots, saved } = this.service.getNewBots();
+      else
+        var { bots, saved } = this.service.getTaggedBots(this.tag.name);
 
       this.bots = bots;
       this.savedBots = saved;

@@ -1,0 +1,21 @@
+<bot-sidebar [bot]="bot"
+    [loaded]="bot && user"
+    [user]="user">
+  <div *ngIf="user && bot"
+    class="container">
+    <header>
+        <h1 class="display-4">{{ user.username }} Widget</h1>
+        <hr class="my-2">
+    </header>
+    <div class="d-flex justify-content-center">
+      <a [href]="'/bots/' + id">
+        <img [src]="widgetURL" [alt]="user.username">
+      </a>
+    </div>
+    <p><strong>HTML Widget Syntax</strong>:</p>
+    <pre><code>&lt;a href="https://dbots.co/bots/[yourBotId]"&gt;
+  &lt;img src="https://dbots.co/api/bots/[botId]/widget" alt="View on DBots"&gt;
+&lt;/a&gt;</code></pre><p>Replace [yourBotId] with the ID of your bot.</p>
+    <p>You can also use an links to your bot page instead.<br><strong>Markdown</strong>: <code>[The Best Bot on Discord](https://dbots.co/bots/[yourBotId])</code><br><strong>HTML</strong>: <code>&lt;a href="https://dbots.co/bots/[yourBotId]"&gt;The Best Bot on Discord&lt;/a&gt;</code></p>
+  </div>
+</bot-sidebar>

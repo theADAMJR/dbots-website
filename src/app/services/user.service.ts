@@ -12,6 +12,10 @@ export class UserService {
   private _savedUser: any;
   get savedUser() { return this._savedUser; }
 
+  get isAdmin() {
+    return this.savedUser?.role === 'admin';
+  }
+
   get xpCardPreviewURL() {
     return `${this.endpoint}/xp-card-preview?key=${this.key}`;
   }
@@ -34,23 +38,6 @@ export class UserService {
 
   getUser(id: string) {
     return this.http.get(`${this.endpoint}/${id}`).toPromise();
-  }
-
-  updateXPCard(xpCard: XPCard) {
-    return this.http.put(`${this.endpoint}/xp-card?key=${this.key}`, xpCard).toPromise();
-  }
-
-  isAdmin(savedUser: any) {
-    return savedUser.roles.includes('admin');
-  }
-
-  getXPCardPreviewURL(xpCard: XPCard) {
-    const { primary, secondary, tertiary, backgroundURL } = xpCard;
-    return `${this.endpoint}/xp-card-preview?key=${this.key}` +
-      `&primary=${primary}` +
-      `&secondary=${secondary}` +
-      `&tertiary=${tertiary}` +
-      `&backgroundURL=${backgroundURL}`;
   }
 }
 

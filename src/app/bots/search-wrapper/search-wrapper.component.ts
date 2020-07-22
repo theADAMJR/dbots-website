@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { SEOService as SEOService, TypingSEO } from 'src/app/services/seo.service';
 import { BotsService } from '../../services/bots.service';
 import { kebabToLowerCase, kebabToTitleCase } from 'src/app/utils';
+import { TagService } from 'src/app/services/tag.service';
 
 @Component({
   selector: 'search-wrapper',
@@ -17,10 +18,10 @@ export class SearchWrapperComponent implements AfterViewInit {
   placeholder = '';
 
   constructor(
-    public service: BotsService,
     private route: ActivatedRoute,
     private router: Router,
-    private seo: SEOService) {
+    private seo: SEOService,
+    public tagService: TagService) {
     this.placeholder = kebabToLowerCase(this.getRandomPlaceholder());
   }
 
@@ -39,8 +40,8 @@ export class SearchWrapperComponent implements AfterViewInit {
   }
 
   getRandomPlaceholder() {
-    const i = Math.floor(Math.random() * (this.service.tags.length - 1));
-    return this.service.tags[i].name;
+    const i = Math.floor(Math.random() * (this.tagService.tags.length - 1));
+    return this.tagService.tags[i].name;
   }
 
   search(query: string) {
@@ -57,7 +58,7 @@ export class SearchWrapperComponent implements AfterViewInit {
   }
 
   searchByTag(name: string) {
-    const tag = this.service.getTag(name);
+    const tag = this.tagService.getTag(name);
     this.botsComponent.setTagLayout(tag);
 
     this.updateMetaTags({

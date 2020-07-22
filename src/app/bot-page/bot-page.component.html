@@ -1,7 +1,6 @@
 <navbar></navbar>
 
-<div *ngIf="bot && user"
-  class="container">
+<div *ngIf="bot && user">
   <div *ngIf="!bot.approvedAt"
     class="alert alert-info">
     <i class="fas fa-info-circle" aria-hidden="true"></i> Your bot will visible on the bot list if it is approved.
@@ -13,7 +12,8 @@
     <div *ngIf="!bot.approvedAt
       && (userService.savedUser?.role === 'admin'
       || userService.savedUser?.role === 'reviewer')"
-      id="review">
+      id="review"
+      class="mt-5">
       <hr>
       <h3 class="text-center">Review</h3>
       <div class="d-flex justify-content-center">

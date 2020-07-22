@@ -5,18 +5,21 @@
 # Widget
 Learn how to use cool widgets that you can use to show off your bot, and get more votes.
 
+## Get A Bot Widget
+**URL**: `https://dbots.co/api/bots/[botId]/widget`
+
+**HTML Widget Syntax**:
 ```
-<script src="https://dbots.co/assets/js/widget.js" defer></script>
-...
-<dbots-widget bot-id="yourBotId"></dbots-widget>
+<a href="https://dbots.co/bots/yourBotId">
+  <img src="https://dbots.co/api/bots/[botId]/widget" alt="View on DBots">
+</a>
 ```
+
+Replace `[botId]` with the ID of a bot.
+Using a widget, on your home page, can also help get your bot [featured](/docs/get-featured).
 
 **Example**
-```
-<dbots-widget botId="301520172194201602"></dbots-widget>
-```
-
-![Example of a widget](')
+![Bot Widget Example](/api/bots/525935335918665760/widget)
 
 ## Sizes
 **Large** (default)

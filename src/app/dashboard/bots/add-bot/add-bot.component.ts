@@ -6,6 +6,9 @@ import { BotsService } from 'src/app/services/bots.service';
 import { Router } from '@angular/router';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SEOService } from 'src/app/services/seo.service';
+import { TagService } from 'src/app/services/tag.service';
+import { AddBotValidators } from './add-bot.validators';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'add-bot',
@@ -17,14 +20,17 @@ export class AddBotComponent implements AfterViewInit {
   editor: SimpleMDE;
 
   toIterable = toIterable;
-  filteredTags = this.botService.tags;
+  filteredTags = this.tagService.tags;
 
   @Input() editing = false;
 
   form = new FormGroup({
     body: new FormControl('', [ Validators.required, Validators.minLength(300) ]),
-    botId: new FormControl('', [ Validators.required, Validators.pattern(/^\d{18}$/) ]),
-    clientId: new FormControl('', [ Validators.required, Validators.pattern(/^\d{18}$/) ]),
+    botId: new FormControl('', [ 
+      Validators.required, 
+      // Validators.pattern(new RegExp(`/(?!${this.userService.user.id})`)) ,
+      Validators.pattern(/^\d{18}$/)
+    ]),
     githubURL: new FormControl('', [ Validators.pattern(/https:\/\/github\.com\//) ]),
     invite: new FormControl('', [ Validators.required, Validators.pattern(/https:\/\/discordapp.com|https:\/\/discord.com/) ]),
     overview: new FormControl('', [ Validators.required, Validators.minLength(64), Validators.maxLength(128) ]),
@@ -55,7 +61,9 @@ export class AddBotComponent implements AfterViewInit {
   constructor(
     public botService: BotsService,
     private router: Router,
-    seo: SEOService) {
+    seo: SEOService,
+    public tagService: TagService,
+    private userService: UserService) {
       seo.setTags({
         description: 'Add a bot to the bot list with this form.',
         titlePrefix: 'Add Bot',
@@ -82,7 +90,6 @@ export class AddBotComponent implements AfterViewInit {
     this.editor.value(this.bot.listing.body);
 
     const draft = localStorage.getItem('botListingDraft');
-    console.log(JSON.parse(draft));
     
     if (!this.editing && draft)
       this.form.setValue(JSON.parse(draft));
@@ -129,7 +136,7 @@ export class AddBotComponent implements AfterViewInit {
   }
   
   filterTags(filter: string): void {
-    this.filteredTags = this.botService.tags.filter(tag => tag.name.toLowerCase().includes(filter.toLowerCase()));
+    this.filteredTags = this.tagService.tags.filter(tag => tag.name.toLowerCase().includes(filter.toLowerCase()));
   }
 
   submit() {
@@ -139,10 +146,7 @@ export class AddBotComponent implements AfterViewInit {
     
     this.botService.createBot(this.form.value);
   }
-  update() {
-    console.log(this.form.controls);
-    console.log(this.form);
-    
+  update() {    
     this.form.controls.body.setValue(this.editor.value());
     if (this.form.invalid)
       return this.form.setErrors({ invalid: true });

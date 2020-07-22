@@ -16,6 +16,7 @@ export class LogoutComponent implements OnInit {
     localStorage.removeItem('key');
     
     await this.userService.updateUser();
+    await this.userService.updateSavedUser();
 
     this.router.navigate(['/']);
   }

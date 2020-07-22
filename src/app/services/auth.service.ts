@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   endpoint = environment.endpoint;
 
@@ -15,8 +13,7 @@ export class AuthService {
 
   validateKey() {
     const { isTokenExpired } = new JwtHelperService();
-    try {
-
+    try {      
       if (isTokenExpired(this.key))
         localStorage.removeItem('key');
     } catch {}

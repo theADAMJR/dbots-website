@@ -43,3 +43,10 @@
     transform: rotate(360deg);
   }
 }
+
+/* <Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) {
+  .cookies {
+    height: 125px;
+  }
+}

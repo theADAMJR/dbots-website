@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { BotsService } from '../services/bots.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BotAuthGuard implements CanActivate {
-  constructor(private service: BotsService) {}
+  constructor(
+    private router: Router,
+    private service: BotsService) {}
 
-  async canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) {
+  async canActivate(next: ActivatedRouteSnapshot) {
     await this.service.init();
-    return true;
+
+    const id = next.paramMap.get('id');
+    const ownsBot = this.service.userBots.some(b => b.id === id);
+    if (!ownsBot)
+      this.router.navigate(['/dashboard']);
+
+    return ownsBot;
   }  
 }

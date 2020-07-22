@@ -45,14 +45,14 @@ import { EditBotComponent } from './dashboard/bots/edit-bot/edit-bot.component';
 import { RocketButtonComponent } from './rocket-button/rocket-button.component';
 import { KebabToTitleCasePipe } from './pipes/kebab-to-sentence-case.pipe';
 import { MiniDatePipe } from './pipes/mini-date.pipe';
-import { BotWidgetComponent } from './dashboard/bots/bot-widget/bot-widget.component';
 import { BotPageComponent } from './bot-page/bot-page.component';
 import { environment } from 'src/environments/environment';
 import { BotComponent } from './dashboard/bots/bot/bot.component';
 import { BotVoteComponent } from './bot-vote/bot-vote.component';
 import { BotLogComponent } from './dashboard/bot-log/bot-log.component';
-import { WidgetComponent } from './widget/widget.component';
 import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
+import { APIComponent } from './dashboard/api/api.component';
+import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
 
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
@@ -113,13 +113,13 @@ export class AlertErrorHandler implements ErrorHandler {
     RocketButtonComponent,
     KebabToTitleCasePipe,
     MiniDatePipe,
-    BotWidgetComponent,
     BotPageComponent,
     BotComponent,
     BotVoteComponent,
     BotLogComponent,
-    WidgetComponent,
-    CookieBannerComponent
+    CookieBannerComponent,
+    APIComponent,
+    BotWidgetComponent
   ],
   imports: [
     AppRoutingModule,

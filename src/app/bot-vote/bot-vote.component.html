@@ -3,7 +3,9 @@
 <div *ngIf="bot && user"
   class="container">
   <div class="d-flex justify-content-center mb-3">
-    <dbots-widget [bot-id]="id"></dbots-widget>
+    <a [href]="'/bots/' + id">
+      <img [src]="widgetURL" [alt]="user.username">
+    </a>
   </div>
   <div class="d-flex justify-content-center">
     <button [routerLink]="['/bots/' + id]"

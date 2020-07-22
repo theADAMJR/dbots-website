@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   endpoint: 'http://localhost:3000/api',
   discordInvite: 'https://discord.gg/uDTgxyg',
-  version: 'v0.0.1a',
+  version: 'v0.0.3a',
   url: 'https://dbots.co',
   test: {
     guildId: '685862664223850497'

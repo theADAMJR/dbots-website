@@ -2,16 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BotsService } from 'src/app/services/bots.service';
 import { SEOService } from 'src/app/services/seo.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-edit-bot',
-  templateUrl: './edit-bot.component.html',
-  styleUrls: ['./edit-bot.component.css']
+  selector: 'app-bot-widget',
+  templateUrl: './bot-widget.component.html',
+  styleUrls: ['./bot-widget.component.css']
 })
-export class EditBotComponent implements OnInit {
+export class BotWidgetComponent implements OnInit {
   bot: any;
   user: any;
 
+  get widgetURL() { return `${environment.endpoint}/bots/${this.id}/widget`; }
   get id() { return this.route.snapshot.paramMap.get('id') }
 
   constructor(
@@ -28,7 +30,7 @@ export class EditBotComponent implements OnInit {
       this.seo.setTags({
         description: '',
         titlePrefix: this.user.tag,
-        titleSuffix: 'Edit',
+        titleSuffix: 'Dashboard',
         url: `dashboard/bots/${this.id}`
       });
     }

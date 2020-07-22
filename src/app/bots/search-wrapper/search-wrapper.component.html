@@ -1,8 +1,7 @@
 <header>
     <navbar></navbar>
     <div class="container jumbotron mb-0">
-        <h1 class="text-center">Find a Discord Bot</h1>
-        <h2 class="text-center text-muted lead">Find the best Discord bots to add to your servers</h2>
+        <h1 class="text-center">Find Discord Bots</h1>
         <div class="d-flex justify-content-center">
             <mat-form-field appearance="outline">
                 <mat-label for="search">Search</mat-label>
@@ -46,17 +45,21 @@
 
         <hr>
 
-        <bots id="music" [tag]="service.getTag('music')"></bots>
+        <bots [tag]="{
+            description: 'Featured bots selected by DBots.',
+            icon: 'fas fa-star',
+            name: 'featured'
+        }"></bots>
 
         <hr>
 
-        <bots [tag]="service.getTag('moderation')"></bots>
+        <bots id="music" [tag]="tagService.getTag('music')"></bots>
         
         <hr class="mb-5">
 
         <h2 class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
         <mat-chip-list>
-            <mat-chip *ngFor="let tag of service.tags"
+            <mat-chip *ngFor="let tag of tagService.tags"
                 class="tag cursor-pointer"
                 [routerLink]="['/tags/', tag.name]">{{ tag.name | kebabToTitleCase }}
                 <i [class]="tag.icon" class="ml-1" aria-hidden="true"></i>

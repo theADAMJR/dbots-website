@@ -29,6 +29,7 @@ export class BotCardComponent {
   get cleanTags() {
     return this.bot.listing.tags
       ?.map(t => kebabToTitleCase(t))
+      .slice(0, 3)
       .join(', ');
   }
 }

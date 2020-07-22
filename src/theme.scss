@@ -20,6 +20,10 @@
     --background-primary: #36393F;
     --background-secondary: #25262a;
     --background-tertiary: #202225;
+
+    --gold: #D4AF37;
+    --silver: silver;
+    --bronze: #CD7F32;
 }
 
 $primary-palette: (
@@ -129,6 +133,10 @@ h1,h2,h3,h4,h5 {
 
 .color-warning {
     color: var(--warning) !important;
+}
+
+.color-gold {
+    color: var(--gold) !important;
 }
 
 // backgrounds

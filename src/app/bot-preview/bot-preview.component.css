@@ -1,3 +1,10 @@
+header {
+  background-color: var(--background-secondary);
+
+  margin-top: -65px;
+  padding-top: 125px;
+}
+
 img {
   float: left;
 
@@ -8,6 +15,5 @@ img {
 
 #markdown {
   word-wrap: break-word;
-  background-color: var(--background-tertiary);
   padding: 25px;
 }

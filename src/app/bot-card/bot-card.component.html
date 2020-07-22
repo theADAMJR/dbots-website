@@ -4,7 +4,7 @@
     class="cursor-pointer d-flex justify-content-center">
     <img class="shadow rounded-lg card-img-top"
       [src]="user.displayAvatarURL"
-      [alt]="user.username + ' | ' + bot.listing.tags?.join(', ')">
+      [alt]="user.username + ' | ' + cleanTags">
     <div class="rounded-lg status"
       [ngClass]="{
         'status-online': user.presence?.status === 'online',

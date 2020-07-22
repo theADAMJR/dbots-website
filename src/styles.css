@@ -190,10 +190,10 @@ mat-paginator {
 pre {
     padding: 15px;
 
+    border-left: 5px solid var(--secondary);
     border-radius: 5px;
     background-color: var(--background-secondary);
 }
-
 pre code {
     color: var(--secondary);
 }
@@ -275,6 +275,6 @@ pre code {
     }
 
     h1 {
-        font-size: 16vw !important;
+        font-size: 10vw !important;
     }
 }

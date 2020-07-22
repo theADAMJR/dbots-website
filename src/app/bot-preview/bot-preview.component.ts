@@ -3,6 +3,7 @@ import marked from 'marked';
 import { UserService } from '../services/user.service';
 import { BotsService } from '../services/bots.service';
 import { Router } from '@angular/router';
+import { TagService } from '../services/tag.service';
 
 @Component({
   selector: 'bot-preview',
@@ -14,6 +15,7 @@ export class BotPreviewComponent implements OnInit {
 
   @Input() bot = {
     approvedAt: null,
+    badges: [],
     listing: {
       body: '',
       githubURL: 'https://github.com/theADAMJR',
@@ -23,7 +25,7 @@ export class BotPreviewComponent implements OnInit {
       tags: ['music', 'moderation', 'utility'],
       websiteURL: 'https://3pg.xyz'
     },
-    guildCount: 100,
+    stats: { guildCount: 100 },
     ownerId: '218459216145285121',
     votes: ['218459216145285121']
   }
@@ -47,6 +49,7 @@ export class BotPreviewComponent implements OnInit {
   constructor(
     public service: BotsService,
     private router: Router,
+    public tagService: TagService,
     public userService: UserService) {}
 
   async ngOnInit() {
@@ -59,5 +62,10 @@ export class BotPreviewComponent implements OnInit {
     await this.service.deleteBot(this.user.id);
 
     this.router.navigate(['/dashboard']);
+  }
+
+  async addBadge(name: string) {
+    await this.service.addBadge(this.user.id, name);
+    await this.service.refreshBots();
   }
 }

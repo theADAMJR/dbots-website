@@ -12,12 +12,18 @@
         </div>
         <hr>
         <div *ngIf="user.id" class="navbar-nav">
-            <a [routerLink]="['/dashboard/bots/' + user.id + '/edit']" routerLinkActive="active"
+            <a [routerLink]="'/dashboard/bots/' + user.id + '/api'" routerLinkActive="active"
+                class="nav-item nav-link">
+                <i class="fas fa-server"></i> API</a>
+            <a [routerLink]="'/dashboard/bots/' + user.id + '/edit'" routerLinkActive="active"
                 class="nav-item nav-link">
                 <i class="fas fa-pencil-alt"></i> Edit</a>
-            <a [routerLink]="['/dashboard/bots/' + user.id + '/log']" routerLinkActive="active"
+            <a [routerLink]="'/dashboard/bots/' + user.id + '/log'" routerLinkActive="active"
                 class="nav-item nav-link">
                 <i class="fas fa-file-alt"></i> Log</a>
+            <a [routerLink]="'/dashboard/bots/' + user.id + '/widget'" routerLinkActive="active"
+                class="nav-item nav-link">
+                <i class="fas fa-star"></i> Widget</a>
         </div>
         <div *ngIf="!user.id" class="navbar-nav">
             <a [routerLink]="['/docs/bot-guidelines']" routerLinkActive="active"
