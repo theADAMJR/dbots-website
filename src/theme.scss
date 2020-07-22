@@ -25,6 +25,46 @@
     --silver: silver;
     --bronze: #CD7F32;
 }
+:root[theme=CHOCOLATE] {
+    --heading: #FFFFFF;
+    --font: #FFFFFF;
+
+    --primary: #482F5D;
+    --secondary: #45377C;
+    --tertiary: #351F20;
+
+    --background-primary: #372224;
+    --background-secondary: #2c1518;
+    --background-tertiary: #251113;
+}
+:root[theme=IONIC] {
+    --heading: #FFFFFF;
+    --font: #F4F2F3;
+    --plus: green;
+
+    --danger: darkred;
+    --muted: grey;
+    --interactive-muted: #4f545c;
+
+    --primary: #46828D;
+    --secondary: #276C8A;
+    --tertiary: #36E2CA;
+
+    --background-primary: #15244B;
+    --background-secondary: #0a193a;
+    --background-tertiary: #081536;
+}
+:root[theme=TWILIGHT] {
+    --font: #E3E7EA;
+
+    --primary: #757A89;
+    --secondary: #78839B;
+    --tertiary: #838B84;
+
+    --background-primary: #171F2C;
+    --background-secondary: #111720;
+    --background-tertiary: #10151d;
+}
 
 $primary-palette: (
     50 : #e9f0f1,
