@@ -1,9 +1,9 @@
-.icon {
+.guild-icon {
     border-radius: 50%;
 
     margin: 5px;
-    width: 64px;
-    height: 64px;
+    width: 52px;
+    height: 52px;
 
     background-color: var(--background-primary);
     transition: all .35s;
@@ -11,24 +11,24 @@
     cursor: pointer;
 }
 
-.icon img:hover, .icon:hover, .icon span:hover {
+.guild-icon img:hover, .guild-icon:hover, .guild-icon span:hover {
     border-radius: 25%;
 }
 
-.icon span {
+.guild-icon span {
     text-align: center;
 
-    font-size: 20px;
+    font-size: 18px;
 
-    width: 64px;
+    width: 52px;
     height: 48px;
-    padding-top: 16px;
+    padding-top: 14px;
 
     transition: all .35s;
 }
 
-.icon img {
-    max-width: 64px;
+.guild-icon img {
+    max-width: 52px;
     border-radius: 50%;
 
     transition: all .35s;
@@ -42,17 +42,21 @@ button {
     font-size: 32px;
 }
 
-.items {
+.guilds {
     background-color: var(--background-tertiary);
     float: left;
     height: inherit;
+    padding-top: 12px;
 }
 
 .options {
     background-color: var(--background-secondary) !important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 
-    width: 300px;
+    width: 275px;
     height: inherit;
+
+    margin-left: 75px;
 }
 
 .toggle {
@@ -72,19 +76,20 @@ mat-sidenav {
     background-color: var(--background-tertiary);
 }
 
-.icon .add {
+.guild-icon .add-guild {
     font-size: 40px;
-    padding-left: 20px;
-    padding-top: 0px;
+
+    color: var(--secondary);
 }
 
 .invite:hover {
-    background-color: var(--tertiary);    
+    background-color: var(--tertiary);
 }
 
-.close {
-    cursor: pointer;
-    font-size: 42px;
-    color: white;
-    margin-right: -35px;
+.guild-seperator {
+    height: 2px;
+    width: 32px;
+    border-radius: 1px;
+
+    border-color: var(--background-secondary);
 }

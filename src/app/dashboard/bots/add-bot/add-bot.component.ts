@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SEOService } from 'src/app/services/seo.service';
 import { TagService } from 'src/app/services/tag.service';
-import { AddBotValidators } from './add-bot.validators';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'add-bot',
@@ -26,11 +26,7 @@ export class AddBotComponent implements AfterViewInit {
 
   form = new FormGroup({
     body: new FormControl('', [ Validators.required, Validators.minLength(300) ]),
-    botId: new FormControl('', [ 
-      Validators.required, 
-      // Validators.pattern(new RegExp(`/(?!${this.userService.user.id})`)) ,
-      Validators.pattern(/^\d{18}$/)
-    ]),
+    botId: new FormControl(''),
     githubURL: new FormControl('', [ Validators.pattern(/https:\/\/github\.com\//) ]),
     invite: new FormControl('', [ Validators.required, Validators.pattern(/https:\/\/discordapp.com|https:\/\/discord.com/) ]),
     overview: new FormControl('', [ Validators.required, Validators.minLength(64), Validators.maxLength(128) ]),
@@ -52,11 +48,13 @@ export class AddBotComponent implements AfterViewInit {
   @Input() bot = {
     listing: {
       body: `Add something \`meaningful\` and **useful** here, to help your bot users.`,
-      overview: 'a good bot with no features'
+      overview: 'Add bot summary here.'
     },
     guildCount: 100,
     votes: toIterable(100)
   };
+  
+  get widgetURL() { return `${environment.endpoint}/api/bots/525935335918665760/widget`; }
 
   constructor(
     public botService: BotsService,
@@ -78,14 +76,20 @@ export class AddBotComponent implements AfterViewInit {
 
       this.initializeEditor();
       this.initFormValue();
-      this.hookEvents();
+      this.hookEvents();      
+
+      this.form.get('botId').setValidators([
+        Validators.required, 
+        Validators.pattern(/^\d{18}$/),
+        Validators.pattern(new RegExp(`^(?!${this.userService.user.id}).*$`))
+      ])
     });
   }
 
   private initFormValue() {
     for (const key in this.bot.listing)
       this.form.controls[key]
-        .setValue(this.bot.listing[key]);
+        ?.setValue(this.bot.listing[key]);
     
     this.editor.value(this.bot.listing.body);
 
@@ -98,7 +102,7 @@ export class AddBotComponent implements AfterViewInit {
   private hookEvents() {
     const container = document.querySelector('.editor-container') as HTMLElement;
     container.onclick = container.onkeyup = () => {
-      this.form.controls.body.setValue(this.editor?.value());
+      this.form.get('body').setValue(this.editor?.value());
       this.updateDraft();
     };
 

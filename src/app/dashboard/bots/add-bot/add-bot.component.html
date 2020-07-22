@@ -23,40 +23,30 @@
                         <input formControlName="botId" type="text" matInput required>
                         <mat-error *ngIf="form.get('botId').invalid">Required, and should be a valid
                             <a href="https://discord.com/developers/docs/reference#snowflakes" rel="nofollow" target="_blank">Snowflake ID.</a>
+                            It also cannot be the ID of a non-bot user.
                         </mat-error>
-                    </mat-form-field>
-                    
-                    <mat-form-field *ngIf="editing"
-                        appearance="outline">
-                        <mat-label>Bot ID</mat-label>
-                        <input formControlName="botId" type="text" matInput readonly>
-                    </mat-form-field>
-                    <mat-form-field *ngIf="editing"
-                        appearance="outline">
-                        <mat-label>Client ID</mat-label>
-                        <input formControlName="clientId" type="text" matInput readonly>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
-                        <mat-label>Invite</mat-label>
+                        <mat-label>Bot Invite URL</mat-label>
                         <input formControlName="invite" type="text" matInput required>
                         <mat-error *ngIf="form.get('invite').invalid">Required, and should be a valid discord link.</mat-error>
                     </mat-form-field>
 
-                    <span class="p-3">
-                        <a href="https://discordapi.com/permissions.html" target="_blank">Invite Generator</a>
-                    </span>
+                    <p class="p-3">
+                        <a href="https://discordapi.com/permissions.html" target="_blank">Bot Invite Generator</a>
+                    </p>
 
                     <hr>
                     
                     <mat-form-field appearance="outline">
-                        <mat-label>Overview</mat-label>
+                        <mat-label>Bot Overview</mat-label>
                         <textarea formControlName="overview" type="text" matInput required></textarea>
                         <mat-error *ngIf="form.get('overview').invalid">Required, and should be between 64 and 128 characters in length.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
-                        <mat-label>Prefix</mat-label>
+                        <mat-label>Command Prefix</mat-label>
                         <input formControlName="prefix" type="text" matInput required>
                         <mat-error *ngIf="form.get('prefix').invalid">Required.</mat-error>
                     </mat-form-field>
@@ -122,7 +112,8 @@
                 <a [routerLink]="['/docs/bot-guidelines']" routerLinkActive="active"
                     class="nav-item nav-link">
                     <i class="fas fa-book"></i> Guidelines for adding a bot.</a>
-                <div class="alert alert-warning border-warning">
+                <div *ngIf="!editing"
+                    class="alert alert-warning border-warning">
                     You must join and stay in the <a class="text-primary" href="/server">DBots Discord server</a>, for your bot to be accepted.
                     You may only edit your bot once it has been invited by an admin.
                 </div>
@@ -144,7 +135,7 @@
                 </a>
                 <p class="text-center">(Example)</p>
                 <div class="d-flex justify-content-center">
-                    <dbots-widget bot-id="525935335918665760"></dbots-widget>
+                    <img [src]="widgetURL" alt="Bot Widget Example">
                 </div>
             </div>
         </div>

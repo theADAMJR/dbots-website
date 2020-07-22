@@ -1,29 +1,28 @@
 <mat-sidenav-container fullscreen>
     <mat-sidenav #drawer mode="side" opened>
-        <div class="items">
+        <div class="guilds px-2">
             <div class="user">
-                <div routerLink="/dashboard" class="icon">
+                <div routerLink="/dashboard" class="guild-icon">
                     <img [src]="userService.user?.displayAvatarURL" [alt]="userService.user?.username">
                 </div>
-                <hr>
+                <hr class="guild-seperator">
             </div>
-            <span class="uppercase text-muted px-3"><strong>Bots</strong></span>
             <div *ngFor="let bot of botService.userBots" [routerLink]="['/dashboard/bots/' + bot.id]"
-                class="icon">
+                class="guild-icon">
                 <img *ngIf="bot"
                     [src]="bot.displayAvatarURL"
                     [alt]="bot.username">
             </div>
             <div routerLink="/dashboard/bots/new" 
-                class="icon invite"
-                matTooltip="Add Bot">
-                <span class="add">+</span>
+                class="guild-icon invite"
+                matTooltip="Add a Bot">
+                <span class="add-guild pt-0 d-flex justify-content-center flex-column">+</span>
             </div>
         </div>
         <div class="options">
+            <ng-content select=".side-nav"></ng-content>
             <span (click)="toggle()"
                 class="float-right d-sm-none d-block close">&times;</span>
-            <ng-content select=".side-nav"></ng-content>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
