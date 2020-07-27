@@ -124,7 +124,7 @@ export class BotsService {
         { name: 'listing.body', weight: 0.5 },
         { name: 'listing.tags', weight: 0.3 }
       ]
-    }); 
+    });
     
     const savedBots = fuse
       .search(query)

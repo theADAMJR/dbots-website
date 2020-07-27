@@ -28,6 +28,21 @@
 
 ---
 
+### v0.0.5a
+![v0.0.5a](assets/docs/img/v0.0.5a.png)
+
+**Add**:
+- dashboard -> themes
+- dashboard -> discord style layout
+
+**Change/Fix**:
+- bot owners now cannot add themselves as a bot
+
+**Remove**
+- client id from bot add form
+
+---
+
 ### v0.0.4a
 ![v0.0.4a](assets/docs/img/v0.0.4a.png)
 
