@@ -42,6 +42,7 @@
     "ng2-charts": "^2.3.0",
     "ngx-color-picker": "^9.0.0",
     "ngx-highlightjs": "^4.1.0-beta",
+    "rxjs": "^6.5.3",
     "simplemde": "^1.11.2",
     "tslib": "^1.10.0",
     "typescript": "^3.7.5",

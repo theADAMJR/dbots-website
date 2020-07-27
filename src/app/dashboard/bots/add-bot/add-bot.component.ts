@@ -29,7 +29,7 @@ export class AddBotComponent implements AfterViewInit {
     botId: new FormControl(''),
     githubURL: new FormControl('', [ Validators.pattern(/https:\/\/github\.com\//) ]),
     invite: new FormControl('', [ Validators.required, Validators.pattern(/https:\/\/discordapp.com|https:\/\/discord.com/) ]),
-    overview: new FormControl('', [ Validators.required, Validators.minLength(64), Validators.maxLength(128) ]),
+    overview: new FormControl('', [ Validators.required, Validators.minLength(32), Validators.maxLength(128) ]),
     ownerIds: new FormControl([], [ Validators.maxLength(3) ]),
     prefix: new FormControl('', [ Validators.required ]),
     supportInvite: new FormControl('', [ Validators.pattern(/^[A-Za-z0-9]{7}$/) ]),

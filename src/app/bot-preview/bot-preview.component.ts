@@ -59,7 +59,9 @@ export class BotPreviewComponent implements OnInit {
   }
 
   async delete() {
-    await this.service.deleteBot(this.user.id);
+    const shouldDelete = prompt(`Type 'DELETE' to confirm bot page deletion.`) === 'DELETE';
+    if (shouldDelete)
+      await this.service.deleteBot(this.user.id);
 
     this.router.navigate(['/dashboard']);
   }

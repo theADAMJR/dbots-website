@@ -14,10 +14,11 @@
 ![v0.1.0b](assets/docs/img/v0.1.0b.png)
 
 **Add**
-
+- bot page -> smooth table styling
 
 **Change/Fix**
 - docs -> updated bot guidelines
+- bot page -> minimum bot page overview is 32 characters
 
 **Remove**
 - add bot -> bot client id
