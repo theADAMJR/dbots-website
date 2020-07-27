@@ -44,7 +44,7 @@
     "ngx-highlightjs": "^4.1.0-beta",
     "simplemde": "^1.11.2",
     "tslib": "^1.10.0",
-    "typescript": "~3.7.5",
+    "typescript": "^3.7.5",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
