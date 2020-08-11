@@ -23,13 +23,13 @@
   max-height: 12px;
 }
 
-pre {
+#doc pre {
   padding: 15px;
 
   border-left: 5px solid var(--secondary);
   border-radius: 5px;
   background-color: var(--background-secondary);
 }
-pre code {
+#doc pre code {
   color: var(--secondary);
 }

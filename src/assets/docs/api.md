@@ -81,6 +81,7 @@ You can view the stats of a bot, including voting, guilds and more.
     at: Date;
     by: string;
   }
+}
 ```
 
 **Example**:

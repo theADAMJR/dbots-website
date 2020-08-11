@@ -37,4 +37,4 @@ If a bot breaks **any** of these rules, it will be *instantly* **declined**.
 - Respond to non-prefixed commands
 - Spontaneously send messages
 
-Bot removal from the DBots Discord server will mean that your bot will **not appear** on the bot list.
+Bot removal from the DBots Discord server would mean that your bot does **not appear** on the bot list.

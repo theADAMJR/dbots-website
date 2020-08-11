@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, ErrorHandler, CUSTOM_ELEMENTS_SCHEMA, Injectable } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/material/core';
@@ -54,6 +54,7 @@ import { APIComponent } from './dashboard/api/api.component';
 import { VotesWidgetComponent } from './dashboard/widgets/votes-widget/votes-widget.component';
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
 
+@Injectable()
 export class AlertErrorHandler implements ErrorHandler {
   async handleError(error: Error | any) {
     try {
