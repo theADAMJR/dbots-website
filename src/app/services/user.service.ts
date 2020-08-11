@@ -19,19 +19,21 @@ export class UserService {
   get xpCardPreviewURL() {
     return `${this.endpoint}/xp-card-preview?key=${this.key}`;
   }
-
-  constructor(private http: HttpClient) {}
   
   private get key() {
     return localStorage.getItem('key');
   }
 
+  constructor(private http: HttpClient) {}
+
+  async init() {
+    if (!this.user || !this.savedUser)
+      await this.updateUser();
+  }
+
   async updateUser() {
     this._user = (this.key) ?
       await this.http.get(`${this.endpoint}?key=${this.key}`).toPromise() : null
-  }
-
-  async updateSavedUser() {
     this._savedUser = (this.key) ? 
       await this.http.get(`${this.endpoint}/saved?key=${this.key}`).toPromise() : null;
   }

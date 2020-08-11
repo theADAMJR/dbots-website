@@ -41,7 +41,8 @@
             <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> GitHub</a>
         </span>
     </span>
-    <span class="float-right">
+    <span id="buttons" *ngIf="!preview"
+        class="float-right">
         <span *ngIf="userService.isAdmin"
             class="pb-5 mr-4">
             <mat-form-field>

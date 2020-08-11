@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BotTokenService } from 'src/app/services/bot-token.service';
 import { ActivatedRoute } from '@angular/router';
 import { BotsService } from 'src/app/services/bots.service';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-api',
@@ -13,6 +14,10 @@ export class APIComponent implements OnInit {
   user: any;
   hidden = true;
   token = '';
+
+  form = new FormGroup({
+    voteWebhookURL: new FormControl('https://')
+  });
 
   get id() { return this.route.snapshot.paramMap.get('id'); }
 

@@ -135,7 +135,14 @@
                 </a>
                 <p class="text-center">(Example)</p>
                 <div class="d-flex justify-content-center">
-                    <img [src]="widgetURL" alt="Bot Widget Example">
+                    <div class="text-muted uppercase">
+                        <p class="mb-0">Large</p>
+                        <img [src]="widgetURL + '?size=large'" alt="Bot Widget Example">
+                        <p class="mt-3 mb-0">Medium</p>
+                        <img [src]="widgetURL + '?size=medium'" alt="Bot Widget Example">
+                        <p class="mt-3 mb-0">Small</p>
+                        <img [src]="widgetURL + '?size=small'" alt="Bot Widget Example">
+                    </div>
                 </div>
             </div>
         </div>
@@ -146,7 +153,8 @@
             <button (click)="preview = false"
                 class="float-right" color="danger" mat-button>&times;</button>
 
-            <bot-preview *ngIf="bot" [bot]="bot"></bot-preview>
+            <bot-preview *ngIf="bot"
+                [bot]="bot" [preview]="true"></bot-preview>
         </div>
     </div>
 </bot-sidebar>

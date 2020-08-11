@@ -6,14 +6,10 @@ import { UserService } from '../services/user.service';
   providedIn: 'root'
 })
 export class DashboardAuthGuard implements CanActivate {
-  constructor(
-    private userService: UserService) {}
+  constructor(private userService: UserService) {}
 
   async canActivate() {
-    if (!this.userService.user)
-      await this.userService.updateUser();
-    if (!this.userService.savedUser)
-      await this.userService.updateSavedUser();
+    await this.userService.init();
         
     return Boolean(this.userService.user);
   }  

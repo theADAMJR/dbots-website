@@ -14,7 +14,7 @@ export class BotVoteComponent implements OnInit {
   bot: any;
   user: any;
 
-  get widgetURL() { return `${environment.endpoint}/bots/${this.id}/widget`; }
+  get widgetURL() { return `${environment.endpoint}/bots/${this.id}/widget?size=medium`; }
   get id() { return this.route.snapshot.paramMap.get('id') }
 
   constructor(
@@ -47,5 +47,19 @@ export class BotVoteComponent implements OnInit {
     await this.service.refreshBots();
 
     return this.router.navigate(['/bots/' + this.id]);
+  }
+
+  async remind() {
+    await Notification.requestPermission();
+
+    new Notification(`DBots - Vote Reminder`, {
+      badge: `${environment.url}/bots/${this.id}`,
+      body: `You can vote again for ${this.user.username}.`,
+      icon: this.user.displayAvatarURL,
+      image: `${environment.url}/assets/img/logo.png`,
+      renotify: true,
+      timestamp: new Date().getTime() + (12 * 60 * 60 * 1000),
+      tag: 'Vote Reminder'
+    });
   }
 }

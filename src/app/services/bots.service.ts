@@ -167,6 +167,10 @@ export class BotsService {
   addBadge(id: string, name: string) {
     return this.http.get(`${this.endpoint}/${id}/add-badge/${name}?key=${this.key}`).toPromise() as Promise<any>;
   }
+
+  getStats(id: string) {
+    return this.http.get(`${this.endpoint}/${id}/stats`).toPromise() as Promise<any>;
+  }
 }
 
 export interface Judgement {

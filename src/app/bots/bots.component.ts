@@ -91,7 +91,7 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
   private setSearchLayout() {
     this.title = `Results for '${this.query}'`;
-    this.description = `Find Discord bots similar to '${this.query}'.`
+    this.description = `Find bots similar to '${this.query}'.`
     this.icon = 'fas fa-search';
   }
 

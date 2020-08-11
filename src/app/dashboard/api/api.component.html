@@ -25,8 +25,23 @@
         <button (click)="copyToken()"
           id="copy" color="success" mat-button><i class="fas fa-clipboard"></i></button>
       </div>
-    </div>
-    <div>
+
+      <!-- <hr>
+
+      <div class="row">
+        <div class="col-6">
+          <form #f="ngForm" [formGroup]="form">
+            <mat-form-field appearance="outline">
+              <mat-label>Vote Webhook URL</mat-label>
+              <input formControlName="voteWebhookURL" type="url" matInput required>
+              <mat-error *ngIf="form.get('voteWebhookURL').invalid">Should be a valid URL.</mat-error>
+            </mat-form-field>
+            <p>The vote webook URL is sent when a user votes for your bot.</p>
+          </form>
+        </div>
+        <div class="col-6">
+        </div>
+      </div> -->
     </div>
   </div>
 </bot-sidebar>

@@ -54,7 +54,7 @@ export class DocsComponent implements OnInit {
       const tags = {
         description: /<description>(.*)<\/description>/g,
         title: /<title>(.*)<\/title>/g,
-        url: /<url>(.*)<\/url>/g,
+        url: /<url>(.*)<\/url>/g
       };
         
       const description = tags.description.exec(content)[1];

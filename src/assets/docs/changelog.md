@@ -10,11 +10,29 @@
 
 ---
 
+### v0.1.1b
+`07/08/2020`
+![v0.1.1b](assets/docs/img/v0.1.1b.png)
+
+**Add**
+- bot vote webhook -> get vote info when a user votes for your bot
+- vote notifications -> get notified when you can next vote for a bot
+- bot stats -> updated every 30 mins
+
+**Change/Fix**
+- bot voting -> total votes -> now add when a user votes
+
+**Remove**
+- bot voting -> notification reminders (may be temporary)
+
+---
+
 ### v0.1.0b
 ![v0.1.0b](assets/docs/img/v0.1.0b.png)
 
 **Add**
 - bot page -> smooth table styling
+- bot widgets -> small, and medium widget sizes
 
 **Change/Fix**
 - docs -> updated bot guidelines
@@ -98,9 +116,9 @@
 
 ---
 
-![v0.0.1a](assets/docs/img/v0.0.1a.png)
-
 ### v0.0.1a
 `20/06/2020`
+![v0.0.1a](assets/docs/img/v0.0.1a.png)
 
 [DBots](/) and the [DBots Discord Server](/server) is released!
+The first version was made in around 3 days.

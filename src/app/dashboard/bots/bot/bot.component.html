@@ -1,8 +1,48 @@
-<bot-sidebar [user]="user"
-  [loaded]="bot && user">
-  <section class="container">
-      <div class="row">
-        <p>Nothing here yet...</p>
+<bot-sidebar [user]="user">
+  <section *ngIf="bot && stats && user"
+    class="container">
+    <div class="row color-heading">
+        <div class="col-lg-3 col-sm-6">
+            <div class="stats cursor-pointer"
+              matTooltip="Date of bot approval.">
+              <i class="fas fa-check"></i>
+              {{ stats.general.approvedAt | cleanDateTime }}
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="stats cursor-pointer"
+            matTooltip="Date of last bot vote.">
+            <i class="fas fa-calendar-check"></i>
+            {{ stats.general.lastVoteAt | cleanDateTime }}
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="stats cursor-pointer"
+            matTooltip="Number of total votes this week.">
+            <i class="fas fa-chevron-circle-up"></i>
+            {{ stats.general.voteCount | number }}
+          </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+          <div class="stats cursor-pointer"
+            matTooltip="Number of all-time total votes.">
+            <i class="fas fa-chevron-up"></i>
+            {{ stats.general.totalVotes | number }}
+          </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="large stats">
+                <votes-widget [id]="user.id"></votes-widget>
+            </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            <div class="large stats">
+                <audit-log-widget></audit-log-widget>
+            </div>
+        </div>
     </div>
   </section>
 </bot-sidebar>

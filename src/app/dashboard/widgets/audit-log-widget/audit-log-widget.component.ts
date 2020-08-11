@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BotsService } from 'src/app/services/bots.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'audit-log-widget',
@@ -11,12 +12,12 @@ export class AuditLogWidgetComponent implements OnInit {
   rows = 3;
 
   changeCount = 0;
-  members: any[];
-  changes: any[];
+  changes = [];
 
   constructor(
     private route: ActivatedRoute,
-    private botService: BotsService) {}
+    private botService: BotsService,
+    public userService: UserService) {}
 
   async ngOnInit() {
     this.route.paramMap.subscribe(async(val) => {
@@ -26,9 +27,5 @@ export class AuditLogWidgetComponent implements OnInit {
       this.changeCount = changes.length;
       this.changes = changes.splice(changes.length - this.rows, changes.length);
     });
-  }
-
-  getMember(id: string) {          
-    return this.members.find(m => m.id === id) || {};
   }
 }

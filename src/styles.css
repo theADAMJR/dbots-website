@@ -160,44 +160,6 @@ mat-paginator {
     outline: none !important;
 }
 
-/* docs */
-
-#doc img {
-    max-width: 50vw;
-    max-height: 50vh;
-}
-
-#doc table th, #doc table td {
-    padding: 5px;
-}
-
-#doc table {
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-#doc {
-    margin-bottom: 50px;
-}
-
-#doc .alert-danger {
-    background-color: transparent !important;
-}
-
-#doc .pro-reference {
-    max-height: 12px;
-}
-
-pre {
-    padding: 15px;
-
-    border-left: 5px solid var(--secondary);
-    border-radius: 5px;
-    background-color: var(--background-secondary);
-}
-pre code {
-    color: var(--secondary);
-}
-
 /* editor */
 .container .editor-toolbar a {
     color: var(--font) !important;

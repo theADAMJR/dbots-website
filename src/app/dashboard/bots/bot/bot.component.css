@@ -1,12 +1,9 @@
-.stats.needPerms {
-    background-color: var(--danger);
-}
-
 .row > div {
     padding: 0;
 }
 
 .stats {
+    color: var(--heading);
     background-color: var(--tertiary);
     border-radius: 3px;
     margin: 15px;

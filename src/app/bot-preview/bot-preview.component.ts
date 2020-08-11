@@ -11,6 +11,7 @@ import { TagService } from '../services/tag.service';
   styleUrls: ['./bot-preview.component.css']
 })
 export class BotPreviewComponent implements OnInit {
+  @Input() preview = false;
   ownerUser: any;
 
   @Input() bot = {

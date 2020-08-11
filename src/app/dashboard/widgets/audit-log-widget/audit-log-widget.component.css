@@ -8,7 +8,7 @@ table {
 }
 
 .row {
-    min-height: 250px;
+    min-height: 180px;
 }
 
 .col-md-3, .col-md-9 {

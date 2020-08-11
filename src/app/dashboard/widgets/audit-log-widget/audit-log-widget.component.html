@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-3">
-        <h5>Changes</h5>
+        <h5>Recent Changes</h5>
     </div>
     <div class="col-md-9">
         <table *ngIf="changes" class="table">
@@ -17,8 +17,8 @@
                         {{ changeCount - i }}
                     </td>
                     <td class="user">
-                        <member-username [member]="getMember(change.by)"
-                            [withAvatar]="false"></member-username>
+                        <member-username [member]="userService.user"
+                            [withAvatar]="true"></member-username>
                     </td>
                     <td>{{ change.at | miniDate }}</td>
                 </tr>

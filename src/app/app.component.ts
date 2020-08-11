@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
 
     this.auth.validateKey();
 
-    await this.userService.updateUser();
-    await this.userService.updateSavedUser();
+    await this.userService.init();
   } 
 }

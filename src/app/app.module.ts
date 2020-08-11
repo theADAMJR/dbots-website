@@ -30,7 +30,6 @@ import { MemberUsernameComponent } from './member-username/member-username.compo
 import { DocsSidebarComponent } from './docs-sidebar/docs-sidebar.component';
 import { ZippyComponent } from './zippy/zippy.component';
 import { AuditLogWidgetComponent } from './dashboard/widgets/audit-log-widget/audit-log-widget.component';
-import { CommandsWidgetComponent } from './dashboard/widgets/commands-widget/commands-widget.component';
 import { TruncatedPipe } from './pipes/truncated.pipe';
 import { DurationStringPipe } from './pipes/duration-string.pipe';
 import { HomeFooterComponent } from './home-footer/home-footer.component';
@@ -52,6 +51,7 @@ import { BotVoteComponent } from './bot-vote/bot-vote.component';
 import { BotLogComponent } from './dashboard/bot-log/bot-log.component';
 import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
 import { APIComponent } from './dashboard/api/api.component';
+import { VotesWidgetComponent } from './dashboard/widgets/votes-widget/votes-widget.component';
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
 
 export class AlertErrorHandler implements ErrorHandler {
@@ -99,7 +99,6 @@ export class AlertErrorHandler implements ErrorHandler {
     DocsSidebarComponent,
     ZippyComponent,
     AuditLogWidgetComponent,
-    CommandsWidgetComponent,
     TruncatedPipe,
     DurationStringPipe,
     HomeFooterComponent,
@@ -119,6 +118,7 @@ export class AlertErrorHandler implements ErrorHandler {
     BotLogComponent,
     CookieBannerComponent,
     APIComponent,
+    VotesWidgetComponent,
     BotWidgetComponent
   ],
   imports: [

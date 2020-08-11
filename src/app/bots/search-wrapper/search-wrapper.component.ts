@@ -49,7 +49,7 @@ export class SearchWrapperComponent implements AfterViewInit {
     this.router.navigate(['search'], extra);
 
     this.updateMetaTags({
-      description: `Find Discord bots similar to '${query}'.`,
+      description: `Find bots similar to '${query}'.`,
       titleSuffix: `${query} Bots`,
       url: `search/q?=${query}`
     });

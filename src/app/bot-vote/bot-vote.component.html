@@ -12,8 +12,14 @@
       class="bg-secondary mr-2" color="secondary" mat-button>
       <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Back
     </button>
+    <button hidden
+      class="bg-info mr-2"
+      matTooltip="Reminders when you can next vote for {{ user.username }} (every 12 hours)."
+      mat-button>
+      <i class="fas fa-bell"></i> Remind Me to Vote
+    </button>
     <button *ngIf="!userService.user" routerLink="/login"
-      class="rounded-lg btn btn-primary" mat-button>
+      class="bg-primary" mat-button>
       <i class="fas fa-user-alt"></i> Login to Vote
     </button>
     <button *ngIf="userService.user" id="vote" (click)="vote()"

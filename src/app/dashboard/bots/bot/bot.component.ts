@@ -11,6 +11,7 @@ import { SEOService } from 'src/app/services/seo.service';
 export class BotComponent implements OnInit {
   bot: any;
   user: any;
+  stats: any;
 
   constructor(
     private botsService: BotsService,
@@ -19,10 +20,12 @@ export class BotComponent implements OnInit {
     private seo: SEOService) {}
 
   ngOnInit() {
-    this.route.paramMap.subscribe(paramMap => {
-      const id = paramMap.get('id')
-      this.user = this.botsService.getBot(id);
-      this.bot = this.botsService.getSavedBot(id);
+    this.route.paramMap.subscribe(async (paramMap) => {
+      const id = paramMap.get('id');      
+       
+      this.bot = await this.botsService.getSavedBot(id);
+      this.stats = await this.botsService.getStats(id);
+      this.user = await this.botsService.getBot(id);
   
       this.seo.setTags({
         description: `Overview of ${this.user.tag} bot listing.`,

@@ -181,12 +181,17 @@ h1,h2,h3,h4,h5 {
 
 // backgrounds
 
-.bg-secondary {
+.bg-primary {
     background-color: var(--primary);
     color: #fff;
 }
 
 .bg-secondary {
     background-color: var(--secondary);
+    color: #fff;
+}
+
+.bg-secondary {
+    background-color: var(--info);
     color: #fff;
 }

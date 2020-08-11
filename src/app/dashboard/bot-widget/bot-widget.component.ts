@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BotsService } from 'src/app/services/bots.service';
 import { SEOService } from 'src/app/services/seo.service';
 import { environment } from 'src/environments/environment';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-bot-widget',
@@ -13,7 +14,11 @@ export class BotWidgetComponent implements OnInit {
   bot: any;
   user: any;
 
-  get widgetURL() { return `${environment.endpoint}/bots/${this.id}/widget`; }
+  form = new FormGroup({
+    size: new FormControl('large')
+  });
+
+  get widgetURL() { return `${environment.url}/api/bots/${this.id}/widget?size=${this.form.value.size}`; }
   get id() { return this.route.snapshot.paramMap.get('id') }
 
   constructor(
