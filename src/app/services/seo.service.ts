@@ -84,18 +84,18 @@ export class SEOService {
   }
 
   private description(content: string) {
-    this.setNameTag({ name: 'description', itemprop: 'description', content: content });
-    this.setPropertyTag({ property: 'og:description', itemprop: 'description', content: content });
-    this.setPropertyTag({ property: 'twitter:description', itemprop: 'description', content: content });
+    this.setNameTag({ name: 'description', itemprop: 'description', content });
+    this.setPropertyTag({ property: 'og:description', itemprop: 'description', content });
+    this.setPropertyTag({ property: 'twitter:description', itemprop: 'description', content });
   }
 
   private image(content: string) {
-    this.setPropertyTag({ property: 'twitter:image', itemprop: 'image', content: content });
-    this.setPropertyTag({ property: 'og:image', itemprop: 'image', content: content });
-    this.setPropertyTag({ property: 'og:image:secure_url', itemprop: 'image', content: content });
+    this.setPropertyTag({ property: 'twitter:image', itemprop: 'image', content });
+    this.setPropertyTag({ property: 'og:image', itemprop: 'image', content });
+    this.setPropertyTag({ property: 'og:image:secure_url', itemprop: 'image', content });
   }
 
   private keywords(content: string) {
-    this.setNameTag({ name: 'keywords', itemprop: 'keywords', content: content });
+    this.setNameTag({ name: 'keywords', itemprop: 'keywords', content });
   }
 }

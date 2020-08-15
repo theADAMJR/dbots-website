@@ -74,4 +74,10 @@ export class DocsComponent implements OnInit {
         .replace(tags.url, '');
     } catch { return content; }
   }
+
+  search({ query }) {
+    if (!query) return;
+
+    console.log(query);
+  }
 }

@@ -7,7 +7,20 @@
                     class="float-right d-sm-none d-block close">&times;</span>
                 </h2>
             <hr>
-            <div class="navbar-nav mt-5">
+
+            <div class="d-flex justify-content-center">
+                <mat-form-field appearance="outline">
+                    <mat-label for="search">Search</mat-label>
+                    <input #searchInput
+                        (keyup.enter)="emitSearch(searchInput.value)"               
+                        id="search" type="search" placeholder="get bot stats" matInput>
+                </mat-form-field>
+                <button id="searchButton"
+                    (click)="emitSearch(searchInput.value)" 
+                    mat-button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="navbar-nav">
                 <p class="category">General <i class="fa fa-arrow-right" aria-hidden="true"></i></p>
                 <a class="nav-link" 
                     routerLink="/docs/api" routerLinkActive="active">API</a>
