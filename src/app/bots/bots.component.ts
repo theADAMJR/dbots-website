@@ -2,6 +2,7 @@ import { Component,  Input, OnInit, AfterViewInit } from '@angular/core';
 import { BotsService } from '../services/bots.service';
 import { kebabToTitleCase } from '../utils';
 import { Tag } from '../services/tag.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bots',
@@ -25,7 +26,9 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
   get lastPage() { return Math.ceil(this.bots.length / this.size); }
 
-  constructor(public service: BotsService) {}
+  constructor(
+    public service: BotsService,
+    private router: Router) {}
 
   async ngOnInit() {
     await this.service.init();
@@ -48,7 +51,9 @@ export class BotsComponent implements OnInit, AfterViewInit {
     } else
       this.loadBots();
 
-    this.initialized = true;    
+    this.initialized = true;  
+    
+    this.router.navigate(['/']);  
   }
 
   ngAfterViewInit() {
