@@ -10,35 +10,47 @@
 
 ---
 
+### v0.1.2b
+
+<!-- ![v0.1.2b](assets/docs/img/v0.1.2b.png) -->
+
+**Add**:
+**Change/Fix**:
+**Remove**:
+
+---
+
 ### v0.1.1b
 `07/08/2020`
+
 ![v0.1.1b](assets/docs/img/v0.1.1b.png)
 
-**Add**
+**Add**:
 - bot vote webhook -> get vote info when a user votes for your bot
 - vote notifications -> get notified when you can next vote for a bot
 - bot stats -> updated every 30 mins
 
-**Change/Fix**
+**Change/Fix**:
 - bot voting -> total votes -> now add when a user votes
 
-**Remove**
+**Remove**:
 - bot voting -> notification reminders (may be temporary)
 
 ---
 
 ### v0.1.0b
+
 ![v0.1.0b](assets/docs/img/v0.1.0b.png)
 
-**Add**
+**Add**:
 - bot page -> smooth table styling
 - bot widgets -> small, and medium widget sizes
 
-**Change/Fix**
+**Change/Fix**:
 - docs -> updated bot guidelines
 - bot page -> minimum bot page overview is 32 characters
 
-**Remove**
+**Remove**:
 - add bot -> bot client id
 
 ---
@@ -48,6 +60,7 @@
 ---
 
 ### v0.0.5a
+
 ![v0.0.5a](assets/docs/img/v0.0.5a.png)
 
 **Add**:
@@ -63,46 +76,49 @@
 ---
 
 ### v0.0.4a
+
 ![v0.0.4a](assets/docs/img/v0.0.4a.png)
 
-**Add**
+**Add**:
 - first large image widget
 
-**Change/Fix**
+**Change/Fix**:
 - featured bots are now at the top
 - bot vote page now shows bot card
 
-**Remove**
+**Remove**:
 - old JavaScript bot widgets
 
 ---
 
 ### v0.0.3a
+
 ![v0.0.3a](assets/docs/img/v0.0.3a.png)
 
-**Add**
+**Add**:
 - badges -> featured badge
 - docs -> more documentation on post stats
 
-**Change/Fix**
+**Change/Fix**:
 - bot page -> better styling
 
-**Remove**
+**Remove**:
 - home page -> moderation bots
 - dbots bot -> messaged when user left dbots server
 
 ---
 
 ### v0.0.2a
+
 `24/06/2020`
 
 ![v0.0.2a](assets/docs/img/v0.0.2a.png)
 
-**Add**
+**Add**:
 - cookie banner
 - api -> post stats
 
-**Change/Fix**
+**Change/Fix**:
 - bot status -> was not displaying correct presence
 - widgets -> were not actually working
 - add bot -> body field height was too tall (on mobile)
@@ -111,14 +127,15 @@
 - new bots -> now shows bots
 - dashboard -> users are redirected if they go to a bot page they cannot manage  
 
-**Remove**
+**Remove**:
 - new bot -> multiple owners
 
 ---
 
 ### v0.0.1a
+
 `20/06/2020`
 ![v0.0.1a](assets/docs/img/v0.0.1a.png)
 
-[DBots](/) and the [DBots Discord Server](/server) is released!
+[DBots](/) and the DBots Discord Server was released!
 The first version was made in around 3 days.

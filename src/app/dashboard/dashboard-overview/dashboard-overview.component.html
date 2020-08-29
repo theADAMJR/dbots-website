@@ -18,9 +18,28 @@
                         [routerLink]="['/bots/' + savedBot._id]">View {{ savedBot._id }}</a>
                 </li>
             </ul>
-            <span><strong>Colours</strong>:</span><br>
-            <span class="text-warning">Needs to be added to the DBots Guild.</span><br>
-            <a href="#">Needs to be reviewed.</a>
+        </div>
+
+        <div *ngIf="feedback"
+            id="feedback">
+            <h2>Recent Feedback</h2>
+            <div>
+                <div *ngFor="let msg of feedback"
+                    class="media mb-2 p-2 rounded"
+                    [class]="msg.feedback.approved ? 'bg-success' : 'bg-danger'">
+                    <img class="mr-3 round" [src]="msg.bot.displayAvatarURL" [alt]="msg.bot.tag">
+                    <div class="media-body">
+                        <h5 class="mt-0">Bot {{ msg.feedback.approved ? 'Approved' : 'Not Approved' }}</h5>
+                        {{ msg.feedback.message }}
+                        <div class="d-flex justify-content-between">
+                            <span class="text-light">{{ msg.bot.username }}</span>
+                            <span class="float-right">
+                                <member-username class="float-right" [user]="msg.reviewer | async"></member-username>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </dashboard-sidebar>

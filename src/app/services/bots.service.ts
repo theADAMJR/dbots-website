@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import Fuse from 'fuse.js';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,9 @@ export class BotsService {
     return { bots, saved: savedBots };
   }
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private userService: UserService) {}
   
   private get key() { return localStorage.getItem('key'); }
 
@@ -45,20 +48,22 @@ export class BotsService {
   }
 
   async refreshBots() {
-    const bots = await this.http.get(`${this.endpoint}`).toPromise() as any;
+    const { saved, users } = await this.http.get(`${this.endpoint}`).toPromise() as any;
 
-    this._savedBots = bots.saved
+    this._savedBots = saved
+      .filter(s => users.some(g => g.id === s._id))
       .sort((a, b) => b.votes.length - a.votes.length);    
 
-    const ids = this.savedBots.map(b => b._id);
-    this._bots = bots.users.filter(b => ids.includes(b.id));
+    this._bots = users
+      .filter(b => this.savedBots.some(sb => sb._id === b.id));
   }
   async updateUserBots() {
-    this._userBots = (this.key) ?
-      await this.http.get(`${this.endpoint}/user?key=${this.key}`).toPromise() as any : null;
+    await this.userService.init();
 
-    this._userSavedBots = (this.key) ?
-      await this.http.get(`${this.endpoint}/user/saved?key=${this.key}`).toPromise() as any : null;
+    this._userSavedBots = this.savedBots
+      .filter(sb => sb.ownerId === this.userService.user.id);
+    this._userBots = this.bots
+      .filter(b => this.userSavedBots.some(sb => sb._id === b.id));
   }
   getSavedLog(id: string) {
     return this.http.get(`${this.endpoint}/${id}/log?key=${this.key}`).toPromise() as Promise<any>;
@@ -76,13 +81,7 @@ export class BotsService {
   }
 
   getTopBots() {
-    const savedBots = this.savedBots.filter(b => b.approvedAt);
-    const ids = savedBots.map(b => b._id);
-    const bots = [];
-    for (const id of ids)
-      bots.push(this.bots.find(b => b.id === id));
-
-    return { bots, saved: savedBots };
+    return { bots: this.bots, saved: this.savedBots };
   }
   getTaggedBots(tagName: string) {
     const savedBots = this.savedBots
@@ -117,24 +116,38 @@ export class BotsService {
     return { bots, saved: savedBots };
   }
   searchBots(query: string) {
-    const fuse = new Fuse(this.savedBots, {
+    const queryBots = this.savedBots
+      .map(saved => {
+        const bot = this.bots.find(g => g.id === saved._id);
+        return {
+          id: bot?.id,
+          username: bot?.username,
+          ownerId: bot.ownerId,
+          listing: saved?.listing ?? {}
+        };
+      });
+
+    const fuse = new Fuse(queryBots, {
       includeScore: true,
       keys: [
-        { name: 'listing.overview', weight: 1 },
+        { name: 'id', weight: 1 },
+        { name: 'ownerId', weight: 1 },
+        { name: 'username', weight: 0.8 },
+        { name: 'listing.overview', weight: 0.6 },
         { name: 'listing.body', weight: 0.5 },
         { name: 'listing.tags', weight: 0.3 }
       ]
     });
-    
-    const savedBots = fuse
+
+    const searchBots = fuse
       .search(query)
-      .map(r => r.item);    
+      .map(r => r.item);
 
-    const ids = savedBots.map(b => b._id);
-    const bots = this.bots
-      .filter(b => ids.includes(b.id));    
-
-    return { bots, saved: savedBots };
+    const ids = searchBots.map(g => g.id);
+    return {
+      bots: this.bots.filter(g => ids.includes(g.id)),
+      saved: this.savedBots.filter(g => ids.includes(g._id))
+    };
   }
 
   createBot(value: any) {

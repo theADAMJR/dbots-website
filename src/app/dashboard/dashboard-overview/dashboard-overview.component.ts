@@ -10,6 +10,7 @@ import { BotsService } from 'src/app/services/bots.service';
 })
 export class DashboardComponent implements OnInit {
   unreviewedSavedBots = [];
+  feedback = [];
 
   constructor(
     public botService: BotsService,
@@ -28,5 +29,17 @@ export class DashboardComponent implements OnInit {
     await this.botService.init();
 
     this.unreviewedSavedBots = this.botService.unreviewedBots.saved;
+    const feedbacks = this.botService.userSavedBots
+     .flatMap(sb => ({ botId: sb._id, feedback: sb.feedback }));
+
+    this.feedback = feedbacks
+      .flatMap(fs => fs.feedback
+        .map((f) => ({
+          bot: this.botService.getBot(fs.botId),
+          reviewer: this.userService.getUser(f.by),
+          feedback: f
+        })))
+      .slice(0, 3); 
+    ;   
   }
 }
