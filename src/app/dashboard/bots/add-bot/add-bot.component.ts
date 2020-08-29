@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import SimpleMDE from 'simplemde';
 import { toIterable } from 'src/app/utils';
 import { BotsService } from 'src/app/services/bots.service';
 import { Router } from '@angular/router';
@@ -17,7 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AddBotComponent implements AfterViewInit {
   preview = false;
-  editor: SimpleMDE;
+  editor: any;
 
   toIterable = toIterable;
   filteredTags = this.tagService.tags;
@@ -111,27 +110,27 @@ export class AddBotComponent implements AfterViewInit {
 
   private initializeEditor() {
     const element = document.querySelector('#editor') as HTMLElement;
-    this.editor = new SimpleMDE({
-      element,
-      toolbar: [
-        'bold',
-        'italic',
-        'strikethrough',
-        'heading',
-        '|',
-        'image',
-        'link',
-        'code',
-        'quote',
-        '|',
-        'ordered-list',
-        'unordered-list',
-        'horizontal-rule',
-        'table',
-        '|',
-        'guide'
-      ]
-    });
+    // this.editor = new SimpleMDE({
+    //   element,
+    //   toolbar: [
+    //     'bold',
+    //     'italic',
+    //     'strikethrough',
+    //     'heading',
+    //     '|',
+    //     'image',
+    //     'link',
+    //     'code',
+    //     'quote',
+    //     '|',
+    //     'ordered-list',
+    //     'unordered-list',
+    //     'horizontal-rule',
+    //     'table',
+    //     '|',
+    //     'guide'
+    //   ]
+    // });
   }
 
   private updateDraft() {
