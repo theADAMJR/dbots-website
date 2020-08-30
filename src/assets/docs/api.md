@@ -57,7 +57,7 @@ This is what is posted to a bots **Vote Webhook URL**, when a bot is voted for.
 ## Bot Stats
 You can view the stats of a bot, including voting, guilds and more.
 
-**URL**: `https://dbots.co/api/bots/:id/stats`
+**URL**: `https://dbots.co/api/v1/bots/:id/stats`
 
 ### Reponse
 
@@ -86,4 +86,4 @@ You can view the stats of a bot, including voting, guilds and more.
 }
 ```
 
-**Example**: `https://dbots.co/api/bots/525935335918665760/stats`
+**Example**: `https://dbots.co/api/v1/bots/525935335918665760/stats`

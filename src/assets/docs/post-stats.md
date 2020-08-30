@@ -30,7 +30,7 @@ guildCount | Number
 const botId = '301520172194201602'; // your bot Snowflake ID
 const botAPIToken = 'b344b2d1-8fd0-4ef7-b7d8-1567d4e337c7'; // your bot API token
 
-fetch(`https://dbots.co/api/bots/${botId}/stats`, {
+fetch(`https://dbots.co/api/v1/bots/${botId}/stats`, {
   body: JSON.stringify({ guildCount: bot.guilds.cache.size }),
   headers: {
     'Authorization': botAPIToken,

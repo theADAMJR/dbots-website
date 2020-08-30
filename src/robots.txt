@@ -1,0 +1,4 @@
+user-agent: *
+allow: /
+
+sitemap: https://dbots.co/sitemap.xml

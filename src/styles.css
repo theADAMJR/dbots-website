@@ -3,7 +3,6 @@
 @import '~highlight.js/styles/vs2015.css';
 @import '~chart.js/dist/Chart.min.css';
 @import 'assets/css/utils.css';
-@import '~simplemde/dist/simplemde.min.css';
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css';
 
 html {

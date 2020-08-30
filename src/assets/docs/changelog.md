@@ -11,11 +11,15 @@
 ---
 
 ### v0.1.2b
+`Upcoming`
 
 <!-- ![v0.1.2b](assets/docs/img/v0.1.2b.png) -->
 
 **Add**:
+- `/dashboard` -> recent feedback
+
 **Change/Fix**:
+
 **Remove**:
 
 ---

@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import SimpleMDE from 'simplemde';
 import { toIterable } from 'src/app/utils';
 import { BotsService } from 'src/app/services/bots.service';
 import { Router } from '@angular/router';
@@ -17,7 +16,6 @@ import { environment } from 'src/environments/environment';
 })
 export class AddBotComponent implements AfterViewInit {
   preview = false;
-  editor: SimpleMDE;
 
   toIterable = toIterable;
   filteredTags = this.tagService.tags;
@@ -54,7 +52,7 @@ export class AddBotComponent implements AfterViewInit {
     votes: toIterable(100)
   };
   
-  get widgetURL() { return `${environment.url}/api/bots/525935335918665760/widget`; }
+  get widgetURL() { return `${environment.url}/api/v1/bots/525935335918665760/widget`; }
 
   constructor(
     public botService: BotsService,
@@ -74,7 +72,6 @@ export class AddBotComponent implements AfterViewInit {
     setTimeout(async () => {
       await this.botService.init();
 
-      this.initializeEditor();
       this.initFormValue();
       this.hookEvents();      
 
@@ -82,7 +79,7 @@ export class AddBotComponent implements AfterViewInit {
         Validators.required, 
         Validators.pattern(/^\d{18}$/),
         Validators.pattern(new RegExp(`^(?!${this.userService.user.id}).*$`))
-      ])
+      ]);
     });
   }
 
@@ -90,8 +87,6 @@ export class AddBotComponent implements AfterViewInit {
     for (const key in this.bot.listing)
       this.form.controls[key]
         ?.setValue(this.bot.listing[key]);
-    
-    this.editor.value(this.bot.listing.body);
 
     const draft = localStorage.getItem('botListingDraft');
     
@@ -100,38 +95,7 @@ export class AddBotComponent implements AfterViewInit {
   }
 
   private hookEvents() {
-    const container = document.querySelector('.editor-container') as HTMLElement;
-    container.onclick = container.onkeyup = () => {
-      this.form.get('body').setValue(this.editor?.value());
-      this.updateDraft();
-    };
-
     this.form.valueChanges.subscribe(() => this.updateDraft());
-  }
-
-  private initializeEditor() {
-    const element = document.querySelector('#editor') as HTMLElement;
-    this.editor = new SimpleMDE({
-      element,
-      toolbar: [
-        'bold',
-        'italic',
-        'strikethrough',
-        'heading',
-        '|',
-        'image',
-        'link',
-        'code',
-        'quote',
-        '|',
-        'ordered-list',
-        'unordered-list',
-        'horizontal-rule',
-        'table',
-        '|',
-        'guide'
-      ]
-    });
   }
 
   private updateDraft() {
@@ -140,18 +104,19 @@ export class AddBotComponent implements AfterViewInit {
   }
   
   filterTags(filter: string): void {
-    this.filteredTags = this.tagService.tags.filter(tag => tag.name.toLowerCase().includes(filter.toLowerCase()));
+    this.filteredTags = this.tagService.tags
+      .filter(tag => tag.name
+        .toLowerCase()
+        .includes(filter.toLowerCase()));
   }
 
   submit() {
-    this.form.controls.body.setValue(this.editor.value());
     if (this.form.invalid)
       return this.form.setErrors({ invalid: true });
     
     this.botService.createBot(this.form.value);
   }
-  update() {    
-    this.form.controls.body.setValue(this.editor.value());
+  update() {
     if (this.form.invalid)
       return this.form.setErrors({ invalid: true });
     

@@ -67,25 +67,19 @@
     </span>
 </div>
 
-<div id="markdown" class="container rounded my-4" [innerHTML]="markdown"></div>
-
-<div class="container mb-3">
-    <hr>
-    <div class="row">
-        <div class="col-6">
-            <mat-chip-list class="float-left">
-                <mat-chip *ngFor="let tagName of bot.listing.tags"
-                    class="cursor-pointer"
-                    [routerLink]="['/tags/', tagName]">{{ tagName | kebabToTitleCase }}
-                    <i [class]="tagService.getTag(tagName)?.icon" class="ml-1" aria-hidden="true"></i>
-                </mat-chip>
-            </mat-chip-list>
-        </div>
-        <div class="col-6">
-            <div class="float-right">
-                <span class="text-muted">Created By</span>
-                <member-username [user]="ownerUser"></member-username>
-            </div>
-        </div>
+<div class="container my-5">
+    <mat-chip-list class="float-left">
+        <mat-chip *ngFor="let tagName of bot.listing.tags"
+            class="cursor-pointer"
+            [routerLink]="['/tags/', tagName]">{{ tagName | kebabToTitleCase }}
+            <i [class]="tagService.getTag(tagName)?.icon" class="ml-1" aria-hidden="true"></i>
+        </mat-chip>
+    </mat-chip-list>
+    <div class="float-right">
+        <span class="text-muted">Created By</span>
+        <member-username [user]="ownerUser"></member-username>
     </div>
 </div>
+
+
+<div id="markdown" class="container rounded" [innerHTML]="markdown"></div>

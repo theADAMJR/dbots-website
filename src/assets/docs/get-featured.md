@@ -11,7 +11,7 @@ You will need to add a widget to your bot website home page to be featured.
 **HTML Widget Syntax**:
 ```
 <a href="https://dbots.co/bots/[yourBotId]">
-  <img src="https://dbots.co/api/bots/[botId]/widget" alt="View on DBots">
+  <img src="https://dbots.co/api/v1/bots/[botId]/widget" alt="View on DBots">
 </a>
 ```
 

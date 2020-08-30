@@ -51,11 +51,12 @@
                         <mat-error *ngIf="form.get('prefix').invalid">Required.</mat-error>
                     </mat-form-field>
 
-                    <div class="editor-container mt-3">
-                        <label for="editor">Body</label>
-                        <textarea id="editor" formControlName="body" placeholder="300 characters minimum (markdown allowed)" hidden></textarea>
+                    <mat-form-field id="editor" appearance="outline">
+                        <mat-label>Body</mat-label>
+                        <textarea formControlName="body"
+                            placeholder="Markdown is allowed." matInput></textarea>
                         <mat-error *ngIf="form.get('body').invalid">Required, and should be at least 300 characters in length.</mat-error>
-                    </div>
+                    </mat-form-field>
 
                     <hr>
                     
@@ -99,12 +100,12 @@
                             id="submit"
                             [precondition]="form.valid"
                             (click)="submit()"
-                            (animated)="navigateToBotListing()">Add Bot</rocket-button>
+                            (animated)="navigateToBotListing()">Add</rocket-button>
                         <rocket-button *ngIf="editing"
                             id="update"
                             [precondition]="form.valid"
                             (click)="update()"
-                            (animated)="navigateToBotListing()">Update Bot</rocket-button>
+                            (animated)="navigateToBotListing()">Update</rocket-button>
                     </div>
                 </form>
             </div>

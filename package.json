@@ -36,7 +36,6 @@
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
-    "domino": "^2.1.6",
     "express": "^4.15.2",
     "fuse.js": "^6.0.4",
     "highlight.js": "^9.18.1",
@@ -46,7 +45,6 @@
     "ngx-color-picker": "^9.0.0",
     "ngx-highlightjs": "^4.1.0-beta",
     "rxjs": "^6.6.2",
-    "simplemde": "^1.11.2",
     "tslib": "^2.0.0",
     "typescript": "^3.9.7",
     "zone.js": "~0.10.2"
