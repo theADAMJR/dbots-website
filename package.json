@@ -11,8 +11,7 @@
     "e2e": "ng e2e",
     "dev:ssr": "ng run twopg-dashboard:serve-ssr",
     "serve:ssr": "node dist/twopg-dashboard/server/main.js",
-    "build:ssr": "ng build --prod && ng run twopg-dashboard:server:production",
-    "prerender": "ng run twopg-dashboard:prerender"
+    "build:ssr": "ng build --prod && ng run twopg-dashboard:server:production"
   },
   "private": true,
   "dependencies": {
@@ -32,7 +31,6 @@
     "@popperjs/core": "^2.3.3",
     "@stripe/stripe-js": "^1.5.0",
     "@types/node": "^12.11.1",
-    "@types/simplemde": "^1.11.7",
     "bootstrap": "^4.4.1",
     "chart.js": "^2.9.3",
     "chartjs-plugin-datalabels": "^0.7.0",
