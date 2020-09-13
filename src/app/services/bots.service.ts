@@ -129,10 +129,10 @@ export class BotsService {
 
     const fuse = new Fuse(queryBots, {
       includeScore: true,
+      isCaseSensitive: false,
       keys: [
-        { name: 'id', weight: 1 },
-        { name: 'ownerId', weight: 1 },
-        { name: 'username', weight: 0.8 },
+        { name: 'id', weight: 3 },
+        { name: 'username', weight: 1.5 },
         { name: 'listing.overview', weight: 0.6 },
         { name: 'listing.body', weight: 0.5 },
         { name: 'listing.tags', weight: 0.3 }

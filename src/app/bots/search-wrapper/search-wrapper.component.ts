@@ -1,10 +1,10 @@
-import { Component, ViewChild, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { BotsComponent } from '../bots.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SEOService as SEOService, TypingSEO } from 'src/app/services/seo.service';
-import { BotsService } from '../../services/bots.service';
 import { kebabToLowerCase, kebabToTitleCase } from 'src/app/utils';
 import { TagService } from 'src/app/services/tag.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'search-wrapper',
@@ -20,6 +20,7 @@ export class SearchWrapperComponent implements AfterViewInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    private location: Location,
     private seo: SEOService,
     public tagService: TagService) {
     this.placeholder = kebabToLowerCase(this.getRandomPlaceholder());
@@ -27,7 +28,7 @@ export class SearchWrapperComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      const query = this.route.snapshot.queryParamMap.get('q');
+      const query = this.route.snapshot.queryParamMap.get('q');      
       if (query)
         this.search(query);
 
@@ -45,30 +46,25 @@ export class SearchWrapperComponent implements AfterViewInit {
   }
 
   search(query: string) {
-    const extra = (query) ? { queryParams: { q: query } } : {};
-    this.router.navigate(['search'], extra);
+    this.location.go('search', `?q=${query}`);
 
-    this.updateMetaTags({
+    this.seo.setTags(({
       description: `Find bots similar to '${query}'.`,
       titleSuffix: `${query} Bots`,
       url: `search/q?=${query}`
-    });
+    }));
 
-    this.botsComponent.search(query);
+    return this.botsComponent.search(query);
   }
 
   searchByTag(name: string) {
     const tag = this.tagService.getTag(name);
-    this.botsComponent.setTagLayout(tag);
+    this.botsComponent.searchByTag(tag);    
 
-    this.updateMetaTags({
+    this.seo.setTags({
       description: tag.description,
       titleSuffix: `${kebabToTitleCase(tag.name)} Bots`,
       url: `tags/${tag.name}`
     });
-  }
-
-  updateMetaTags(content: TypingSEO) {
-    this.seo.setTags(content);
   }
 }

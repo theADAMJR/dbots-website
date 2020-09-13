@@ -64,8 +64,8 @@ export class AlertErrorHandler implements ErrorHandler {
         ?? error?.rejection?.error?.message
         ?? error?.rejection?.error
         ?? error?.message
-        ?? error
-      alert(message);
+        ?? error;
+      console.log(message);
 
       const key = localStorage.getItem('key');
       await fetch(`${environment.endpoint}/error?key=${key}`, {

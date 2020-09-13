@@ -23,10 +23,10 @@
                 </ng-container>
             
                 <ng-container matColumnDef="by">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>
-                    <td class="user" mat-cell *matCellDef="let row">
-                        <member-username [member]="userService.user"></member-username>
-                    </td>
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> By </th>
+                        <td class="user" mat-cell *matCellDef="let row">
+                            <member-username [member]="userService.user"></member-username>
+                        </td>
                 </ng-container>
             
                 <ng-container matColumnDef="old">

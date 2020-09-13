@@ -1,6 +1,6 @@
 table {
     color: var(--font);
-    max-width: 100%;
+    max-width: 100vw;
 }
 
 .user {

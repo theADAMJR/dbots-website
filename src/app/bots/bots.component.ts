@@ -3,6 +3,7 @@ import { BotsService } from '../services/bots.service';
 import { kebabToTitleCase } from '../utils';
 import { Tag } from '../services/tag.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'bots',
@@ -28,32 +29,16 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
   constructor(
     public service: BotsService,
-    private router: Router) {}
+    private location: Location) {}
 
   async ngOnInit() {
     await this.service.init();
 
-    if (this.tag) {
-      var bots = [],
-          saved = [];
-        
-      if (this.tag.name === 'featured')
-        var { bots, saved } = this.service.getFeaturedBots();
-      else if (this.tag.name === 'new')
-        var { bots, saved } = this.service.getNewBots();
-      else
-        var { bots, saved } = this.service.getTaggedBots(this.tag.name);
+    (this.tag)
+      ? this.searchByTag(this.tag)
+      : this.loadBots();
 
-      this.bots = bots;
-      this.savedBots = saved;
-
-      this.setTagLayout(this.tag);
-    } else
-      this.loadBots();
-
-    this.initialized = true;  
-    
-    this.router.navigate(['/']);  
+    this.initialized = true;
   }
 
   ngAfterViewInit() {
@@ -85,6 +70,22 @@ export class BotsComponent implements OnInit, AfterViewInit {
       ? this.setSearchLayout()
       : this.setDefaultLayout();
   }
+  searchByTag(tag: Tag) { 
+    var bots = [],
+        saved = [];
+
+    if (tag.name === 'featured')
+      var { bots, saved } = this.service.getFeaturedBots();
+    else if (tag.name === 'new')
+      var { bots, saved } = this.service.getNewBots();
+    else
+      var { bots, saved } = this.service.getTaggedBots(tag.name);
+
+    this.bots = bots;
+    this.savedBots = saved;
+
+    this.setTagLayout(tag);
+  }
 
   private setDefaultLayout() {
     this.title = 'Top';
@@ -92,6 +93,8 @@ export class BotsComponent implements OnInit, AfterViewInit {
     this.description = 'The highest rated bots this week.'
 
     this.loadBots();
+
+    this.location.go('');
   }
 
   private setSearchLayout() {
@@ -100,7 +103,7 @@ export class BotsComponent implements OnInit, AfterViewInit {
     this.icon = 'fas fa-search';
   }
 
-  setTagLayout(tag: Tag) {
+  private setTagLayout(tag: Tag) {
     this.title = `${kebabToTitleCase(tag.name)} Bots`;
     this.icon = tag.icon;
     this.description = tag.description;

@@ -42,7 +42,7 @@
         </span>
     </span>
     <span id="buttons" *ngIf="!preview"
-        class="float-right">
+        class="float-right my-sm-0 my-3">
         <span *ngIf="userService.isAdmin"
             class="pb-5 mr-4">
             <mat-form-field>
@@ -67,7 +67,7 @@
     </span>
 </div>
 
-<div class="container my-5">
+<div class="container my-5 py-2">
     <mat-chip-list class="float-left">
         <mat-chip *ngFor="let tagName of bot.listing.tags"
             class="cursor-pointer"
