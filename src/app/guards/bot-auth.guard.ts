@@ -18,6 +18,6 @@ export class BotAuthGuard implements CanActivate {
     if (!ownsBot)
       this.router.navigate(['/dashboard']);
 
-    return ownsBot;
+    return true;
   }  
 }
