@@ -32,7 +32,7 @@ export class AddBotComponent implements AfterViewInit {
     prefix: new FormControl('', [ Validators.required ]),
     supportInvite: new FormControl('', [ Validators.pattern(/^[A-Za-z0-9]{7}$/) ]),
     websiteURL: new FormControl('', [ Validators.pattern(/http/) ]),
-    tags: new FormControl([], [ Validators.maxLength(5) ])
+    tags: new FormControl([], [ Validators.maxLength(8) ])
   });
 
   @Input() user = {
@@ -72,8 +72,8 @@ export class AddBotComponent implements AfterViewInit {
     setTimeout(async () => {
       await this.botService.init();
 
-      this.initFormValue();
-      this.hookEvents();      
+      if (!this.editing)
+        this.initDraft();    
 
       this.form.get('botId').setValidators([
         Validators.required, 
@@ -83,7 +83,7 @@ export class AddBotComponent implements AfterViewInit {
     });
   }
 
-  private initFormValue() {
+  private initDraft() {
     for (const key in this.bot.listing)
       this.form.controls[key]
         ?.setValue(this.bot.listing[key]);
@@ -92,10 +92,9 @@ export class AddBotComponent implements AfterViewInit {
     
     if (!this.editing && draft)
       this.form.setValue(JSON.parse(draft));
-  }
 
-  private hookEvents() {
-    this.form.valueChanges.subscribe(() => this.updateDraft());
+    this.form.valueChanges
+      .subscribe(() => this.updateDraft());
   }
 
   private updateDraft() {

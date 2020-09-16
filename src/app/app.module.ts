@@ -53,6 +53,7 @@ import { CookieBannerComponent } from './cookie-banner/cookie-banner.component';
 import { APIComponent } from './dashboard/api/api.component';
 import { VotesWidgetComponent } from './dashboard/widgets/votes-widget/votes-widget.component';
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 @Injectable()
 export class AlertErrorHandler implements ErrorHandler {
@@ -120,7 +121,8 @@ export class AlertErrorHandler implements ErrorHandler {
     CookieBannerComponent,
     APIComponent,
     VotesWidgetComponent,
-    BotWidgetComponent
+    BotWidgetComponent,
+    UserProfileComponent
   ],
   imports: [
     AppRoutingModule,

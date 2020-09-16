@@ -51,7 +51,7 @@ export class BotsService {
     const { saved, users } = await this.http.get(`${this.endpoint}`).toPromise() as any;
 
     this._savedBots = saved
-      .filter(s => users.some(g => g.id === s._id))
+      .filter(sb => users.some(g => g.id === sb._id) || !sb.approvedAt)
       .sort((a, b) => b.votes.length - a.votes.length);    
 
     this._bots = users
@@ -107,13 +107,21 @@ export class BotsService {
     return { bots, saved: savedBots };
   }
   getFeaturedBots() {
-    const savedBots = this.savedBots
-      .filter(b => b.badges?.includes('featured'));
+    const savedBots = this.shuffle(this.savedBots
+      .filter(b => b.badges?.includes('featured')));
     
     const ids = savedBots.map(b => b._id);
     const bots = this.bots.filter(b => ids.includes(b.id));
 
     return { bots, saved: savedBots };
+  }
+  private shuffle(arr: any[]) {
+    const newArr = arr.slice()
+    for (let i = newArr.length - 1; i > 0; i--) {
+        const rand = Math.floor(Math.random() * (i + 1));
+        [newArr[i], newArr[rand]] = [newArr[rand], newArr[i]];
+    }
+    return newArr;
   }
   searchBots(query: string) {
     const queryBots = this.savedBots

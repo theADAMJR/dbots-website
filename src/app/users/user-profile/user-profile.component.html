@@ -1,0 +1,22 @@
+<navbar></navbar>
+
+<div *ngIf="user">
+  <header class="jumbotron mb-0">
+  <div class="container">
+      <img [src]="user.displayAvatarURL">
+      <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
+  </div>
+  </header>
+  <waves [inverted]="true"></waves>
+
+  <div class="container">
+    <bots [ownerUser]="user"></bots>
+  </div>
+</div>
+
+<div *ngIf="!user"
+  class="container">
+  <spinner></spinner>
+</div>
+
+<home-footer></home-footer>

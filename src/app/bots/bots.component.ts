@@ -11,6 +11,9 @@ import { Location } from '@angular/common';
   styleUrls: ['./bots.component.css']
 })
 export class BotsComponent implements OnInit, AfterViewInit {
+  @Input() tag: Tag;
+  @Input() ownerUser: any;
+
   page = 1;
   size = 8;
 
@@ -21,7 +24,6 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
   bots = [];
   savedBots = [];
-  @Input() tag: Tag;
 
   initialized = false;
 
@@ -34,9 +36,12 @@ export class BotsComponent implements OnInit, AfterViewInit {
   async ngOnInit() {
     await this.service.init();
 
-    (this.tag)
-      ? this.searchByTag(this.tag)
-      : this.loadBots();
+    if (this.tag)
+      this.searchByTag(this.tag);
+    else if (this.ownerUser)
+      this.showUserBots(this.ownerUser);
+    else
+      this.loadTopBots();
 
     this.initialized = true;
   }
@@ -49,14 +54,13 @@ export class BotsComponent implements OnInit, AfterViewInit {
     this.page = page;
   }
 
-  private loadBots(page = 1) {
+  private loadTopBots(page = 1) {
     const { bots, saved } = this.service.getTopBots();
     this.bots = bots;
     this.savedBots = saved;
 
     this.resetPaginator(page);
-  }
-  
+  }  
   search(query: string) {
     this.query = query;
 
@@ -86,30 +90,40 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
     this.setTagLayout(tag);
   }
+  showUserBots(user: any) {
+    const { bots, saved } = this.service.getTopBots();
+    this.savedBots = saved.filter(sb => sb.ownerId === user.id);
+    this.bots = bots.filter(b => 
+      this.savedBots.some(sb => sb._id === b.id));
+
+    this.setUserBotsLayout(user);
+  }
 
   private setDefaultLayout() {
     this.title = 'Top';
     this.icon = 'fas fa-robot';
     this.description = 'The highest rated bots this week.'
 
-    this.loadBots();
+    this.loadTopBots();
 
     this.location.go('');
   }
-
   private setSearchLayout() {
     this.title = `Results for '${this.query}'`;
     this.description = `Find bots similar to '${this.query}'.`
     this.icon = 'fas fa-search';
   }
-
   private setTagLayout(tag: Tag) {
-    this.title = `${kebabToTitleCase(tag.name)} Bots`;
+    this.title = `${kebabToTitleCase(tag.name)}'s Bots`;
     this.icon = tag.icon;
     this.description = tag.description;
     this.tag = tag;
     
     this.resetPaginator();
+  }
+  private setUserBotsLayout(user: any) {
+    this.title = `${user.username} Bots`;
+    this.description = `This user has ${this.bots.length} bots on DBots.`;
   }
 
   previousPage() {

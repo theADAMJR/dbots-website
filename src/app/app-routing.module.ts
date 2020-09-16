@@ -18,6 +18,7 @@ import { EditBotComponent } from './dashboard/bots/edit-bot/edit-bot.component';
 import { LogModuleComponent } from './dashboard/log-module/log-module.component';
 import { APIComponent } from './dashboard/api/api.component';
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,6 +34,8 @@ const routes: Routes = [
 
   { path: 'bots/:id', component: BotPageComponent },
   { path: 'bots/:id/vote', component: BotVoteComponent },
+
+  { path: 'users/:id', component: UserProfileComponent },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [DashboardAuthGuard] },
   

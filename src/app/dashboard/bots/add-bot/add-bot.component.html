@@ -68,7 +68,7 @@
                             <mat-option *ngFor="let tag of filteredTags" 
                                 [value]="tag.name">{{ tag.name | kebabToTitleCase }}</mat-option>
                         </mat-select>
-                        <mat-error *ngIf="form.get('tags').invalid">No more than 5 tags.</mat-error>
+                        <mat-error *ngIf="form.get('tags').invalid">No more than 8 tags.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">

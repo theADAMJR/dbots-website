@@ -11,14 +11,19 @@
 ---
 
 ### v0.1.2b
-`Upcoming`
+`16/09/2020`
 
 <!-- ![v0.1.2b](assets/docs/img/v0.1.2b.png) -->
 
 **Add**:
 - `/dashboard` -> recent feedback
+- `/user/:id` -> user profiles
 
 **Change/Fix**:
+- `/bots/add` -> max tags is now `8`, and was previously `5` tags
+- `/bots/add` -> draft no longer updates, while editing listing
+- `/bots/:id` -> `N/A` server count no longer shows
+- `/` -> featured bots now shuffle to give them equal impressions 
 
 **Remove**:
 

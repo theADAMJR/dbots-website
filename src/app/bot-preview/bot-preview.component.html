@@ -4,7 +4,6 @@
         <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
         <div>
             <span *ngIf="bot.stats?.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.stats?.guildCount | number }}</span>
-            <span *ngIf="!bot.stats?.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> N/A</span>
             <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>
             <span class="border border-dark py-1 mx-4"></span>
             <span>
@@ -34,11 +33,13 @@
         </span>
         <span *ngIf="bot.listing.websiteURL"
             class="mx-2">
-            <a [href]="bot.listing.websiteURL" rel="nofollow" mat-button><i class="fas fa-globe"></i> Website</a>
+            <a [href]="bot.listing.websiteURL"
+                rel="nofollow" target="_blank" mat-button><i class="fas fa-globe"></i> Website</a>
         </span>
         <span *ngIf="bot.listing.githubURL"
             class="mx-2">
-            <a [href]="bot.listing.githubURL" rel="nofollow" mat-button><i class="fab fa-github"></i> GitHub</a>
+            <a [href]="bot.listing.githubURL"
+                rel="nofollow" target="_blank" mat-button><i class="fab fa-github"></i> GitHub</a>
         </span>
     </span>
     <span id="buttons" *ngIf="!preview"
@@ -77,7 +78,9 @@
     </mat-chip-list>
     <div class="float-right">
         <span class="text-muted">Created By</span>
-        <member-username [user]="ownerUser"></member-username>
+        <a [routerLink]="'/users/' + ownerUser?.id" class="cursor-pointer">
+            <member-username [user]="ownerUser"></member-username>
+        </a>
     </div>
 </div>
 
