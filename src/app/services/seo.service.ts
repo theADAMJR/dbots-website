@@ -1,23 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
-export interface TypingSEO {
-  titlePrefix?: string;
-  titleSuffix: string;
-  description: string;
-  url: string;
-}
-export interface TypingProperty {
-  property: string;
-  itemprop?: string;
-  content: string;
-}
-export interface TypingName {
-  name: string;
-  itemprop?: string;
-  content: string;
-}
-
 @Injectable()
 export class SEOService {
   base = {
@@ -98,4 +81,21 @@ export class SEOService {
   private keywords(content: string) {
     this.setNameTag({ name: 'keywords', itemprop: 'keywords', content });
   }
+}
+
+export interface TypingSEO {
+  titlePrefix: string;
+  titleSuffix?: string;
+  description: string;
+  url: string;
+}
+export interface TypingProperty {
+  property: string;
+  itemprop?: string;
+  content: string;
+}
+export interface TypingName {
+  name: string;
+  itemprop?: string;
+  content: string;
 }

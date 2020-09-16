@@ -24,7 +24,9 @@
                 <mat-chip>
                     <a href="#music">Music <i class="pl-1 fas fa-music"></i></a>
                 </mat-chip>
-                <mat-chip class="more"><i class="fa fa-plus" aria-hidden="true"></i></mat-chip>
+                <mat-chip class="more">
+                    <a href="#tags"><i class="fa fa-plus" aria-hidden="true"></i></a>
+                </mat-chip>
             </mat-chip-list>
         </div>
     </div>
@@ -57,7 +59,7 @@
         
         <hr class="mb-5">
 
-        <h2 class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
+        <h2 id="tags" class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
         <mat-chip-list>
             <mat-chip *ngFor="let tag of tagService.tags"
                 class="tag cursor-pointer"

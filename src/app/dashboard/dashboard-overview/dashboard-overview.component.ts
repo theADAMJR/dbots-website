@@ -30,16 +30,16 @@ export class DashboardComponent implements OnInit {
 
     this.unreviewedSavedBots = this.botService.unreviewedBots.saved;
     const feedbacks = this.botService.userSavedBots
-     .flatMap(sb => ({ botId: sb._id, feedback: sb.feedback }));
+      .flatMap(sb => ({ botId: sb._id, feedback: sb.feedback }));
 
     this.feedback = feedbacks
       .flatMap(fs => fs.feedback
-        .map((f) => ({
+        .map(f => ({
           bot: this.botService.getBot(fs.botId),
           reviewer: this.userService.getUser(f.by),
           feedback: f
         })))
-      .slice(0, 3); 
+      .slice(0, 3);
     ;   
   }
 }

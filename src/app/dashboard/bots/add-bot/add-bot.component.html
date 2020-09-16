@@ -42,7 +42,7 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Bot Overview</mat-label>
                         <textarea formControlName="overview" type="text" matInput required></textarea>
-                        <mat-error *ngIf="form.get('overview').invalid">Required, and should be between 64 and 128 characters in length.</mat-error>
+                        <mat-error *ngIf="form.get('overview').invalid">Required, and should be between 32 and 128 characters in length.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
@@ -54,7 +54,7 @@
                     <mat-form-field id="editor" appearance="outline">
                         <mat-label>Body</mat-label>
                         <textarea formControlName="body"
-                            placeholder="Markdown is allowed." matInput></textarea>
+                            placeholder="Markdown is allowed." required matInput></textarea>
                         <mat-error *ngIf="form.get('body').invalid">Required, and should be at least 300 characters in length.</mat-error>
                     </mat-form-field>
 
@@ -111,7 +111,7 @@
             </div>
             <div class="col-lg-6 d-none d-sm-block border-left">
                 <a [routerLink]="['/docs/bot-guidelines']" routerLinkActive="active"
-                    class="nav-item nav-link">
+                    class="nav-item nav-link pl-0">
                     <i class="fas fa-book"></i> Guidelines for adding a bot.</a>
                 <div *ngIf="!editing"
                     class="alert alert-warning border-warning">
@@ -152,7 +152,9 @@
     <div [hidden]="!preview">
         <div class="container">
             <button (click)="preview = false"
-                class="float-right" color="danger" mat-button>&times;</button>
+                class="float-right" color="danger" mat-button>
+                <i class="fas fa-times"></i>
+            </button>
 
             <bot-preview *ngIf="bot"
                 [bot]="bot" [preview]="true"></bot-preview>

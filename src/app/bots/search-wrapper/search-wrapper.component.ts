@@ -50,7 +50,7 @@ export class SearchWrapperComponent implements AfterViewInit {
 
     this.seo.setTags(({
       description: `Find bots similar to '${query}'.`,
-      titleSuffix: `${query} Bots`,
+      titlePrefix: `${query} Bots`,
       url: `search/q?=${query}`
     }));
 
@@ -63,7 +63,7 @@ export class SearchWrapperComponent implements AfterViewInit {
 
     this.seo.setTags({
       description: tag.description,
-      titleSuffix: `${kebabToTitleCase(tag.name)} Bots`,
+      titlePrefix: `${kebabToTitleCase(tag.name)} Bots`,
       url: `tags/${tag.name}`
     });
   }

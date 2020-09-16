@@ -30,13 +30,9 @@
     </div>
     <div class="d-flex justify-content-around">
       <button [routerLink]="['/bots/' + user.id]"
-        class="bg-secondary rounded-lg" mat-button>
-        <i class="fa fa-question" aria-hidden="true"></i>
-      </button>
-      <a [href]="bot.listing.invite">
-        <button class="rounded-lg" color="success" mat-button>
-          <i class="fa fa-plus" aria-hidden="true"></i>
-      </button>
+        class="bg-secondary rounded-lg" mat-button>VIEW</button>
+      <a [href]="bot.listing.invite" target="_blank">
+        <button class="rounded-lg" color="success" mat-button>ADD</button>
       </a>
     </div>
   </div>

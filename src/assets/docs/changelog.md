@@ -22,6 +22,7 @@
 **Change/Fix**:
 - `/bots/add` -> max tags is now `8`, and was previously `5` tags
 - `/bots/add` -> draft no longer updates, while editing listing
+- `/bots/add` -> `listing.overview` minimum length is now `32` characters
 - `/bots/:id` -> `N/A` server count no longer shows
 - `/` -> featured bots now shuffle to give them equal impressions 
 

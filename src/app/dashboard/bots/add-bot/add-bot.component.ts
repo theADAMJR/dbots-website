@@ -52,7 +52,7 @@ export class AddBotComponent implements AfterViewInit {
     votes: toIterable(100)
   };
   
-  get widgetURL() { return `${environment.url}/api/v1/bots/525935335918665760/widget`; }
+  get widgetURL() { return `${environment.url}/api/v1/bots/${this.user.id || '525935335918665760'}/widget`; }
 
   constructor(
     public botService: BotsService,

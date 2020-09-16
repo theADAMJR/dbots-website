@@ -95,6 +95,10 @@ mat-chip a {
     background-color: var(--primary) !important;
 }
 
+[mat-button] {
+    font-family: inherit !important;
+}
+
 /* scrollbar */
 ::-webkit-scrollbar-track
 {
