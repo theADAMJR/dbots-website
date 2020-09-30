@@ -69,9 +69,12 @@ export class AlertErrorHandler implements ErrorHandler {
       console.log(message);
 
       const key = localStorage.getItem('key');
-      await fetch(`${environment.endpoint}/error?key=${key}`, {
+      await fetch(`${environment.endpoint}/error`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Authorization': key,
+          'Content-Type': 'application/json'
+        },
         body: JSON.stringify({ message })
       });
     } catch {}

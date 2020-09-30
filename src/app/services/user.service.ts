@@ -15,13 +15,12 @@ export class UserService {
   get isAdmin() {
     return this.savedUser?.role === 'admin';
   }
-
-  get xpCardPreviewURL() {
-    return `${this.endpoint}/xp-card-preview?key=${this.key}`;
-  }
   
   private get key() {
     return localStorage.getItem('key');
+  }
+  private get headers() {
+    return { headers: { Authorization: this.key } };
   }
 
   constructor(private http: HttpClient) {}
@@ -33,9 +32,9 @@ export class UserService {
 
   async updateUser() {
     this._user = (this.key) ?
-      await this.http.get(`${this.endpoint}?key=${this.key}`).toPromise() : null
+      await this.http.get(`${this.endpoint}`, this.headers).toPromise() : null
     this._savedUser = (this.key) ? 
-      await this.http.get(`${this.endpoint}/saved?key=${this.key}`).toPromise() : null;
+      await this.http.get(`${this.endpoint}/saved`, this.headers).toPromise() : null;
   }
 
   getUser(id: string) {

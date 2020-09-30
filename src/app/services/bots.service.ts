@@ -31,12 +31,17 @@ export class BotsService {
 
     return { bots, saved: savedBots };
   }
+  
+  private get key() {
+    return localStorage.getItem('key');
+  }
+  private get headers() {
+    return { headers: { Authorization: this.key } };
+  }
 
   constructor(
     private http: HttpClient,
-    private userService: UserService) {}
-  
-  private get key() { return localStorage.getItem('key'); }
+    private userService: UserService) {}  
 
   async init() {
     try {
@@ -66,7 +71,7 @@ export class BotsService {
       .filter(b => this.userSavedBots.some(sb => sb._id === b.id));
   }
   getSavedLog(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/log?key=${this.key}`).toPromise() as Promise<any>;
+    return this.http.get(`${this.endpoint}/${id}/log`, this.headers).toPromise() as Promise<any>;
   }
 
   getBot(id: string) {
@@ -77,7 +82,7 @@ export class BotsService {
   }
   
   vote(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/vote?key=${this.key}`).toPromise() as Promise<any>;
+    return this.http.get(`${this.endpoint}/${id}/vote`, this.headers).toPromise() as Promise<any>;
   }
 
   getTopBots() {
@@ -159,34 +164,32 @@ export class BotsService {
   }
 
   createBot(value: any) {
-    return this.http.post(`${this.endpoint}?key=${this.key}`, value).toPromise() as Promise<any>;
+    return this.http.post(`${this.endpoint}`, value, this.headers).toPromise() as Promise<any>;
   }
   updateBot(id: string, value: any) {
-    return this.http.put(`${this.endpoint}/${id}?key=${this.key}`, value).toPromise() as Promise<any>;
+    return this.http.put(`${this.endpoint}/${id}`, value, this.headers).toPromise() as Promise<any>;
   }
   async deleteBot(id: string) {
-    await this.http.delete(`${this.endpoint}/${id}?key=${this.key}`).toPromise() as Promise<any>;
+    await this.http.delete(`${this.endpoint}/${id}`, this.headers).toPromise() as Promise<any>;
     await this.refreshBots();
   }
 
   async approveBot(id: string, reason: string) {
-    await this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
-      approved: true,
-      reason
-    } as Judgement).toPromise() as Promise<any>;
+    await this.http.post(`${this.endpoint}/${id}/review`,
+      { approved: true, reason } as Judgement, this.headers).toPromise() as Promise<any>;
     
     await this.refreshBots();
   }
   async declineBot(id: string, reason: string) {
-    await this.http.post(`${this.endpoint}/${id}/review?key=${this.key}`, {
+    await this.http.post(`${this.endpoint}/${id}/review`, {
       approved: false,
       reason
-    } as Judgement).toPromise() as Promise<any>;
+    } as Judgement, this.headers).toPromise() as Promise<any>;
     
     await this.refreshBots();
   }
   addBadge(id: string, name: string) {
-    return this.http.get(`${this.endpoint}/${id}/add-badge/${name}?key=${this.key}`).toPromise() as Promise<any>;
+    return this.http.get(`${this.endpoint}/${id}/add-badge/${name}`, this.headers).toPromise() as Promise<any>;
   }
 
   getStats(id: string) {

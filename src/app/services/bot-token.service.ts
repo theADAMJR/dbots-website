@@ -10,13 +10,18 @@ export class BotTokenService {
 
   constructor(private http: HttpClient) {}
   
-  private get key() { return localStorage.getItem('key'); }
+  private get key() {
+    return localStorage.getItem('key');
+  }
+  private get headers() {
+    return { headers: { Authorization: this.key } };
+  }
 
   getToken(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/token?key=${this.key}`).toPromise() as Promise<any>;
+    return this.http.get(`${this.endpoint}/${id}/token`, this.headers).toPromise() as Promise<any>;
   }
 
   regenToken(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/token/regen?key=${this.key}`).toPromise() as Promise<any>;
+    return this.http.get(`${this.endpoint}/${id}/token/regen`, this.headers).toPromise() as Promise<any>;
   }
 }
