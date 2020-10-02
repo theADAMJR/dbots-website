@@ -12,7 +12,7 @@ import { TagService } from '../services/tag.service';
 })
 export class BotPreviewComponent implements OnInit {
   @Input() preview = false;
-  ownerUser: any;
+  @Input() ownerUser: any;
 
   @Input() bot = {
     approvedAt: null,
@@ -56,7 +56,7 @@ export class BotPreviewComponent implements OnInit {
   async ngOnInit() {
     await this.service.init();
 
-    this.ownerUser = await this.userService.getUser(this.bot.ownerId);
+    this.ownerUser = this.ownerUser ?? await this.userService.getUser(this.bot.ownerId);
   }
 
   async delete() {
@@ -65,10 +65,5 @@ export class BotPreviewComponent implements OnInit {
       await this.service.deleteBot(this.user.id);
 
     this.router.navigate(['/dashboard']);
-  }
-
-  async addBadge(name: string) {
-    await this.service.addBadge(this.user.id, name);
-    await this.service.refreshBots();
   }
 }

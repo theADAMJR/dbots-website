@@ -44,17 +44,6 @@
     </span>
     <span id="buttons" *ngIf="!preview"
         class="float-right my-sm-0 my-3">
-        <span *ngIf="userService.isAdmin"
-            class="pb-5 mr-4">
-            <mat-form-field>
-                <mat-label>Add Badge</mat-label>
-                <input type="text" placeholder="Name" #badgeInput matInput>
-            </mat-form-field>
-            <button (click)="addBadge(badgeInput.value)"
-                mat-button>
-                <i class="fa fa-plus-circle" aria-hidden="true"></i>
-            </button>
-        </span>
         <button *ngIf="canManage || userService.isAdmin"
             (click)="delete()"
             id="delete" class="mr-2" color="danger" mat-button><i class="fas fa-trash"></i> Delete</button>

@@ -5,6 +5,10 @@ header {
   padding-top: 125px;
 }
 
+h1 {
+  text-overflow: clip;
+}
+
 img {
   float: left;
 
@@ -13,13 +17,8 @@ img {
   width: 96px;
 }
 
-#markdown {
-  word-wrap: break-word;
-  padding: 25px;
-  
-
-  margin-top: 100px;
-  min-height: 275px;
+#bots {
+  min-height: 480px;
 }
 
 a {

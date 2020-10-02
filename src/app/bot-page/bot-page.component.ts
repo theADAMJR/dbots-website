@@ -37,19 +37,4 @@ export class BotPageComponent implements OnInit {
       url: `bots/${this.id}`
     });
   }
-
-  async approve(reason: string) {   
-    if (reason.length < 50) return;
-
-    await this.service.approveBot(this.id, reason);
-
-    this.router.navigate(['/dashboard']);
-  }
-  async decline(reason: string) {
-    if (reason.length < 50) return;
-
-    await this.service.declineBot(this.id, reason);
-
-    this.router.navigate(['/dashboard']);
-  }
 }

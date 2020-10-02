@@ -6,7 +6,7 @@
 
 ---
 
-Reviewers ensure bots follow the [Bot Guidelines](/bot-guidelines), which are high standards to ensure the quality of every user experience.
+Reviewers ensure bots follow the [Bot Guidelines](/guidelines), which are high standards to ensure the quality of every user experience.
 
 ### Reviewers Should
 - Identify strengths and weaknesses in bots, and let bot developers know

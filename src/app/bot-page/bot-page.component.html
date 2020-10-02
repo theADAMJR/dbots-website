@@ -8,31 +8,6 @@
   <bot-preview *ngIf="bot.listing"
     [bot]="bot"
     [user]="user"></bot-preview>
-
-    <div *ngIf="!bot.approvedAt
-      && (userService.savedUser?.role === 'admin'
-      || userService.savedUser?.role === 'reviewer')"
-      id="review"
-      class="mt-5">
-      <hr>
-      <h3 class="text-center">Review</h3>
-      <div class="d-flex justify-content-center">
-        <mat-form-field appearance="outline">
-          <mat-label>Message</mat-label>
-          <textarea minlength="50" type="text" placeholder="(50 characters min)" #message matInput></textarea>
-        </mat-form-field>
-      </div>
-      <div class="d-flex justify-content-center">
-        <button id="approve"
-          (click)="approve(message.value)"
-          [disabled]="message.value.length < 50"
-          color="success" mat-button>Approve</button>  
-        <button id="decline"
-          (click)="decline(message.value)"
-          [disabled]="message.value.length < 50"
-          class="ml-2" color="danger" mat-button>Decline</button>  
-      </div>
-    </div>
 </div>
 
 <div *ngIf="!bot || !user"

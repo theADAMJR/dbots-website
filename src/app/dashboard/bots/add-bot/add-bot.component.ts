@@ -1,26 +1,28 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, AfterViewInit, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { toIterable } from 'src/app/utils';
 import { BotsService } from 'src/app/services/bots.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { SEOService } from 'src/app/services/seo.service';
 import { TagService } from 'src/app/services/tag.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'add-bot',
   templateUrl: './add-bot.component.html',
   styleUrls: ['./add-bot.component.css']
 })
-export class AddBotComponent implements AfterViewInit {
+export class AddBotComponent implements OnInit, AfterViewInit {
+  @ViewChild('confirmInput') confirmInput: MatCheckbox;
+  @Input() editing = false;
+
   preview = false;
 
   toIterable = toIterable;
   filteredTags = this.tagService.tags;
-
-  @Input() editing = false;
 
   form = new FormGroup({
     body: new FormControl('', [ Validators.required, Validators.minLength(300) ]),
@@ -44,22 +46,21 @@ export class AddBotComponent implements AfterViewInit {
   }
 
   @Input() bot = {
-    listing: {
-      body: `Add something \`meaningful\` and **useful** here, to help your bot users.`,
-      overview: 'Add bot summary here.'
-    },
+    listing: this.form.value,
     guildCount: 100,
     votes: toIterable(100)
   };
-  
-  get widgetURL() { return `${environment.url}/api/v1/bots/${this.user.id || '525935335918665760'}/widget`; }
+
+  get canSubmit() { return this.form.valid && this.confirmInput.checked; }  
+  get widgetURL() { return `${environment.url}/api/v1/bots/${this.user?.id || '525935335918665760'}/widget`; }
 
   constructor(
+    private route: ActivatedRoute,
     public botService: BotsService,
     private router: Router,
     seo: SEOService,
     public tagService: TagService,
-    private userService: UserService) {
+    public userService: UserService) {
       seo.setTags({
         description: 'Add a bot to the bot list with this form.',
         titlePrefix: 'Add Bot',
@@ -68,12 +69,28 @@ export class AddBotComponent implements AfterViewInit {
       });
     }
 
+  async ngOnInit() {
+    await this.userService.init();
+    await this.botService.init();
+    
+    const navbar = document.querySelector('.navbar') as HTMLElement;
+    const previewButton = document.querySelector('#previewButton') as HTMLButtonElement;
+    const stopPreviewButton = document.querySelector('#stopPreviewButton') as HTMLButtonElement;
+
+    previewButton.onclick = () => navbar.style.backgroundColor = 'var(--background-secondary)';
+    stopPreviewButton.onclick = () => navbar.style.backgroundColor = 'transparent';
+  }
+
   ngAfterViewInit() {
     setTimeout(async () => {
-      await this.botService.init();
-
       if (!this.editing)
-        this.initDraft();    
+        this.initDraft();
+      else {
+        const botId = this.route.snapshot.paramMap.get('id');
+        const savedBot = this.botService.getSavedBot(botId);
+
+        this.form.setValue(savedBot.listing);
+      }
 
       this.form.get('botId').setValidators([
         Validators.required, 
@@ -90,7 +107,7 @@ export class AddBotComponent implements AfterViewInit {
 
     const draft = localStorage.getItem('botListingDraft');
     
-    if (!this.editing && draft)
+    if (draft)
       this.form.setValue(JSON.parse(draft));
 
     this.form.valueChanges
@@ -109,17 +126,17 @@ export class AddBotComponent implements AfterViewInit {
         .includes(filter.toLowerCase()));
   }
 
-  submit() {
-    if (this.form.invalid)
+  async submit() {    
+    if (!this.canSubmit)
       return this.form.setErrors({ invalid: true });
     
-    this.botService.createBot(this.form.value);
+    await this.botService.createBot(this.form.value);
   }
-  update() {
+  async update() {
     if (this.form.invalid)
       return this.form.setErrors({ invalid: true });
     
-    this.botService.updateBot(this.form.value.botId, this.form.value);
+    await this.botService.updateBot(this.form.value.botId, this.form.value);
   }
 
   navigateToBotListing() {
@@ -143,18 +160,4 @@ export class AddBotComponent implements AfterViewInit {
     if (index >= 0)
       array.splice(index, 1);
   }
-}
-
-export class Listing {
-  body: string;
-  botId: string;
-  invite: string;
-  clientId: string;
-  githubURL: string;
-  overview: string;
-  ownerIds: string[];
-  prefix: string;
-  supportInvite: string; 
-  tags: string;
-  websiteURL: string;
 }

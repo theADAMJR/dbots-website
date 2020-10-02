@@ -1,29 +1,16 @@
 <dashboard-sidebar>
     <div class="container">
-        <h1 class="display-4 p-3">Hey, {{ userService.user.username }}</h1>
-        <hr>
-        <h2>Welcome to the DBots dashboard!</h2>
-        <p class="text-muted">Here you can manage bot listings, view bot logs, and more.</p>
-
-        <div *ngIf="userService.savedUser.role === 'admin'
-            || userService.savedUser.role === 'reviewer'">
-            <h2>Unreviewed Bots</h2>
-            <p *ngIf="unreviewedSavedBots.length <= 0">Wow! All bots are reviewed. 👍</p>
-            <ul>
-                <li *ngFor="let savedBot of unreviewedSavedBots">
-                    <a *ngIf="!botService.getBot(savedBot._id)"
-                        [href]="'https://discord.com/oauth2/authorize?client_id=' + savedBot._id + '&guild_id=236608364333891585&scope=bot'"
-                        class="text-warning">Invite {{ savedBot._id }}</a>
-                    <a *ngIf="botService.getBot(savedBot._id)"
-                        [routerLink]="['/bots/' + savedBot._id]">View {{ savedBot._id }}</a>
-                </li>
-            </ul>
+        <div class="mt-5">
+            <h1 class="display-4">Hey, {{ userService.user.username }}</h1>
+            <h2 class="lead">Welcome to the DBots dashboard!</h2>
+            <p class="text-muted">Here you can manage bot listings, view bot logs, and more.</p>
         </div>
+        <hr>
 
         <div *ngIf="feedback"
             id="feedback">
             <h2>Recent Feedback</h2>
-            <div>
+            <div *ngIf="feedback.length > 0">
                 <div *ngFor="let msg of feedback"
                     class="media mb-2 p-2 rounded"
                     [class]="msg.feedback.approved ? 'bg-success' : 'bg-danger'">
@@ -39,6 +26,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div *ngIf="feedback.length <= 0">
+                <p>No feedback received.</p>
             </div>
         </div>
     </div>

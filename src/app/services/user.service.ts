@@ -31,10 +31,11 @@ export class UserService {
   }
 
   async updateUser() {
-    this._user = (this.key) ?
-      await this.http.get(`${this.endpoint}`, this.headers).toPromise() : null
-    this._savedUser = (this.key) ? 
-      await this.http.get(`${this.endpoint}/saved`, this.headers).toPromise() : null;
+    if (!this.key) return;
+
+    const { user, saved } = await this.http.get(`${this.endpoint}`, this.headers).toPromise() as any;
+    this._user = user;
+    this._savedUser = saved;
   }
 
   getUser(id: string) {

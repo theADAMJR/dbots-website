@@ -10,10 +10,30 @@
 
 ---
 
+## v0.2.0b
+
+![v0.2.0b](assets/docs/img/v0.2.0b.png)
+
+**Add**:
+- bot reviewal commands, instead of using dashboard to review bots
+- `/bots/new` -> user owner must be in the DBots server to create bot listings
+- `/bots/new` -> bots are now kicked if they are denied
+
+**Change/Fix**:
+- `*` -> key is nearly always shown in headers, instead of explicitly in URL
+- `/search` -> searching now works correctly
+- `/api/user` -> combined with `/api/user/saved` for faster loading
+- `/bots/new` -> more helpful form validation
+
+**Remove**:
+- `/` -> ghost bot cards no longer from unapproved bots
+
+---
+
 ### v0.1.2b
 `16/09/2020`
 
-<!-- ![v0.1.2b](assets/docs/img/v0.1.2b.png) -->
+![v0.1.2b](assets/docs/img/v0.1.2b.png)
 
 **Add**:
 - `/dashboard` -> recent feedback

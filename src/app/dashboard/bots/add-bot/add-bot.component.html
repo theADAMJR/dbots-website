@@ -3,16 +3,15 @@
     [loaded]="bot && user"
     [user]="user">
     <div [hidden]="preview" class="container">
-        <div class="container">
-                <div class="d-flex justify-content-between">
-                    <h1 [textContent]="editing ? 'Edit ' + user?.username : 'Add Bot'"
-                        class="display-4">Add Bot</h1>
-                    <button id="previewButton" (click)="preview = true"
-                        class="rounded-lg mt-3" type="button" color="success" mat-button>
-                        <i class="fas fa-binoculars"></i> Preview
-                    </button>
-                </div>
-            <hr>
+        <div class="mb-4">
+            <div class="d-flex justify-content-between jumbotron">
+                <h1 [textContent]="editing ? 'Edit ' + user?.username : 'Add Bot'"
+                    class="display-4">Add Bot</h1>
+                <button id="previewButton" (click)="preview = true"
+                    class="rounded-lg mt-3" type="button" color="success" mat-button>
+                    <i class="fas fa-binoculars"></i> Preview
+                </button>
+            </div>
         </div>
         <div class="row">
             <div class="col-lg-6">
@@ -20,7 +19,8 @@
                     <mat-form-field *ngIf="!editing"
                         appearance="outline">
                         <mat-label>Bot ID</mat-label>
-                        <input formControlName="botId" type="text" matInput required>
+                        <input formControlName="botId" type="text" matInput>
+                        <mat-hint>Required</mat-hint>
                         <mat-error *ngIf="form.get('botId').invalid">Required, and should be a valid
                             <a href="https://discord.com/developers/docs/reference#snowflakes" rel="nofollow" target="_blank">Snowflake ID.</a>
                             It also cannot be the ID of a non-bot user.
@@ -30,6 +30,7 @@
                     <mat-form-field appearance="outline">
                         <mat-label>Bot Invite URL</mat-label>
                         <input formControlName="invite" type="text" matInput required>
+                        <mat-hint>Required</mat-hint>
                         <mat-error *ngIf="form.get('invite').invalid">Required, and should be a valid discord link.</mat-error>
                     </mat-form-field>
 
@@ -41,20 +42,23 @@
                     
                     <mat-form-field appearance="outline">
                         <mat-label>Bot Overview</mat-label>
-                        <textarea formControlName="overview" type="text" matInput required></textarea>
+                        <textarea formControlName="overview" type="text" matInput required #overviewInput></textarea>
+                        <mat-hint align="end">{{ overviewInput.value.length }}/128</mat-hint>
                         <mat-error *ngIf="form.get('overview').invalid">Required, and should be between 32 and 128 characters in length.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
                         <mat-label>Command Prefix</mat-label>
                         <input formControlName="prefix" type="text" matInput required>
-                        <mat-error *ngIf="form.get('prefix').invalid">Required.</mat-error>
+                        <mat-hint>Required</mat-hint>
+                        <mat-error *ngIf="form.get('prefix').invalid">Required</mat-error>
                     </mat-form-field>
 
                     <mat-form-field id="editor" appearance="outline">
                         <mat-label>Body</mat-label>
                         <textarea formControlName="body"
-                            placeholder="Markdown is allowed." required matInput></textarea>
+                            placeholder="Markdown is allowed." matInput required #bodyInput></textarea>
+                        <mat-hint align="end">{{ bodyInput.value.length }}</mat-hint>
                         <mat-error *ngIf="form.get('body').invalid">Required, and should be at least 300 characters in length.</mat-error>
                     </mat-form-field>
 
@@ -68,6 +72,7 @@
                             <mat-option *ngFor="let tag of filteredTags" 
                                 [value]="tag.name">{{ tag.name | kebabToTitleCase }}</mat-option>
                         </mat-select>
+                        <mat-hint>Select up to 8 tags</mat-hint>
                         <mat-error *ngIf="form.get('tags').invalid">No more than 8 tags.</mat-error>
                     </mat-form-field>
 
@@ -90,6 +95,14 @@
                         <mat-error *ngIf="form.get('websiteURL').invalid">Should be a valid URL.</mat-error>
                     </mat-form-field>
 
+                    <div class="text-center mb-3">
+                        <mat-checkbox id="confirm" class="mr-1" #confirmInput></mat-checkbox>
+                        <label for="confirm" class="m-0">I have read the
+                            <a [routerLink]="['/docs/guidelines']" routerLinkActive="active"
+                                class="d-inline"> bot guidelines</a>.
+                        </label>
+                    </div>
+
                     <div *ngIf="form.hasError('invalid')"
                         class="alert alert-error border border-danger">
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Some form values are invalid.
@@ -98,25 +111,22 @@
                     <div class="d-flex justify-content-center">
                         <rocket-button *ngIf="!editing"
                             id="submit"
-                            [precondition]="form.valid"
+                            [precondition]="canSubmit"
                             (click)="submit()"
                             (animated)="navigateToBotListing()">Add</rocket-button>
                         <rocket-button *ngIf="editing"
                             id="update"
-                            [precondition]="form.valid"
+                            [precondition]="canSubmit"
                             (click)="update()"
                             (animated)="navigateToBotListing()">Update</rocket-button>
                     </div>
                 </form>
             </div>
             <div class="col-lg-6 d-none d-sm-block border-left">
-                <a [routerLink]="['/docs/bot-guidelines']" routerLinkActive="active"
-                    class="nav-item nav-link pl-0">
-                    <i class="fas fa-book"></i> Guidelines for adding a bot.</a>
                 <div *ngIf="!editing"
                     class="alert alert-warning border-warning">
-                    You must join and stay in the <a class="text-primary" href="/server">DBots Discord server</a>, for your bot to be accepted.
-                    You may only edit your bot once it has been invited by an admin.
+                    Make sure you are in the <a class="text-primary" href="/server">DBots Discord server</a>, for your bot to be added.
+                    This is required for the bot to identify your Discord user.
                 </div>
 
                 <h3>Bot Card</h3>
@@ -126,38 +136,19 @@
                         [user]="user"
                         [bot]="bot"></bot-card>
                 </div>
-
-                <hr>
-
-                <h3>Widgets</h3>
-                <p>Cool widgets that you can use to show off your bot, and get more votes.</p>
-                <a class="text-secondary" routerLink="/docs/widget">
-                    <i class="text-info fas fa-code"></i>
-                </a>
-                <p class="text-center">(Example)</p>
-                <div class="d-flex justify-content-center">
-                    <div class="text-muted uppercase">
-                        <p class="mb-0">Large</p>
-                        <img [src]="widgetURL + '?size=large'" alt="Bot Widget Example">
-                        <p class="mt-3 mb-0">Medium</p>
-                        <img [src]="widgetURL + '?size=medium'" alt="Bot Widget Example">
-                        <p class="mt-3 mb-0">Small</p>
-                        <img [src]="widgetURL + '?size=small'" alt="Bot Widget Example">
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
     <div [hidden]="!preview">
-        <div class="container">
-            <button (click)="preview = false"
-                class="float-right" color="danger" mat-button>
+        <div class="d-flex justify-content-center">
+            <button id="stopPreviewButton" (click)="preview = false"
+                color="danger" mat-button>
                 <i class="fas fa-times"></i>
             </button>
-
-            <bot-preview *ngIf="bot"
-                [bot]="bot" [preview]="true"></bot-preview>
         </div>
+
+        <bot-preview *ngIf="bot"
+            [bot]="bot" [preview]="true" [ownerUser]="userService.user"></bot-preview>
     </div>
 </bot-sidebar>

@@ -22,14 +22,14 @@ export class BotsService {
   private _userSavedBots: any[];
   get userSavedBots() { return this._userSavedBots; }
 
+  private _unreviewedBots: any[];
   get unreviewedBots() {
-    const savedBots = this.savedBots.filter(b => !b.approvedAt);
-    const ids = savedBots.map(b => b._id);
-    const bots = [];
-    for (const id of ids)
-      bots.push(this.bots.find(b => b.id === id));
-
-    return { bots, saved: savedBots };
+    return {
+      bots: this._unreviewedBots,
+      saved: this.savedBots
+        .filter(sb => this._unreviewedBots
+          .some(b => b.id === sb._id))
+    };
   }
   
   private get key() {
@@ -45,7 +45,7 @@ export class BotsService {
 
   async init() {
     try {
-      if (!this.bots || !this.savedBots)
+      if (!this.bots || !this.savedBots || !this.unreviewedBots)
         await this.refreshBots();
       if (!this.userBots || !this.userSavedBots)
         await this.updateUserBots();
@@ -56,11 +56,14 @@ export class BotsService {
     const { saved, users } = await this.http.get(`${this.endpoint}`).toPromise() as any;
 
     this._savedBots = saved
-      .filter(sb => users.some(g => g.id === sb._id) || !sb.approvedAt)
+      .filter(sb => users.some(g => g.id === sb._id) && sb.approvedAt)
       .sort((a, b) => b.votes.length - a.votes.length);    
 
     this._bots = users
       .filter(b => this.savedBots.some(sb => sb._id === b.id));
+
+    this._unreviewedBots = users
+      .filter(b => saved.find(s => s._id === b.id));
   }
   async updateUserBots() {
     await this.userService.init();
@@ -135,7 +138,7 @@ export class BotsService {
         return {
           id: bot?.id,
           username: bot?.username,
-          ownerId: bot.ownerId,
+          ownerId: bot?.ownerId,
           listing: saved?.listing ?? {}
         };
       });
@@ -174,30 +177,7 @@ export class BotsService {
     await this.refreshBots();
   }
 
-  async approveBot(id: string, reason: string) {
-    await this.http.post(`${this.endpoint}/${id}/review`,
-      { approved: true, reason } as Judgement, this.headers).toPromise() as Promise<any>;
-    
-    await this.refreshBots();
-  }
-  async declineBot(id: string, reason: string) {
-    await this.http.post(`${this.endpoint}/${id}/review`, {
-      approved: false,
-      reason
-    } as Judgement, this.headers).toPromise() as Promise<any>;
-    
-    await this.refreshBots();
-  }
-  addBadge(id: string, name: string) {
-    return this.http.get(`${this.endpoint}/${id}/add-badge/${name}`, this.headers).toPromise() as Promise<any>;
-  }
-
   getStats(id: string) {
     return this.http.get(`${this.endpoint}/${id}/stats`).toPromise() as Promise<any>;
   }
-}
-
-export interface Judgement {
-  approved: boolean;
-  reason: string;
 }

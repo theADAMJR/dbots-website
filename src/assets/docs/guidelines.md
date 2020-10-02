@@ -1,8 +1,8 @@
-<title>Bot Guidelines</title>
+<title>Guidelines</title>
 <description>These guidelines apply to all listed bots, and may change at any time, without notice.</description>
-<url>bot-guidelines</url>
+<url>guidelines</url>
 
-# Bot Guidelines
+# Guidelines
 These guidelines apply to all listed bots, and may change at any time, without notice.
 
 ---
