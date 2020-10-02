@@ -14,7 +14,7 @@ export class BotAuthGuard implements CanActivate {
     const id = next.paramMap.get('id');
     const ownsBot = this.service.userBots.some(b => b.id === id);
     if (!ownsBot)
-      this.router.navigate(['/dashboard']);
+      return this.router.navigate(['/dashboard']);
 
     return true;
   }  

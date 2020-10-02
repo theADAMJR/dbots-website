@@ -15,6 +15,7 @@
 ![v0.2.0b](assets/docs/img/v0.2.0b.png)
 
 **Add**:
+- lots of reviewer and admin commands
 - bot reviewal commands, instead of using dashboard to review bots
 - `/bots/new` -> user owner must be in the DBots server to create bot listings
 - `/bots/new` -> bots are now kicked if they are denied

@@ -23,12 +23,11 @@ export class BotsService {
   get userSavedBots() { return this._userSavedBots; }
 
   private _unreviewedBots: any[];
-  get unreviewedBots() {
+  private _unreviewedSavedBots: any[];
+  get unreviewed() {
     return {
       bots: this._unreviewedBots,
-      saved: this.savedBots
-        .filter(sb => this._unreviewedBots
-          .some(b => b.id === sb._id))
+      saved: this._unreviewedSavedBots
     };
   }
   
@@ -45,10 +44,10 @@ export class BotsService {
 
   async init() {
     try {
-      if (!this.bots || !this.savedBots || !this.unreviewedBots)
+      if (!this.bots || !this.savedBots || !this.unreviewed)
         await this.refreshBots();
       if (!this.userBots || !this.userSavedBots)
-        await this.updateUserBots();
+        await this.refreshUserBots();
     } catch {}
   }
 
@@ -62,26 +61,34 @@ export class BotsService {
     this._bots = users
       .filter(b => this.savedBots.some(sb => sb._id === b.id));
 
+    this._unreviewedSavedBots = saved.filter(sb => !sb.approvedAt);
     this._unreviewedBots = users
-      .filter(b => saved.find(s => s._id === b.id));
+      .filter(b => this.unreviewed.saved.some(sb => sb._id === b.id));
   }
-  async updateUserBots() {
+  async refreshUserBots() {
     await this.userService.init();
 
     this._userSavedBots = this.savedBots
+      .concat(this.unreviewed.saved)
       .filter(sb => sb.ownerId === this.userService.user.id);
     this._userBots = this.bots
+      .concat(this.unreviewed.bots)
       .filter(b => this.userSavedBots.some(sb => sb._id === b.id));
+      
   }
   getSavedLog(id: string) {
     return this.http.get(`${this.endpoint}/${id}/log`, this.headers).toPromise() as Promise<any>;
   }
 
   getBot(id: string) {
-    return this.bots.find(b => b.id === id);
+    return this.bots
+      .concat(this.unreviewed.bots)
+      .find(b => b.id === id);
   }
   getSavedBot(id: string) {
-    return this.savedBots.find(b => b._id === id);
+    return [...this.savedBots]
+      .concat(this.unreviewed.saved)
+      .find(b => b._id === id);
   }
   
   vote(id: string) {

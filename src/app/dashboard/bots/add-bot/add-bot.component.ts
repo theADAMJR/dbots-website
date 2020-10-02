@@ -73,12 +73,18 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     await this.userService.init();
     await this.botService.init();
     
+    this.initNavbarToggle();
+  }
+
+  private initNavbarToggle() {
     const navbar = document.querySelector('.navbar') as HTMLElement;
     const previewButton = document.querySelector('#previewButton') as HTMLButtonElement;
     const stopPreviewButton = document.querySelector('#stopPreviewButton') as HTMLButtonElement;
 
-    previewButton.onclick = () => navbar.style.backgroundColor = 'var(--background-secondary)';
-    stopPreviewButton.onclick = () => navbar.style.backgroundColor = 'transparent';
+    if (previewButton)
+      previewButton.onclick = () => navbar.style.backgroundColor = 'var(--background-secondary)';
+    if (stopPreviewButton)
+      stopPreviewButton.onclick = () => navbar.style.backgroundColor = 'transparent';
   }
 
   ngAfterViewInit() {

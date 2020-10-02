@@ -114,7 +114,7 @@ export class BotsComponent implements OnInit, AfterViewInit {
     this.icon = 'fas fa-search';
   }
   private setTagLayout(tag: Tag) {
-    this.title = `${kebabToTitleCase(tag.name)}'s Bots`;
+    this.title = `${kebabToTitleCase(tag.name)} Bots`;
     this.icon = tag.icon;
     this.description = tag.description;
     this.tag = tag;
