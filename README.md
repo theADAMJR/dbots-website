@@ -11,4 +11,4 @@ Make sure you have redirects set to the /auth link you will be using.
 This will be used in the final step of the OAuth2 login.
 
 ### Redirect URIs
-- `https://localhost:3000/api/auth` (locally)
+- `http://localhost:3000/api/auth` (locally)
