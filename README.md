@@ -1,4 +1,7 @@
 # DBots Dashboard
+
+![Website](https://socialify.git.ci/DBots-co/Website/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Favatars0.githubusercontent.com%2Fu%2F70011081%3Fs%3D200%26v%3D4&owner=1&pulls=1&stargazers=1&theme=Dark)
+
 DBots.co; made with TypeScript + Angular 9 -> https://dbots.co
 
 ![Guild Dashboard](https://i.ibb.co/2Sjght0/dbots.png)
