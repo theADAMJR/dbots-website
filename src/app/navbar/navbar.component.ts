@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class NavbarComponent {
   get discordInvite() { return environment.discordInvite; }
-
+  get githubURL() { return environment.githubURL; }
   get user() { return this.userService.user; }
 
   constructor(private userService: UserService) {}

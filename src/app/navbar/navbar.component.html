@@ -11,6 +11,10 @@
             matTooltip="Join Server">
             <i class="fab fa-discord"></i>
         </a>
+        <a class="nav-item nav-link" [href]="githubURL" routerLinkActive="active"
+            matTooltip="Source Code">
+            <i class="fab fa-github"></i>
+        </a>
     </div>
     <div class="nav navbar-nav ml-auto">
         <div *ngIf="!user">

@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   endpoint: 'http://localhost:3000/api/v1',
   discordInvite: 'https://discord.gg/uDTgxyg',
+  githubURL: 'https://github.com/DBots-co',
   version: 'v0.2.0b',
   url: 'http://localhost:3000',
   guildId: '531196495584821314'
