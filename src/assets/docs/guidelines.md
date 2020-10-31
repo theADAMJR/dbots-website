@@ -9,21 +9,21 @@ These guidelines apply to all listed bots, and may change at any time, without n
 
 ## Bots Must Not
 - Break the [Discord TOS](https://discord.com/terms)
-- Allow NSFW content outside NSFW channels
-- Make it hard to view commands
-- Have no features 🐔
+- Show NSFW content, or list NSFW commands in a non NSFW channel
 - Be listed by a non bot admin/owner
 - Require a powerful permission for most features (e.g. ADMINISTRATOR)
-- Be offline when they are being reviewed
+- Make it hard to view commands (i.e. no help command)
+- Have broken core features (i.e. help command does not work)
+- Have no features 🐔
 
 ## Bot Listings Must Not
-- Have broken form values
-- Have NSFW content
-- Be too similar to another bot
+- Contain broken form values
+- Contain NSFW content
+- Be too similar to another bot, or 
 - Contain malicious code
 - Contain irrelevant tags
   
-If a bot breaks **any** of these rules, it will be *instantly* **declined**. 
+By adding a bot to [DBots](/), you agree that if the bot breaks **any** of these guidelines, it will be **declined**. 
 
 ---
 

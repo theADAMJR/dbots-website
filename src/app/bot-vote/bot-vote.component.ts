@@ -43,7 +43,11 @@ export class BotVoteComponent implements OnInit {
   async vote() {
     if (!this.userService.user) return;
 
-    await this.service.vote(this.id);
+    try {
+      await this.service.vote(this.id);
+    } catch (error) {
+      alert(error?.error?.message);
+    }
     await this.service.refreshBots();
 
     return this.router.navigate(['/bots/' + this.id]);

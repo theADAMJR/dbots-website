@@ -10,6 +10,20 @@
 
 ---
 
+## v0.2.1b
+
+**Add**:
++ log embed colours
+
+**Change/Fix**:
+- improved guidelines
+- limited error logs sent to website owner when user votes for bot
+
+**Remove**:
+
+
+---
+
 ## v0.2.0b
 
 ![v0.2.0b](assets/docs/img/v0.2.0b.png)

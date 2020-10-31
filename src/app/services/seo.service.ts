@@ -4,7 +4,7 @@ import { Meta, Title } from '@angular/platform-browser';
 @Injectable()
 export class SEOService {
   base = {
-    titlePrefix: 'Find Discord Bots',
+    titlePrefix: 'Best Discord Bots',
     titleSuffix: 'DBots',
     url: 'https://dbots.co'
   }

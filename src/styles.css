@@ -250,3 +250,8 @@ mat-sidenav a:hover {
 mat-checkbox label {
     margin: 0 0 .25rem 0 !important;
 }
+
+#editor .mat-form-field-flex,
+#editor .mat-form-field-subscript-wrapper {
+    width: 200%;
+}

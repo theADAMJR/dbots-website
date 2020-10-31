@@ -10,7 +10,7 @@ export class HomeComponent {
   constructor(seo: SEOService) {
     seo.setTags({
       titleSuffix: 'DBots',
-      titlePrefix: 'Find Discord Bots',
+      titlePrefix: 'Best Discord Bots',
       description: 'Find the best bots to add to your servers. We have many different bots including music bots, moderation bots, chat bots and more.',
       url: '/'
     });

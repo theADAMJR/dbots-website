@@ -59,7 +59,10 @@
                         <textarea formControlName="body"
                             placeholder="Markdown is allowed." matInput required #bodyInput></textarea>
                         <mat-hint align="end">{{ bodyInput.value.length }}</mat-hint>
-                        <mat-error *ngIf="form.get('body').invalid">Required, and should be at least 300 characters in length.</mat-error>
+                        <mat-error *ngIf="form.get('body').invalid">
+                            Required, and should be at least 300 characters in length.
+                            <span class="float-right">{{ bodyInput.value.length }}</span>
+                        </mat-error>
                     </mat-form-field>
 
                     <hr>
