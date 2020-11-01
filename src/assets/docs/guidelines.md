@@ -15,6 +15,7 @@ These guidelines apply to all listed bots, and may change at any time, without n
 - Make it hard to view commands (i.e. no help command)
 - Have broken core features (i.e. help command does not work)
 - Have no features 🐔
+- Post inaccurate stats
 
 ## Bot Listings Must Not
 - Contain broken form values

@@ -187,4 +187,8 @@ export class BotsService {
   getStats(id: string) {
     return this.http.get(`${this.endpoint}/${id}/stats`).toPromise() as Promise<any>;
   }
+
+  async updateWebhookURL(id: string, value: any) {
+    return this.http.put(`${this.endpoint}/${id}/`, value, this.headers).toPromise() as Promise<any>;
+  }
 }

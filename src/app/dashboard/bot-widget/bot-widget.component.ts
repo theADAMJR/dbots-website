@@ -35,7 +35,7 @@ export class BotWidgetComponent implements OnInit {
       this.seo.setTags({
         description: '',
         titlePrefix: this.user.tag,
-        titleSuffix: 'Dashboard',
+        titleSuffix: 'Widget',
         url: `dashboard/bots/${this.id}`
       });
     }

@@ -6,14 +6,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './save-changes.component.html',
   styleUrls: ['./save-changes.component.css']
 })
-export class SaveChangesComponent implements OnInit {
+export class SaveChangesComponent {
   @Output() onReset = new EventEmitter();
   @Output() onSave = new EventEmitter();
 
   constructor(private snackBar: MatSnackBar) {}
-
-  ngOnInit() {
-  }
 
   reset() {
     this.onReset.emit();

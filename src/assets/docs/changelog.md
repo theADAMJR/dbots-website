@@ -14,13 +14,12 @@
 
 **Add**:
 + log embed colours
++ support for longer Discord invites [7-10] characters
 
 **Change/Fix**:
 - improved guidelines
 - limited error logs sent to website owner when user votes for bot
-
-**Remove**:
-
+- `/` -> better untested vote reset
 
 ---
 

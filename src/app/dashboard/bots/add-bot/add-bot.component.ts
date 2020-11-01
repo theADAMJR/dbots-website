@@ -32,7 +32,7 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     overview: new FormControl('', [ Validators.required, Validators.minLength(32), Validators.maxLength(128) ]),
     ownerIds: new FormControl([], [ Validators.maxLength(3) ]),
     prefix: new FormControl('', [ Validators.required ]),
-    supportInvite: new FormControl('', [ Validators.pattern(/^[A-Za-z0-9]{7}$/) ]),
+    supportInvite: new FormControl('', [ Validators.pattern(/^[A-Za-z\d]{7,10}$/) ]),
     websiteURL: new FormControl('', [ Validators.pattern(/http/) ]),
     tags: new FormControl([], [ Validators.maxLength(8) ])
   });
