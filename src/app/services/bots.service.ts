@@ -59,7 +59,8 @@ export class BotsService {
       .sort((a, b) => b.votes.length - a.votes.length);    
 
     this._bots = users
-      .filter(b => this.savedBots.some(sb => sb._id === b.id));
+      .filter(b => this.savedBots.some(sb => sb._id === b.id)
+        && b.presence.status !== 'OFFLINE');
 
     this._unreviewedSavedBots = saved.filter(sb => !sb.approvedAt);
     this._unreviewedBots = users

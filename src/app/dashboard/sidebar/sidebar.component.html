@@ -3,13 +3,18 @@
         <div class="guilds px-2">
             <div class="user">
                 <div routerLink="/dashboard" class="guild-icon">
-                    <img [src]="userService.user?.displayAvatarURL" [alt]="userService.user?.username">
+                    <img
+                        [src]="userService.user?.displayAvatarURL"
+                        [alt]="userService.user?.username">
                 </div>
                 <hr class="guild-seperator">
             </div>
-            <div *ngFor="let bot of botService.userBots" [routerLink]="['/dashboard/bots/' + bot.id]"
+            <div
+                *ngFor="let bot of botService.userBots"
+                    [routerLink]="['/dashboard/bots/' + bot.id]"
                 class="guild-icon">
-                <img *ngIf="bot"
+                <img
+                    *ngIf="bot"
                     [src]="bot.displayAvatarURL"
                     [alt]="bot.username">
             </div>

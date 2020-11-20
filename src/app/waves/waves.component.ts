@@ -5,13 +5,13 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './waves.component.html',
   styleUrls: ['./waves.component.css']
 })
-export class WavesComponent implements OnInit {
+export class WavesComponent {
   @Input() inverted = false;
   @Input() set color(value: string) {
     document.documentElement.style.setProperty('--waves', value);
   }
-
-  ngOnInit() {
+  
+  constructor() {
     this.color = 'var(--background-secondary)';  
   }
 }

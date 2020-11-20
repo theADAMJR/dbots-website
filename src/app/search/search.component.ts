@@ -9,6 +9,7 @@ import $ from 'jquery';
 export class SearchComponent implements OnInit {
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
+  @Output() search = new EventEmitter();
 
   ngOnInit() {    
     $('.field').on('blur', function() {

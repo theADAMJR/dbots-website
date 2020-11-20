@@ -12,10 +12,7 @@ html {
 body, mat-sidenav-content {
     color: var(--font);
 
-    background: black;
-    background: radial-gradient(circle, var(--background-primary) 0%, var(--background-secondary) 100%) !important;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: var(--background-primary);
     height: 100%;
     margin: 0;
     

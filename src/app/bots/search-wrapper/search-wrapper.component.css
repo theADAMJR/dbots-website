@@ -1,6 +1,9 @@
 header {
-    background-color: var(--background-secondary);
     transition: background-color 1s ease-in-out;
+    transition-delay: 0ms;
+}
+header:not(.focused) {
+    transition-delay: 125ms;
 }
 header.focused {
     background-color: var(--secondary);

@@ -26,40 +26,6 @@
   text-shadow: none;
 }
 
-.title-container {
-  position: absolute;
-  top: 38%;
-  left: 50%;
-  width: 80%;
-  margin: 0 auto;
-  text-align: center;
-  overflow: hidden;
-  transform: translate(-50%, -50%);
-}
-.title-container .title {
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
-  transition-delay: 0.25s;
-  margin: 0;
-  color: #6078EA;
-}
-.title-container .title-down {
-  transform: translateY(100%);
-  transition: transform 0.3s ease;
-  transition-delay: 0.25s;
-  margin: 0;
-  color: #6078EA;
-}
-.is-focus .title-container .title {
-  transform: translateY(0);
-}
-.is-type .title-container .title-down {
-  transform: translateY(-30px);
-}
-.is-type .title-container .title {
-  transform: translateY(-100%);
-}
-
 .field-container {
   position: relative;
   padding: 0;
@@ -71,8 +37,8 @@
 
 .icons-container {
   position: absolute;
-  top: 11px;
-  right: -25px;
+  top: 5px;
+  right: -40px;
   width: 35px;
   height: 35px;
   overflow: hidden;

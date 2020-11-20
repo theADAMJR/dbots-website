@@ -6,7 +6,21 @@
 
 ---
 
+## Release
+
+---
+
 ## Beta
+
+---
+
+## v1.0.0b
+
+**Add**:
+- better theme
+
+**Change/Fix**:
+- bots no longer appear if offline
 
 ---
 
