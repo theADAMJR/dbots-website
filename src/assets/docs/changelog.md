@@ -14,11 +14,11 @@
 
 **Add**:
 + log embed colours
-+ support for longer Discord invites [7-10] characters
++ `/bots/new` -> support for longer Discord invites [7-10] characters
 
 **Change/Fix**:
-- improved guidelines
-- limited error logs sent to website owner when user votes for bot
+- `/docs/guidelines` -> improved guidelines
+- `/vote/:botId` -> limited error logs sent to website owner when user votes for bot
 - `/` -> better untested vote reset
 
 ---
@@ -54,9 +54,9 @@
 - `/user/:id` -> user profiles
 
 **Change/Fix**:
-- `/bots/add` -> max tags is now `8`, and was previously `5` tags
-- `/bots/add` -> draft no longer updates, while editing listing
-- `/bots/add` -> `listing.overview` minimum length is now `32` characters
+- `/bots/new` -> max tags is now `8`, and was previously `5` tags
+- `/bots/new` -> draft no longer updates, while editing listing
+- `/bots/new` -> `listing.overview` minimum length is now `32` characters
 - `/bots/:id` -> `N/A` server count no longer shows
 - `/` -> featured bots now shuffle to give them equal impressions 
 

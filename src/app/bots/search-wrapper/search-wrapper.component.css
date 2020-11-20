@@ -1,5 +1,9 @@
 header {
     background-color: var(--background-secondary);
+    transition: background-color 1s ease-in-out;
+}
+header.focused {
+    background-color: var(--secondary);
 }
 
 .robot {

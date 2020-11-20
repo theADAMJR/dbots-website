@@ -54,6 +54,7 @@ import { APIComponent } from './dashboard/api/api.component';
 import { VotesWidgetComponent } from './dashboard/widgets/votes-widget/votes-widget.component';
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
+import { SearchComponent } from './search/search.component';
 
 @Injectable()
 export class AlertErrorHandler implements ErrorHandler {
@@ -125,7 +126,8 @@ export class AlertErrorHandler implements ErrorHandler {
     APIComponent,
     VotesWidgetComponent,
     BotWidgetComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    SearchComponent
   ],
   imports: [
     AppRoutingModule,

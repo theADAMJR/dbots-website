@@ -1,0 +1,222 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes color-1 {
+  0% {
+    background-color: #EB73B9;
+  }
+  100% {
+    background-color: #17EAD9;
+  }
+}
+::selection {
+  background: #6078EA;
+  color: white;
+  text-shadow: none;
+}
+
+::-webkit-selection {
+  background: #6078EA;
+  color: white;
+  text-shadow: none;
+}
+
+.title-container {
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  overflow: hidden;
+  transform: translate(-50%, -50%);
+}
+.title-container .title {
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+  transition-delay: 0.25s;
+  margin: 0;
+  color: #6078EA;
+}
+.title-container .title-down {
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  transition-delay: 0.25s;
+  margin: 0;
+  color: #6078EA;
+}
+.is-focus .title-container .title {
+  transform: translateY(0);
+}
+.is-type .title-container .title-down {
+  transform: translateY(-30px);
+}
+.is-type .title-container .title {
+  transform: translateY(-100%);
+}
+
+.field-container {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  width: 330px;
+  height: 40px;
+}
+
+.icons-container {
+  position: absolute;
+  top: 11px;
+  right: -25px;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+}
+
+.icon-close {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 75%;
+  height: 75%;
+  opacity: 0;
+  cursor: pointer;
+  transform: translateX(-200%);
+  border-radius: 50%;
+  transition: opacity 0.25s ease, transform 0.43s cubic-bezier(0.694, 0.048, 0.335, 1);
+}
+.icon-close:before {
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  border: 2px solid transparent;
+  border-top-color: #6078EA;
+  border-left-color: #6078EA;
+  border-bottom-color: #6078EA;
+  transition: opacity 0.2s ease;
+}
+.icon-close .x-up {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+.icon-close .x-up:before {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 3px;
+  width: 50%;
+  height: 2px;
+  background-color: #6078EA;
+  transform: rotate(45deg);
+}
+.icon-close .x-up:after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  right: 0px;
+  width: 50%;
+  height: 2px;
+  background-color: #6078EA;
+  transform: rotate(-45deg);
+}
+.icon-close .x-down {
+  position: relative;
+  width: 100%;
+  height: 50%;
+}
+.icon-close .x-down:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  width: 50%;
+  height: 2px;
+  background-color: #6078EA;
+  transform: rotate(-45deg);
+}
+.icon-close .x-down:after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 1px;
+  width: 50%;
+  height: 2px;
+  background-color: #6078EA;
+  transform: rotate(45deg);
+}
+.is-type .icon-close:before {
+  opacity: 1;
+  animation: spin 0.85s infinite;
+}
+.is-type .icon-close .x-up:before, .is-type .icon-close .x-up:after {
+  animation: color-1 0.85s infinite;
+}
+.is-type .icon-close .x-up:after {
+  animation-delay: 0.3s;
+}
+.is-type .icon-close .x-down:before, .is-type .icon-close .x-down:after {
+  animation: color-1 0.85s infinite;
+}
+.is-type .icon-close .x-down:before {
+  animation-delay: 0.2s;
+}
+.is-type .icon-close .x-down:after {
+  animation-delay: 0.1s;
+}
+
+.icon-search {
+  position: relative;
+  top: 5px;
+  left: 8px;
+  width: 50%;
+  height: 50%;
+  opacity: 1;
+  border-radius: 50%;
+  border: 3px solid #c7d0f8;
+  transition: opacity 0.25s ease, transform 0.43s cubic-bezier(0.694, 0.048, 0.335, 1);
+}
+.icon-search:after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  right: -2px;
+  width: 4px;
+  border-radius: 3px;
+  transform: rotate(-45deg);
+  height: 10px;
+  background-color: #c7d0f8;
+}
+
+.field {
+  border: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0px 8px 15px rgba(75, 72, 72, 0.1);
+  transition: all 0.4s ease;
+}
+.field:focus {
+  outline: none;
+  box-shadow: 0px 9px 20px rgba(75, 72, 72, 0.3);
+}
+.field:focus + .icons-container .icon-close {
+  opacity: 1;
+  transform: translateX(0);
+}
+.field:focus + .icons-container .icon-search {
+  opacity: 0;
+  transform: translateX(200%);
+}

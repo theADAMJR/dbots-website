@@ -1,7 +1,7 @@
 img {
     margin-top: -15px;
-
     width: 172px;
+    background-color: var(--background-secondary);
 }
 
 p {
@@ -46,6 +46,11 @@ p {
 
 .card {
     width: 256px;
+    transition: transform .3s ease-in-out;
+    cursor: pointer;
+}
+.card:hover {
+    transform: scale(1.05);
 }
 
 /* animations */

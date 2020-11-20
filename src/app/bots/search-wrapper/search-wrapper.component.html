@@ -1,9 +1,16 @@
-<header>
+<header [class.focused]="focused">
     <navbar></navbar>
     <div class="container jumbotron mb-0">
-        <h1 class="text-center">Find the Best Discord Bots</h1>
+        <div class="text-center">
+            <h1>Find the Best Discord Bots</h1>
+            <p class="lead text-muted">Find Discord bots for your server quickly and simply.</p>
+        </div>
         <div class="d-flex justify-content-center">
-            <mat-form-field appearance="outline">
+            <search
+                (blur)="focused = false"
+                (focus)="focused = true"
+                #searchInput></search>
+            <!-- <mat-form-field appearance="outline">
                 <mat-label for="search">Search</mat-label>
                 <input #searchInput
                     (keyup.enter)="search(searchInput.value)"               
@@ -11,7 +18,7 @@
             </mat-form-field>
             <button id="searchButton"
                 (click)="search(searchInput.value)" 
-                mat-button><i class="fas fa-search"></i></button>
+                mat-button><i class="fas fa-search"></i></button> -->
         </div>
         <div class="d-flex justify-content-center">
             <mat-chip-list>
@@ -21,9 +28,6 @@
                 <mat-chip>
                     <a href="#new">New <i class="pl-1 fas fa-star"></i></a>
                 </mat-chip>
-                <mat-chip>
-                    <a href="#music">Music <i class="pl-1 fas fa-music"></i></a>
-                </mat-chip>
                 <mat-chip class="more">
                     <a href="#tags"><i class="fa fa-plus" aria-hidden="true"></i></a>
                 </mat-chip>
@@ -31,7 +35,9 @@
         </div>
     </div>
 </header>
-<waves inverted="true"></waves>
+<waves
+    [color]="focused ? 'var(--secondary)' : 'var(--background-secondary)'"
+    inverted="true"></waves>
 
 <div id="content" class="container">
     <bots id="top" #bots></bots>
@@ -39,10 +45,10 @@
     <div *ngIf="!bots.query && !bots.tag">
         <hr>
         
-        <bots id="new" [tag]="{
-            description: 'New bots with the most votes.',
+        <bots id="trending" [tag]="{
+            description: 'Trending bots with the most votes.',
             icon: 'fas fa-chevron-up',
-            name: 'new'
+            name: 'trending'
         }"></bots>
 
         <hr>
@@ -54,10 +60,6 @@
         }"></bots>
 
         <hr>
-
-        <bots id="music" [tag]="tagService.getTag('music')"></bots>
-        
-        <hr class="mb-5">
 
         <h2 id="tags" class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
         <mat-chip-list>
