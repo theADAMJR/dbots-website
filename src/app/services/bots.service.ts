@@ -178,7 +178,7 @@ export class BotsService {
     return this.http.post(`${this.endpoint}`, value, this.headers).toPromise() as Promise<any>;
   }
   updateBot(id: string, value: any) {
-    return this.http.put(`${this.endpoint}/${id}`, value, this.headers).toPromise() as Promise<any>;
+    return this.http.patch(`${this.endpoint}/${id}`, value, this.headers).toPromise() as Promise<any>;
   }
   async deleteBot(id: string) {
     await this.http.delete(`${this.endpoint}/${id}`, this.headers).toPromise() as Promise<any>;
@@ -190,6 +190,6 @@ export class BotsService {
   }
 
   async updateWebhookURL(id: string, value: any) {
-    return this.http.put(`${this.endpoint}/${id}/`, value, this.headers).toPromise() as Promise<any>;
+    return this.http.patch(`${this.endpoint}/${id}/`, value, this.headers).toPromise() as Promise<any>;
   }
 }

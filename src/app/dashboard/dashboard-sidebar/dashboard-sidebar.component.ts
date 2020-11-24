@@ -12,7 +12,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class DashboardSidebarComponent implements OnInit {
   @ViewChild('themeSelect') themeSelect: MatSelect;
 
-  defaultTheme = 'DISCORD';
+  defaultTheme = 'NEXT_GEN';
 
   form = new FormGroup({
     theme: new FormControl(localStorage.getItem('theme') ?? this.defaultTheme)

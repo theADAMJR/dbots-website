@@ -6,3 +6,8 @@
 footer {  
   position: relative !important;
 }
+
+.content {
+  transition: background-color 1s ease-in-out;
+  background-color: var(--waves) !important;
+}

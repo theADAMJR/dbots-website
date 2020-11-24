@@ -3,7 +3,6 @@
 @import '~highlight.js/styles/vs2015.css';
 @import '~chart.js/dist/Chart.min.css';
 @import 'assets/css/utils.css';
-@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css';
 
 html {
     scroll-behavior: smooth;
@@ -36,6 +35,10 @@ footer p {
 
 table {
     width: 100%;
+}
+
+::selection {
+    background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .rounded {

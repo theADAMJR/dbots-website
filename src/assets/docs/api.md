@@ -14,13 +14,48 @@
 ## Status Codes
 Code | Description
 -----|-------------
-400  | Key is invalid, or an error occurred with the request
-404  | Route could not be found
-429  | Too many requests
-500  | Internal server error (rare)
+200  | OK.
+201  | Created.
+400  | Bad request.
+401  | Unauthorized.
+404  | Not found.
+429  | Too many requests - You are being rate limited.
+500  | Internal server error.
 
 **API Error Examples**:
 `{ code: 400, message: 'Bad Request' }`
+
+---
+
+## Headers
+The API key is used for dealing with bot stats.
+
+### API Key
+```json
+{
+  "Authorization": "<api_key>"
+}
+```
+
+### User Key
+The user key is provided by Discord, and is used for storing user sessions and logging in the Discord user.
+
+```json
+{
+  "Authorization": "<user_token>"
+}
+```
+
+---
+
+## Default API Response
+
+```ts
+{
+  message: string,
+  code: number
+}
+```
 
 ---
 

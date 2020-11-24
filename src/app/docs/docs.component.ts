@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import marked from 'marked';
 import { map } from 'rxjs/operators';
 import { SEOService } from '../services/seo.service';
+import hljs from 'highlight.js';
 
 @Component({
   selector: 'app-docs',
@@ -45,6 +46,10 @@ export class DocsComponent implements OnInit {
         
         document.getElementById('doc').innerHTML = marked(md, { breaks: true });
         document.querySelector('h1').classList.add('display-4');
+        
+        document
+          .querySelectorAll('pre code')
+          .forEach(block => hljs.highlightBlock(block));
       });
     } catch { this.router.navigate(['/404']); }
   }

@@ -18,10 +18,10 @@ export class BotTokenService {
   }
 
   getToken(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/token`, this.headers).toPromise() as Promise<any>;
+    return this.http.get(`${this.endpoint}/${id}/key`, this.headers).toPromise() as Promise<any>;
   }
 
   regenToken(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/token/regen`, this.headers).toPromise() as Promise<any>;
+    return this.http.get(`${this.endpoint}/${id}/key/regen`, this.headers).toPromise() as Promise<any>;
   }
 }
