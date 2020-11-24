@@ -14,8 +14,7 @@ export class LogoutComponent implements OnInit {
 
   async ngOnInit() {
     localStorage.removeItem('key');
-    
-    await this.userService.updateUser();
+    this.userService.resetUser();
 
     this.router.navigate(['/']);
   }

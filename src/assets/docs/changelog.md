@@ -18,6 +18,7 @@
 
 **Add**:
 - better theme
+- bot packs
 
 **Change/Fix**:
 - bots no longer appear if offline

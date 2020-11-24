@@ -88,7 +88,7 @@ Delete a bot pack. Must be logged in.
 ---
 
 ## GET `/packs/:id/vote`
-Delete a bot pack. Must be logged in.
+Vote for a bot pack. Must be logged in.
 
 ### Headers
 ```json

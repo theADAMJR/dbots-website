@@ -5,12 +5,14 @@
   <div class="container">
       <img [src]="user.displayAvatarURL">
       <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
+      <p class="lead">{{ user.presence.activities[0]?.state }}</p>
   </div>
   </header>
   <waves [inverted]="true"></waves>
 
   <div id="bots" class="container">
     <bots [ownerUser]="user"></bots>
+    <packs></packs>
   </div>
 </div>
 

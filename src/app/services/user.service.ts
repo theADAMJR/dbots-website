@@ -41,6 +41,11 @@ export class UserService {
   getUser(id: string) {
     return this.http.get(`${this.endpoint}/${id}`).toPromise();
   }
+
+  resetUser() {
+    this._user = null;
+    this._savedUser = null;
+  }
 }
 
 export interface XPCard {

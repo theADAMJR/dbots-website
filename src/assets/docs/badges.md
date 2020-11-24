@@ -21,7 +21,7 @@ Your bot is currently featured.
 The badges you can earn by being a bot developer.
 
 ### <i class="fas fa-vial text-info"></i> Beta Tester
-You tested DBots v1 beta.
+You beta tested DBots v1b.
 
 ### <i class="fab fa fa-meteor text-secondary"></i> OG
 You were here before DBots was the best Discord bot list.

@@ -55,6 +55,8 @@ import { VotesWidgetComponent } from './dashboard/widgets/votes-widget/votes-wid
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { SearchComponent } from './search/search.component';
+import { PacksComponent } from './packs/packs.component';
+import { PackCardComponent } from './packs/pack-card/pack-card.component';
 
 @Injectable()
 export class AlertErrorHandler implements ErrorHandler {
@@ -127,7 +129,9 @@ export class AlertErrorHandler implements ErrorHandler {
     VotesWidgetComponent,
     BotWidgetComponent,
     UserProfileComponent,
-    SearchComponent
+    SearchComponent,
+    PacksComponent,
+    PackCardComponent
   ],
   imports: [
     AppRoutingModule,
