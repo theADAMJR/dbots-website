@@ -35,23 +35,19 @@
     <bots id="top" #bots></bots>
 
     <div *ngIf="!bots.query && !bots.tag">
-        <hr>
-        
+        <packs></packs>
+
         <bots id="trending" [tag]="{
             description: 'Trending bots with the most votes.',
             icon: 'fas fa-chevron-up',
             name: 'trending'
         }"></bots>
 
-        <hr>
-
         <bots [tag]="{
             description: 'Featured bots selected by DBots.',
             icon: 'fas fa-star',
             name: 'featured'
         }"></bots>
-
-        <hr>
 
         <h2 id="tags" class="pb-2"><i class="fas fa-hashtag"></i> Tags</h2>
         <mat-chip-list>
@@ -64,7 +60,7 @@
 
         <div class="d-flex justify-content-center mt-5 mb-2">
             <div class="rounded-lg btn-gradient">
-                <button routerLink="/tags/customizable"
+                <button routerLink="/tags"
                     class="btn-gradient py-2 px-4" mat-button>View More</button>
             </div>
         </div>

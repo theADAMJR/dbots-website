@@ -12,26 +12,33 @@ export class PacksComponent implements OnInit {
   title = 'Bot Packs';
   description = 'View a range of preselected bots in specific categories.';
 
+  packs = [];
   page = 1;
   size = 8;
   
   initialized = false;
   
-  get lastPage() { return Math.ceil(this.service.packs.length / this.size); }
+  get lastPage() { return Math.ceil(this.packs.length / this.size); }
 
-  constructor(
-    public service: PackService) {}  
+  constructor(public service: PackService) {}  
   
   async ngOnInit() {
     await this.service.init();
-    if (this.ownerUser)
-      this.title = `${this.ownerUser.username}'s Bot Packs`;
-
+    if (this.ownerUser) {
+      this.packs = this.service.getUserPacks(this.ownerUser.id);
+      this.setOwnerLayout();
+    }
+  
+    this.packs = this.service.packs;
     this.initialized = true;
   }
 
   ngAfterViewInit() {
     this.resetPaginator();
+  }
+  private setOwnerLayout() {
+    this.title = `${this.ownerUser.username}'s Bot Packs`;
+    this.description = `This user has ${this.packs.length} bot packs.`;
   }
 
   private resetPaginator(page = 1) {

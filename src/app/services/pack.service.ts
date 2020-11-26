@@ -23,23 +23,30 @@ export class PackService {
 
   async init() {
     if (this.packs.length <= 0)
-      this._packs = await this.http.get(this.endpoint).toPromise() as any;
+      await this.refreshPacks();
+  }
+
+  async refreshPacks() {
+    this._packs = await this.http.get(this.endpoint).toPromise() as any;
   }
 
   get(id: string) {
     return this.packs.find(p => p._id === id);
   }
+  getUserPacks(userId: string) {
+    return this.packs.filter(p => p.owner === userId);
+  }
 
-  create(value: any) {
-    return this.http.post(this.endpoint, value, this.headers);
+  create(value: any): Promise<any> {
+    return this.http.post(this.endpoint, value, this.headers).toPromise();
   }
-  update(id: string, value: any) {
-    return this.http.patch(`${this.endpoint}/${id}`, value, this.headers);
+  update(id: string, value: any): Promise<any> {
+    return this.http.patch(`${this.endpoint}/${id}`, value, this.headers).toPromise();
   }
-  delete(id: string) {
-    return this.http.delete(`${this.endpoint}/${id}`, this.headers);
+  delete(id: string): Promise<any> {
+    return this.http.delete(`${this.endpoint}/${id}`, this.headers).toPromise();
   }
-  vote(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/vote`, this.headers);
+  vote(id: string): Promise<any> {
+    return this.http.get(`${this.endpoint}/${id}/vote`, this.headers).toPromise();
   }
 }

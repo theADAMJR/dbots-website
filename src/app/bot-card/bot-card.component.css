@@ -22,7 +22,7 @@ p {
     width: 42px;
     height: 42px;
 
-    background-color: rgb(47, 46, 46);
+    background-color: #2f2e2e;
     border: 5px solid #36393F;
 }
 
@@ -48,6 +48,7 @@ p {
     width: 256px;
     transition: transform .3s ease-in-out;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 .card:hover {
     transform: scale(1.05);

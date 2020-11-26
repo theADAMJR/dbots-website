@@ -35,7 +35,7 @@ export class BotComponent implements OnInit {
       });
   
       if (!this.bot || !this.user)
-        this.router.navigate(['/dashboard']);
+        return this.router.navigate(['/dashboard']);
     });
   }
 }

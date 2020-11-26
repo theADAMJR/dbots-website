@@ -1,6 +1,12 @@
 <navbar></navbar>
 
 <div *ngIf="user">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/users">Users</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/users/', user.id]">{{ user.id }}</a></li>
+    </ol>
+  </nav>
   <header class="jumbotron mb-0">
   <div class="container">
       <img [src]="user.displayAvatarURL">
@@ -12,7 +18,7 @@
 
   <div id="bots" class="container">
     <bots [ownerUser]="user"></bots>
-    <packs></packs>
+    <packs [ownerUser]="user"></packs>
   </div>
 </div>
 

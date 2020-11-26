@@ -1,36 +1,38 @@
-<nav class="navbar navbar-expand navbar-dark">
+<nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand" routerLink="/">
         <img src="assets/img/logo.png" alt="DBots Logo">
     </a>
-    <div class="nav navbar-nav">
-        <a class="nav-item nav-link" routerLink="/docs" routerLinkActive="active"
-            matTooltip="Docs">
-            <i class="fa fa-book text-muted mr-1" aria-hidden="true"></i> Docs
-        </a>
-        <a class="nav-item nav-link" [href]="discordInvite" routerLinkActive="active"
-            matTooltip="Join Server">
-            <i class="fab fa-discord text-muted mr-1"></i> Server
-        </a>
-        <a class="nav-item nav-link" [href]="githubURL" routerLinkActive="active"
-            matTooltip="Source Code">
-            <i class="fab fa-github text-muted mr-1"></i> GitHub
-        </a>
-    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     
-    <div class="nav navbar-nav ml-auto">
-        <div *ngIf="!user">
-            <a class="nav-item nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="nav navbar-nav">
+            <a class="nav-item nav-link" routerLink="/bots" routerLinkActive="active"
+                matTooltip="Packs">
+                <i class="fas fa-cube text-muted mr-1" aria-hidden="true"></i> Packs
+            </a>
+            <a class="nav-item nav-link" routerLink="/packs" routerLinkActive="active"
+                matTooltip="Packs">
+                <i class="fas fa-cube text-muted mr-1" aria-hidden="true"></i> Packs
+            </a>
         </div>
-        <div *ngIf="user">
-            <div class="dropdown">
-                <a class="nav-item nav-link dropdown-toggle"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img [src]="user.displayAvatarURL"> {{ user.username }}
-                </a>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" routerLink="/dashboard">Dashboard</a>
-                    <hr class="m-1">
-                    <a class="dropdown-item" routerLink="/logout">Logout</a>
+    
+        <div class="nav navbar-nav ml-auto">
+            <div *ngIf="!user">
+                <a class="nav-item nav-link" routerLink="/login"><i class="fa fa-user" aria-hidden="true"></i> Login</a>
+            </div>
+            <div *ngIf="user">
+                <div class="dropdown">
+                    <a class="nav-item nav-link dropdown-toggle"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img [src]="user.displayAvatarURL"> {{ user.username }}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" routerLink="/dashboard">Dashboard</a>
+                        <hr class="m-1">
+                        <a class="dropdown-item" routerLink="/logout">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>

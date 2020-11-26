@@ -2,6 +2,33 @@
     <div class="container">
         <img [src]="user.displayAvatarURL">
         <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
+        
+        <mat-form-field appearance="outline" class="float-right ml-3">
+            <mat-label>Add to Pack</mat-label>
+            <mat-select>
+                <mat-option
+                    *ngFor="let pack of packs.getUserPacks(userService.user.id)"
+                    value="pack._id">
+                    <mat-checkbox
+                        (click)="(inList.checked ? removeFromList(pack._id) : addToList(pack._id)) && $event.stopPropagation()"
+                        checked="pack.bots.some(sb => sb._id === user.id)"
+                        #inList></mat-checkbox>
+                    {{ pack.name }}
+                </mat-option>
+                <mat-option>
+                    <button
+                        (click)="createPack(nameInput.value)"
+                        class="float-right mt-1"
+                        color="success" mat-button>+</button>
+                    <input
+                        (click)="$event.stopPropagation()"
+                        (keydown)="$event.stopPropagation()"
+                        type="text"
+                        matInput
+                        #nameInput>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
         <div>
             <span *ngIf="bot.stats?.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.stats?.guildCount | number }}</span>
             <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>

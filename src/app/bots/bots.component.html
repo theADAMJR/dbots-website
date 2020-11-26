@@ -4,11 +4,12 @@
     <div class="row">
         <div *ngFor="let savedBot of paginate(savedBots)"
             class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
-            <bot-card [bot]="savedBot"
+            <bot-card
+                [bot]="savedBot"
                 [user]="service.getBot(savedBot._id)"
                 class="m-3"></bot-card>
         </div>
-        <div id="paginator" class="col-12">
+        <div class="paginator col-12">
             <div class="p-3 float-right">
                 <span (click)="previousPage()"
                     [hidden]="page <= 1"

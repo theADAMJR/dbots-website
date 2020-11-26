@@ -1,6 +1,7 @@
 .content {
+  padding: 50px 75px;
   position: relative;
-  height: 10vh;
+  /* height: 10vh; */
   background-color: var(--background-secondary);
 }
 footer {  
@@ -10,4 +11,8 @@ footer {
 .content {
   transition: background-color 1s ease-in-out;
   background-color: var(--waves) !important;
+}
+
+img {
+  max-height: 48px;
 }

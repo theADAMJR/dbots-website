@@ -111,6 +111,9 @@
                         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Some form values are invalid.
                     </div>
 
+                    <div *ngIf="apiError"
+                        class="alert alert-danger">{{ apiError }}</div>
+                    
                     <div class="d-flex justify-content-center">
                         <rocket-button *ngIf="!editing"
                             id="submit"

@@ -255,3 +255,18 @@ mat-checkbox label {
 #editor .mat-form-field-subscript-wrapper {
     width: 200%;
 }
+
+/* bootstrap */
+.breadcrumb {
+    margin-left: 20px;
+    background-color: transparent;
+}
+.breadcrumb a {
+    color: var(--heading);
+    font-size: large;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: transparent;
+    margin-right: -10px;
+}

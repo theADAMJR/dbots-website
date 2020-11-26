@@ -2,13 +2,13 @@
   <h2 class="pt-5"><i class="fas fa-cube"></i> {{ title }}</h2>
   <p class="color-secondary pb-4">{{ description }}</p>
   <div class="row">
-      <div *ngFor="let savedPack of paginate(service.packs)"
+      <div *ngFor="let savedPack of paginate(packs)"
           class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
           <pack-card
               [pack]="savedPack"
               class="m-3"></pack-card>
       </div>
-      <div id="paginator" class="col-12">
+      <div class="paginator col-12">
           <div class="p-3 float-right">
               <span (click)="previousPage()"
                   [hidden]="page <= 1"

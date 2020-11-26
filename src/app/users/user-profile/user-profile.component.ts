@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PackService } from 'src/app/services/pack.service';
 import { SEOService } from 'src/app/services/seo.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -12,14 +13,18 @@ export class UserProfileComponent implements OnInit {
   user: any;
   
   constructor(
+    private packs: PackService,
     private route: ActivatedRoute,
     private seo: SEOService,
     private userService: UserService,
     private router: Router) {}
 
   async ngOnInit() {
+    await this.packs.init();
+
     const id = this.route.snapshot.paramMap.get('id');
     this.user = await this.userService.getUser(id);
+
     if (!this.user || this.user?.bot)
       this.router.navigate(['/']);
 
@@ -28,5 +33,12 @@ export class UserProfileComponent implements OnInit {
       description: `View ${this.user.username}'s bots and their public profile.`,
       url: `users/${this.user.id}`
     });
+
+    document
+      .querySelector('.navbar')
+      .setAttribute('style', `
+        background-color: var(--background-secondary);
+        margin-bottom: -5px;
+      `);
   }
 }

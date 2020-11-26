@@ -4,6 +4,8 @@ import { UserService } from '../services/user.service';
 import { BotsService } from '../services/bots.service';
 import { Router } from '@angular/router';
 import { TagService } from '../services/tag.service';
+import { PackService } from '../services/pack.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'bot-preview',
@@ -38,6 +40,10 @@ export class BotPreviewComponent implements OnInit {
     discriminator: '0000'
   }
 
+  packForm = new FormGroup({
+    name: new FormControl('', [ Validators.required ])
+  });
+
   get markdown() {
     return marked(this.bot.listing.body, { breaks: true })
       .replace(/<a/g, '<a rel="nofollow" target="_blank" ');
@@ -48,6 +54,7 @@ export class BotPreviewComponent implements OnInit {
   }
 
   constructor(
+    public packs: PackService,
     public service: BotsService,
     private router: Router,
     public tagService: TagService,
@@ -55,8 +62,17 @@ export class BotPreviewComponent implements OnInit {
 
   async ngOnInit() {
     await this.service.init();
+    await this.packs.init();
 
-    this.ownerUser = this.ownerUser ?? await this.userService.getUser(this.bot.ownerId);
+    this.ownerUser = this.ownerUser
+      ?? await this.userService.getUser(this.bot.ownerId);
+
+    document
+      .querySelector('.navbar')
+      .setAttribute('style', `
+        background-color: var(--background-secondary);
+        margin-bottom: -5px;
+      `);
   }
 
   async delete() {
@@ -69,5 +85,27 @@ export class BotPreviewComponent implements OnInit {
     await this.service.refreshBots();    
 
     this.router.navigate(['/dashboard']);
+  }
+
+  async createPack(name: string) {
+    await this.packs.create({
+      name,
+      description: 'A pack of bots.'
+    });
+    await this.packs.refreshPacks();
+  }
+
+  async addToList(packId: string) {
+    const pack = this.packs.get(packId);
+    pack.bots.push(this.user.id);
+
+    await this.packs.update(packId, pack);
+  }
+  async removeFromList(packId: string) {
+    const pack = this.packs.get(packId);
+    const index = pack.bots.findIndex(b => b._id === this.user.id);
+    pack.bots.splice(index, 1);
+
+    await this.packs.update(packId, pack);
   }
 }

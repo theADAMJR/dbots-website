@@ -20,7 +20,8 @@ export class AddBotComponent implements OnInit, AfterViewInit {
   @Input() editing = false;
 
   preview = false;
-
+  
+  apiError = '';
   toIterable = toIterable;
   filteredTags = this.tagService.tags;
 
@@ -51,8 +52,12 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     votes: toIterable(100)
   };
 
-  get canSubmit() { return this.form.valid && this.confirmInput.checked; }  
-  get widgetURL() { return `${environment.url}/api/v1/bots/${this.user?.id || '525935335918665760'}/widget`; }
+  get canSubmit() {
+    return this.form.valid && this.confirmInput.checked;
+  }  
+  get widgetURL() {
+    return `${environment.url}/api/v1/bots/${this.user?.id || '525935335918665760'}/widget`;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -74,6 +79,10 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     await this.botService.init();
     
     this.initNavbarToggle();
+
+    document
+      .querySelector('.navbar')
+      .setAttribute('style', `background-color: transparent;`);
   }
 
   private initNavbarToggle() {
@@ -135,8 +144,13 @@ export class AddBotComponent implements OnInit, AfterViewInit {
   async submit() {    
     if (!this.canSubmit)
       return this.form.setErrors({ invalid: true });
-    
-    await this.botService.createBot(this.form.value);
+
+    try {
+      this.apiError = '';
+      await this.botService.createBot(this.form.value);
+    } catch (error) {
+      this.apiError = error.error?.message;
+    }
   }
   async update() {
     if (this.form.invalid)
@@ -146,7 +160,9 @@ export class AddBotComponent implements OnInit, AfterViewInit {
   }
 
   navigateToBotListing() {
-    this.router.navigate(['/bots/', this.form.value.botId]);
+    if (this.apiError) return;
+
+    this.router.navigate(['/bots/', this.form.value.botId || '/dashboard']);
   }
 
   // input events

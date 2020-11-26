@@ -1,8 +1,11 @@
-<div *ngIf="bot && user"
-  class="fade-in text-center rounded-lg card shadow text-white bg-dark">
-  <div [routerLink]="['/bots/', user.id]"
+<div
+  *ngIf="bot && user"
+  class="fade-in text-center rounded-lg card shadow text-white">
+  <div
+    [routerLink]="['/bots/' + user.id]"
     class="cursor-pointer d-flex justify-content-center">
-    <img class="shadow rounded-lg card-img-top"
+    <img
+      class="shadow rounded-lg card-img-top"
       [src]="user.displayAvatarURL"
       [alt]="user.username + ' | ' + cleanTags">
     <div class="rounded-lg status"
@@ -29,10 +32,13 @@
         <p class="color-secondary">{{ cleanTags }}</p>
     </div>
     <div class="d-flex justify-content-around">
-      <button [routerLink]="['/bots/' + user.id]"
-        class="bg-secondary rounded-lg" mat-button>VIEW</button>
-      <a [href]="bot.listing.invite" target="_blank">
-        <button class="rounded-lg" color="success" mat-button>ADD</button>
+      <button
+        [routerLink]="['/bots/' + user.id]"
+        class="rounded-lg" mat-button>VIEW</button>
+      <a
+        [href]="bot.listing.invite"
+        target="_blank">
+        <button class="rounded-lg" mat-button>ADD</button>
       </a>
     </div>
   </div>

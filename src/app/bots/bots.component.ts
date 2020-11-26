@@ -75,8 +75,8 @@ export class BotsComponent implements OnInit, AfterViewInit {
       : this.setDefaultLayout();
   }
   searchByTag(tag: Tag) { 
-    var bots = [],
-        saved = [];
+    var bots = [];
+    var saved = [];
 
     if (tag.name === 'featured')
       var { bots, saved } = this.service.getFeaturedBots();
@@ -96,7 +96,7 @@ export class BotsComponent implements OnInit, AfterViewInit {
     this.bots = bots.filter(b => 
       this.savedBots.some(sb => sb._id === b.id));
 
-    this.setUserBotsLayout(user);
+    this.setOwnerLayout(user);
   }
 
   private setDefaultLayout() {
@@ -121,7 +121,7 @@ export class BotsComponent implements OnInit, AfterViewInit {
     
     this.resetPaginator();
   }
-  private setUserBotsLayout(user: any) {
+  private setOwnerLayout(user: any) {
     this.title = `${user.username} Bots`;
     this.description = `This user has ${this.bots.length} bots on DBots.`;
   }

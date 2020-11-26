@@ -31,11 +31,18 @@ const routes: Routes = [
 
   { path: 'search', component: SearchWrapperComponent },
   { path: 'tags/:tag', component: SearchWrapperComponent },
+  { path: 'tags', redirectTo: '/' },
 
+  { path: 'packs', component: SearchWrapperComponent },
+  { path: 'packs/:id', component: SearchWrapperComponent },
+  { path: 'packs', redirectTo: '/' },
+  
   { path: 'bots/:id', component: BotPageComponent },
   { path: 'bots/:id/vote', component: BotVoteComponent },
+  { path: 'bots', redirectTo: '/' },
 
   { path: 'users/:id', component: UserProfileComponent },
+  { path: 'users', redirectTo: '/' },
 
   { path: 'dashboard', component: DashboardComponent, canActivate: [DashboardAuthGuard] },
   
