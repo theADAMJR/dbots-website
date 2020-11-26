@@ -29,7 +29,7 @@ export class PacksComponent implements OnInit {
       this.setOwnerLayout();
     }
   
-    this.packs = this.service.packs;
+    this.packs = this.service.getTopPacks();
     this.initialized = true;
   }
 

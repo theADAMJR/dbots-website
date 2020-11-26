@@ -88,10 +88,7 @@ export class BotPreviewComponent implements OnInit {
   }
 
   async createPack(name: string) {
-    await this.packs.create({
-      name,
-      description: 'A pack of bots.'
-    });
+    await this.packs.create({ name, description: 'A pack of bots.' });
     await this.packs.refreshPacks();
   }
 
@@ -104,7 +101,8 @@ export class BotPreviewComponent implements OnInit {
   async removeFromList(packId: string) {
     const pack = this.packs.get(packId);
     const index = pack.bots.findIndex(b => b._id === this.user.id);
-    pack.bots.splice(index, 1);
+    if (index >= 0)
+      pack.bots.splice(index, 1);
 
     await this.packs.update(packId, pack);
   }

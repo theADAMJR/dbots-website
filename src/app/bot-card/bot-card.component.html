@@ -1,11 +1,10 @@
 <div
   *ngIf="bot && user"
   class="fade-in text-center rounded-lg card shadow text-white">
-  <div
-    [routerLink]="['/bots/' + user.id]"
-    class="cursor-pointer d-flex justify-content-center">
+  <div class="cursor-pointer d-flex justify-content-center">
     <img
       class="shadow rounded-lg card-img-top"
+      [routerLink]="['/bots/' + user.id]"
       [src]="user.displayAvatarURL"
       [alt]="user.username + ' | ' + cleanTags">
     <div class="rounded-lg status"

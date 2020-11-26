@@ -36,6 +36,9 @@ export class PackService {
   getUserPacks(userId: string) {
     return this.packs.filter(p => p.owner === userId);
   }
+  getTopPacks() {
+    return this.packs.sort((a, b) => (a > b) ? 1 : -1);
+  }
 
   create(value: any): Promise<any> {
     return this.http.post(this.endpoint, value, this.headers).toPromise();

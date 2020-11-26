@@ -8,7 +8,8 @@
             <mat-select>
                 <mat-option
                     *ngFor="let pack of packs.getUserPacks(userService.user.id)"
-                    value="pack._id">
+                    value="pack._id"
+                    selected="pack.bots.some(sb => sb._id === user.id)">
                     <mat-checkbox
                         (click)="(inList.checked ? removeFromList(pack._id) : addToList(pack._id)) && $event.stopPropagation()"
                         checked="pack.bots.some(sb => sb._id === user.id)"

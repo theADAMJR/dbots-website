@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BotsService } from 'src/app/services/bots.service';
 
 @Component({
-  selector: 'app-pack-card',
+  selector: 'pack-card',
   templateUrl: './pack-card.component.html',
   styleUrls: ['./pack-card.component.css']
 })
-export class PackCardComponent implements OnInit {
+export class PackCardComponent {
+  @Input() pack: any;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  // FIXME: will break with lazy loading
+  get botUsers() {
+    return this.botsService.bots
+      .filter(b => this.pack?.bots.includes(b.id))
+      .slice(0, 5);
   }
 
+  constructor(private botsService: BotsService) {}
 }

@@ -1,0 +1,61 @@
+img {
+  margin-top: -15px;
+  width: 172px;
+  background-color: var(--background-secondary);
+}
+
+p {
+  font-size: 16px;
+  margin: 0;
+}
+.card-text {
+  margin-bottom: 15px;
+  height: 200px;
+}
+
+.stats {
+  margin: 0;
+  margin-bottom: 5px;
+}
+.card-body {
+  padding-top: 10px;
+}
+
+.card {
+  width: 256px;
+  transition: transform .3s ease-in-out;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+.bot-avatars {
+  margin-left: 8px;
+}
+.bot-avatars img {
+  width: 32px;
+  height: auto;
+}
+.bot-avatars img {
+  margin-left: -8px;
+}
+
+button {
+  tra
+}
+
+/* animations */
+.fade-in {
+  -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: fadein 1s; /* Firefox < 16 */
+  -ms-animation: fadein 1s; /* Internet Explorer */
+  -o-animation: fadein 1s; /* Opera < 12.1 */
+      animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

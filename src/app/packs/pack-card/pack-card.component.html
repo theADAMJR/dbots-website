@@ -1,1 +1,24 @@
-<p>pack-card works!</p>
+<div
+  *ngIf="pack"
+  class="fade-in rounded-lg card shadow text-white">
+  <div class="card-body">
+    <div class="float-right">
+      <a class="d-block"
+        [routerLink]="['/packs/', pack._id]">
+        <button class="rounded-lg" mat-button>View</button>
+      </a>
+      <span><i class="fas fa-chevron-up" aria-hidden="true"></i> {{ pack.votes }} Votes</span>
+    </div>
+    <h4>Pack for <a>{{ pack.name }}</a></h4>
+    <span>{{ pack.bots.length }} Bots</span>
+    <div
+      *ngFor="let botUser of botUsers"
+      class="bot-avatars mt-3">
+      <img
+        [src]="botUser.displayAvatarURL"
+        [alt]="botUser.username"
+        [matTooltip]="botUser.username"
+        class="round float-left">
+    </div>
+  </div>
+</div>
