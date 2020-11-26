@@ -42,10 +42,6 @@ p {
   margin-left: -8px;
 }
 
-button {
-  tra
-}
-
 /* animations */
 .fade-in {
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
