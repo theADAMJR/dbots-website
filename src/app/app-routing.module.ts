@@ -19,6 +19,7 @@ import { LogModuleComponent } from './dashboard/log-module/log-module.component'
 import { APIComponent } from './dashboard/api/api.component';
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
+import { AnalyticsComponent } from './dashboard/bots/analytics/analytics.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,10 +49,11 @@ const routes: Routes = [
   
   { path: 'dashboard/bots/new', component: AddBotComponent, canActivate: [DashboardAuthGuard] },
   { path: 'dashboard/bots/:id', component: BotComponent, canActivate: [BotAuthGuard] },
+  { path: 'dashboard/bots/:id/analytics', component: AnalyticsComponent, canActivate: [BotAuthGuard] },
   { path: 'dashboard/bots/:id/api', component: APIComponent, canActivate: [BotAuthGuard] },
   { path: 'dashboard/bots/:id/edit', component: EditBotComponent, canActivate: [BotAuthGuard] },
-  { path: 'dashboard/bots/:id/widget', component: BotWidgetComponent, canActivate: [BotAuthGuard] },
   { path: 'dashboard/bots/:id/log', component: LogModuleComponent, canActivate: [BotAuthGuard] },
+  { path: 'dashboard/bots/:id/widget', component: BotWidgetComponent, canActivate: [BotAuthGuard] },
 
   { path: '**', component: NotFoundComponent }
 ];

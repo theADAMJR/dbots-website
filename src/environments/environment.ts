@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  rootEndpoint: 'http://localhost:3000',
   endpoint: 'http://localhost:3000/api/v1',
   discordInvite: 'https://discord.gg/uDTgxyg',
   githubURL: 'https://github.com/DBots-co',

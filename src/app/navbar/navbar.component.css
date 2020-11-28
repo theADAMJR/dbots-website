@@ -1,5 +1,9 @@
+:root {
+    --navbar-background: transparent;
+}
+
 nav.navbar {
-    background-color: transparent;
+    background-color: var(--navbar-background) !important;
 }
 
 img {

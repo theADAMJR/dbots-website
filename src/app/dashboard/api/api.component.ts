@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { SEOService } from 'src/app/services/seo.service';
 import { SaveChangesComponent } from '../save-changes/save-changes.component';
 import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-api',
@@ -17,7 +18,15 @@ export class APIComponent implements OnInit {
   bot: any;
   user: any;
   hidden = true;
+
   token = '';
+  originalDocument: any;
+  webhookResponse = {
+    message: '',
+    ok: false
+  };
+
+  saveChanges$: Subscription;
 
   form = new FormGroup({
     voteWebhookURL: new FormControl('https://')
@@ -30,16 +39,22 @@ export class APIComponent implements OnInit {
     private tokens: BotTokenService,
     private route: ActivatedRoute,
     private saveChanges: MatSnackBar,
-    private seo: SEOService) {}
+    private seo: SEOService,
+    private userService: UserService) {}
 
   async ngOnInit() {
     await this.botService.init();
 
     this.bot = this.botService.getSavedBot(this.id);
     this.user = this.botService.getBot(this.id);
-    this.token = await this.tokens.getToken(this.id);
+    
+    const apiDocument = await this.tokens.getAPIDocument(this.id);
+    this.token = apiDocument.token;
+
+    this.form.get('voteWebhookURL').setValue(apiDocument.voteWebhookURL);
 
     this.form.valueChanges.subscribe(() => this.openSaveChanges());
+    this.originalDocument = this.form.value;
 
     this.seo.setTags({
       description: '',
@@ -53,16 +68,15 @@ export class APIComponent implements OnInit {
       const snackBarRef = this.saveChanges._openedSnackBarRef;
       if (!this.form.valid || snackBarRef) return;
 
-      // this.saveChanges$ = this.saveChanges.openFromComponent(SaveChangesComponent).afterOpened()
-      // .subscribe(() => {
-      //     const component = this.saveChanges._openedSnackBarRef.instance as SaveChangesComponent;
-      //     component.onSave.subscribe(async() => await this.submit());
-      //     component.onReset.subscribe(async() => await this.reset());
-      // });        
+      this.saveChanges$ = this.saveChanges.openFromComponent(SaveChangesComponent).afterOpened()
+      .subscribe(() => {
+          const component = this.saveChanges._openedSnackBarRef.instance as SaveChangesComponent;
+          component.onSave.subscribe(async() => await this.submit());
+          component.onReset.subscribe(async() => await this.reset());
+      });        
   }
   private async reset() {
-    // this.form.get('voteWebhookURL').setValue = JSON.parse(JSON.stringify(this.originalSavedToken));
-    
+    this.form.setValue({ ...this.originalDocument });
     this.form.valueChanges
         .subscribe(() => this.openSaveChanges()); 
 }
@@ -70,7 +84,7 @@ export class APIComponent implements OnInit {
   async submit() {
     this.saveChanges.dismiss();
 
-    await this.botService.updateWebhookURL(this.bot.id, this.form.value);
+    await this.botService.updateBotAPI(this.user.id, this.form.value);
   }
 
   async regen() {
@@ -85,5 +99,22 @@ export class APIComponent implements OnInit {
   }
   async copyToken() {
     await navigator.clipboard.writeText(this.token);    
+  }
+
+  async testWebhook() {
+    try {
+      this.webhookResponse.message = await this.tokens.testWebhook(this.form.value.voteWebhookURL, {
+        at: new Date(),
+        by: this.userService.user.id
+      });
+      this.webhookResponse.ok = true;
+    } catch (error) {
+      this.webhookResponse.ok = false;
+      this.webhookResponse.message = error?.error?.message
+        ?? error?.rejection?.error?.message
+        ?? error?.rejection?.error
+        ?? error?.message
+        ?? error;
+    }
   }
 }

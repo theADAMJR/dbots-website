@@ -9,6 +9,7 @@ import { TagService } from 'src/app/services/tag.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'add-bot',
@@ -65,7 +66,8 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     private router: Router,
     seo: SEOService,
     public tagService: TagService,
-    public userService: UserService) {
+    public userService: UserService,
+    private themeService: ThemeService) {
       seo.setTags({
         description: 'Add a bot to the bot list with this form.',
         titlePrefix: 'Add Bot',
@@ -79,10 +81,7 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     await this.botService.init();
     
     this.initNavbarToggle();
-
-    document
-      .querySelector('.navbar')
-      .setAttribute('style', `background-color: transparent;`);
+    this.themeService.setNavbarBackground();
   }
 
   private initNavbarToggle() {

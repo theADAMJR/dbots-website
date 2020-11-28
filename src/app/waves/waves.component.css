@@ -10,14 +10,7 @@
 
 .parallax > use {
   transition: fill 1s ease-in-out;
-}
-
-.content {
-  position: relative;
-  height: 10vh;
-  text-align: center;
-  background-color: var(--waves);
-  transition: background-color 1s ease-in-out;
+  fill: transparent;
 }
 
 /* Animation */
@@ -73,20 +66,13 @@
 }
 
 #wave1 {
-  fill: var(--waves);
   fill-opacity: 0.7;
 }
 
 #wave2 {
-  fill: var(--waves);
   fill-opacity: 0.5;
 }
 
 #wave3 {
-  fill: var(--waves);
   fill-opacity: 0.3;
-}
-
-#wave4 {
-  fill: var(--waves);
 }

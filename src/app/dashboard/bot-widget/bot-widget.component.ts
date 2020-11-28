@@ -18,8 +18,12 @@ export class BotWidgetComponent implements OnInit {
     size: new FormControl('large')
   });
 
-  get widgetURL() { return `${environment.url}/api/v1/bots/${this.id}/widget?size=${this.form.value.size}`; }
-  get id() { return this.route.snapshot.paramMap.get('id') }
+  get widgetURL() { 
+    return `${environment.url}/api/v1/bots/${this.id}/widget?size=${this.form.value.size}`;
+  }
+  get id() { 
+    return this.route.snapshot.paramMap.get('id');
+  }
 
   constructor(
     private route: ActivatedRoute,

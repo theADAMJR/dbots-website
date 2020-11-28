@@ -5,6 +5,7 @@
     <div [hidden]="preview" class="container">
         <div class="mb-4">
             <div class="d-flex justify-content-between jumbotron">
+                <span></span>
                 <h1 [textContent]="editing ? 'Edit ' + user?.username : 'Add Bot'"
                     class="display-4">Add Bot</h1>
                 <button id="previewButton" (click)="preview = true"
@@ -83,7 +84,7 @@
                         <mat-label>Support Server Invite</mat-label>
                         <span matPrefix>discord.gg/</span>
                         <input class="d-inline" formControlName="supportInvite" type="text" matInput>
-                        <mat-error *ngIf="form.get('supportInvite').invalid">Should be a valid, 7 character, Discord invite code.</mat-error>
+                        <mat-error *ngIf="form.get('supportInvite').invalid">Should be a valid Discord invite code.</mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="outline">
@@ -115,12 +116,14 @@
                         class="alert alert-danger">{{ apiError }}</div>
                     
                     <div class="d-flex justify-content-center">
-                        <rocket-button *ngIf="!editing"
+                        <rocket-button
+                            *ngIf="!editing"
                             id="submit"
                             [precondition]="canSubmit"
                             (click)="submit()"
                             (animated)="navigateToBotListing()">Add</rocket-button>
-                        <rocket-button *ngIf="editing"
+                        <rocket-button
+                            *ngIf="editing"
                             id="update"
                             [precondition]="canSubmit"
                             (click)="update()"
@@ -132,7 +135,7 @@
                 <div *ngIf="!editing"
                     class="alert alert-warning border-warning">
                     Make sure you are in the <a class="text-primary" href="/server">DBots Discord server</a>, for your bot to be added.
-                    This is required for the bot to identify your Discord user.
+                    This is required for your bot to show on the list.
                 </div>
 
                 <h3>Bot Card</h3>

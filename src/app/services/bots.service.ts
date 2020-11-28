@@ -59,8 +59,7 @@ export class BotsService {
       .sort((a, b) => b.votes.length - a.votes.length);    
 
     this._bots = users
-      .filter(b => this.savedBots.some(sb => sb._id === b.id)
-        && b.presence.status !== 'OFFLINE');
+      .filter(b => this.savedBots.some(sb => sb._id === b.id));
 
     this._unreviewedSavedBots = saved.filter(sb => !sb.approvedAt);
     this._unreviewedBots = users
@@ -69,13 +68,13 @@ export class BotsService {
   async refreshUserBots() {
     await this.userService.init();
 
+    // TODO: separate route
     this._userSavedBots = this.savedBots
       .concat(this.unreviewed.saved)
       .filter(sb => sb.ownerId === this.userService.user.id);
     this._userBots = this.bots
       .concat(this.unreviewed.bots)
-      .filter(b => this.userSavedBots.some(sb => sb._id === b.id));
-      
+      .filter(b => this.userSavedBots.some(sb => sb._id === b.id));      
   }
   getSavedLog(id: string) {
     return this.http.get(`${this.endpoint}/${id}/log`, this.headers).toPromise() as Promise<any>;
@@ -93,7 +92,9 @@ export class BotsService {
   }
   
   vote(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/vote`, this.headers).toPromise() as Promise<any>;
+    return this.http
+      .get(`${this.endpoint}/${id}/vote`, this.headers)
+      .toPromise() as Promise<any>;
   }
 
   getTopBots() {
@@ -189,7 +190,7 @@ export class BotsService {
     return this.http.get(`${this.endpoint}/${id}/stats`).toPromise() as Promise<any>;
   }
 
-  async updateWebhookURL(id: string, value: any) {
-    return this.http.patch(`${this.endpoint}/${id}/`, value, this.headers).toPromise() as Promise<any>;
+  async updateBotAPI(id: string, value: any) {
+    return this.http.patch(`${this.endpoint}/${id}/api`, value, this.headers).toPromise() as Promise<any>;
   }
 }

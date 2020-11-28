@@ -17,11 +17,20 @@ export class BotTokenService {
     return { headers: { Authorization: this.key } };
   }
 
-  getToken(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/key`, this.headers).toPromise() as Promise<any>;
+  getAPIDocument(id: string) {
+    return this.http.get(`${this.endpoint}/${id}/api`, this.headers).toPromise() as Promise<any>;
   }
 
   regenToken(id: string) {
     return this.http.get(`${this.endpoint}/${id}/key/regen`, this.headers).toPromise() as Promise<any>;
+  }
+
+  testWebhook(url: string, data: any): Promise<any> {
+    return this.http.post(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': this.key
+      }
+    }).toPromise() as Promise<any>;
   }
 }

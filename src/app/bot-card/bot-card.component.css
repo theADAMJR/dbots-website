@@ -23,7 +23,7 @@ p {
     height: 42px;
 
     background-color: #2f2e2e;
-    border: 5px solid #36393F;
+    border: 5px solid var(--background-primary);
 }
 
 .status-online {
@@ -48,7 +48,7 @@ p {
     width: 256px;
     transition: transform .3s ease-in-out;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.05);
+    background-color: var(--background-primary);
 }
 .card:hover {
     transform: scale(1.05);

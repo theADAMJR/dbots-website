@@ -1,0 +1,18 @@
+<bot-sidebar
+  [bot]="bot"
+  [loaded]="stats && bot && user && log"
+  [user]="user"
+  #sidebar>
+  <div
+    *ngIf="sidebar.loaded"
+    class="container">
+    <header class="text-center">
+      <h1 class="display-4">{{ user.username }} Analytics</h1>
+      <hr class="my-2">
+    </header>
+
+    <section>
+      {{ log.analytics | json }}
+    </section>
+  </div>
+</bot-sidebar>

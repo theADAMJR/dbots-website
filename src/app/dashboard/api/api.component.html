@@ -1,8 +1,12 @@
-<bot-sidebar [bot]="bot"
+<bot-sidebar
+  [bot]="bot"
   [loaded]="bot && user"
-  [user]="user">
-  <div class="container">
-    <header>
+  [user]="user"
+  #sidebar>
+  <div
+    *ngIf="sidebar.loaded"
+    class="container">
+    <header class="text-center">
       <h1 class="display-4">API</h1>
       <hr class="my-2">
     </header>
@@ -13,9 +17,7 @@
     </span>
     <div class="mt-5 text-center">
       <p class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Users with this token can post stats to your bot.</p>
-      <p>
-        Bot API token: <code [textContent]="hidden ? 'Hidden' : token">{{ token }}</code>
-      </p>
+      <p>Bot API token: <code [textContent]="hidden ? 'Hidden' : token">{{ token }}</code></p>
         
       <div class="d-flex justify-content-center">
         <button (click)="regenerate()"
@@ -26,10 +28,7 @@
           id="copy" color="success" mat-button><i class="fas fa-clipboard"></i></button>
       </div>
 
-      <!-- 
-      <hr>
-
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-6">
           <form #f="ngForm" [formGroup]="form">
             <mat-form-field appearance="outline">
@@ -38,14 +37,18 @@
               <mat-error *ngIf="form.get('voteWebhookURL').invalid">Should be a valid URL.</mat-error>
             </mat-form-field>
             <p>The vote webook URL is sent when a user votes for your bot.</p>
-            <button color="success" mat-button>Test</button>
+            <button (click)="testWebhook()"
+              color="success" mat-button>Test</button>
           </form>
         </div>
 
         <div class="col-6">
-          
+          <div
+            *ngIf="webhookResponse"
+            class="alert"
+            [class]="!webhookResponse.ok ? 'alert-danger' : 'alert-info'">{{ webhookResponse.message | json }}</div>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </bot-sidebar>

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { TagService } from '../services/tag.service';
 import { PackService } from '../services/pack.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AnalyticsService } from '../services/analytics.service';
 
 @Component({
   selector: 'bot-preview',
@@ -54,6 +55,7 @@ export class BotPreviewComponent implements OnInit {
   }
 
   constructor(
+    public analytics: AnalyticsService,
     public packs: PackService,
     public service: BotsService,
     private router: Router,

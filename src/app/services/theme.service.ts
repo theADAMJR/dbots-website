@@ -14,4 +14,10 @@ export class ThemeService {
     const theme = localStorage.getItem('theme') ?? this.defaultTheme;
     document.querySelector('html').setAttribute('theme', theme);
   }
+  
+  setNavbarBackground(color = 'transparent') {
+    document
+      .querySelector(':root')
+      .setAttribute('style', `--navbar-background: ${color};`);
+  }
 }

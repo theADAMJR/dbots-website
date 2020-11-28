@@ -5,180 +5,183 @@
 @import 'assets/css/utils.css';
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
-body, mat-sidenav-content {
-    color: var(--font);
+body,
+mat-sidenav-content {
+  color: var(--font);
 
-    background: var(--background-primary);
-    height: 100%;
-    margin: 0;
-    
-    overflow-x: hidden !important;
+  background: var(--background-primary);
+  height: 100%;
+  margin: 0;
 
-    font-family: Whitney,Helvetica Neue,Helvetica,Arial,sans-serif;
+  overflow-x: hidden !important;
+
+  font-family: Whitney, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    
-    padding: 5px;
-    padding-bottom: 0px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  padding: 5px;
+  padding-bottom: 0px;
 }
 
 footer p {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 table {
-    width: 100%;
+  width: 100%;
 }
 
 ::selection {
-    background-color: rgba(255, 255, 255, 0.5) !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .rounded {
-    border-radius: 5px !important;
+  border-radius: 5px !important;
 }
 
 .side-nav img {
-    background-color: var(--background-tertiary);
+  background-color: var(--background-tertiary);
 
-    max-width: 96px;
-    border-radius: 50%;
+  max-width: 96px;
+  border-radius: 50%;
 
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .side-nav .header {
-    width: inherit;
+  width: inherit;
 
-    text-align: center;
+  text-align: center;
 
-    padding-top: 25px;
+  padding-top: 25px;
 }
 
 table.dataTable tbody tr {
-    background-color: inherit;
+  background-color: inherit;
 }
 
 .jumbotron {
-    background-color: transparent;
+  background-color: transparent;
 }
 
 button {
-    border-radius: 25px !important;
+  border-radius: 25px !important;
 }
+
 button:focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 a {
-    color: var(--tertiary);
-    text-decoration: none !important;
-    transition: all .25s;
+  color: var(--tertiary);
+  text-decoration: none !important;
+  transition: all .25s;
 }
+
 a:hover {
-    color: var(--secondary)
+  color: var(--secondary)
 }
 
 mat-chip a {
-    color: inherit !important;
+  color: inherit !important;
 }
 
 /* global */
 .mat-chip.mat-standard-chip {
-    background-color: var(--primary) !important;
+  background-color: var(--primary) !important;
 }
 
 [mat-button] {
-    font-family: inherit !important;
+  font-family: inherit !important;
 }
 
 /* scrollbar */
-::-webkit-scrollbar-track
-{
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-    background-color: var(--background-primary);
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: var(--background-primary);
 }
-::-webkit-scrollbar
-{
-    width: 10px;
-    background-color: transparent;
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
 }
-::-webkit-scrollbar-thumb
-{
-    border-radius: 10px;
-    background-image: -webkit-gradient(linear,
-        left bottom,
-        left top,
-        color-stop(0.72, var(--primary)),
-        color-stop(0.86, var(--secondary)));
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: -webkit-gradient(linear,
+      left bottom,
+      left top,
+      color-stop(0.75, var(--primary)),
+      color-stop(0.25, var(--secondary)));
 }
 
 .desc {
-    color: var(--secondary); 
+  color: var(--secondary);
 }
 
 .mat-snack-bar-container {
-    background-color: rgba(0,0,0,0.8) !important;
-    color: var(--font);
-    width: 75vw;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: var(--font);
+  width: 75vw;
 }
 
 customize-xp-card .mat-form-field-infix {
-    width: inherit !important;
+  width: inherit !important;
 }
 
 thead {
-    background-color: var(--background-tertiary) !important;
+  background-color: var(--background-tertiary) !important;
 }
 
 table tbody tr {
-    background-color: var(--background-primary) !important;
+  background-color: var(--background-primary) !important;
 }
 
 table tbody tr:nth-child(even) {
-    background-color: var(--background-secondary) !important;
+  background-color: var(--background-secondary) !important;
 }
 
-.table td, .table th {    
-    border: none !important;
+.table td,
+.table th {
+  border: none !important;
 }
 
 mat-paginator {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .mat-standard-chip .mat-chip-remove.mat-icon {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 :focus {
-    outline: none !important;
+  outline: none !important;
 }
 
 /* paginator */
 .mat-paginator-page-size {
-    display: none !important;
+  display: none !important;
 }
 
 /* modals */
 .modal-content,
 .modal-header,
 .modal-body {
-    background-color: var(--background-primary) !important;
+  background-color: var(--background-primary) !important;
 }
 
-.modal-content {    
-    min-width: 50vw;
+.modal-content {
+  min-width: 50vw;
 
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 /* bot preview */
@@ -192,81 +195,87 @@ mat-paginator {
 }
 
 #markdown img {
-    max-width: 50vw;
+  max-width: 50vw;
 }
 
 /* media */
 
 /* <Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
-    /* sidebar */
-    mat-sidenav {
-        width: 100vw !important;
-    }
 
-    h1 {
-        font-size: 10vw !important;
-    }
+  /* sidebar */
+  mat-sidenav {
+    width: 100vw !important;
+  }
+
+  h1 {
+    font-size: 10vw !important;
+  }
 }
 
 /* sidebar */
 
-.mat-drawer-side, .mat-drawer-container {
-    background-color: var(--background-secondary) !important;
-    border: none !important;
+.mat-drawer-side,
+.mat-drawer-container {
+  background-color: var(--background-secondary) !important;
+  border: none !important;
 }
 
 mat-sidenav a {
-    margin: 2px 10px;
-    padding: 5px;
-    padding-left: 10px !important;
+  margin: 2px 10px;
+  padding: 5px;
+  padding-left: 10px !important;
 
-    border-radius: 5px;
+  border-radius: 5px;
 }
+
 mat-sidenav a.active {
-    background-color: var(--background-primary) !important;
+  background-color: var(--background-primary) !important;
 }
+
 mat-sidenav a:hover {
-    color: var(--heading);
-    background-color: var(--background-primary) !important;
+  color: var(--heading);
+  background-color: var(--background-primary) !important;
 }
 
 .category {
-    padding: 24px 0 4px 20px;
+  padding: 24px 0 4px 20px;
 
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
 
-    color: var(--muted);
+  color: var(--muted);
 }
+
 .category:hover {
-    color: var(--heading);
-    
-    cursor: pointer;
+  color: var(--heading);
+
+  cursor: pointer;
 }
 
 /* add bot */
 mat-checkbox label {
-    margin: 0 0 .25rem 0 !important;
+  margin: 0 0 .25rem 0 !important;
 }
 
 #editor .mat-form-field-flex,
 #editor .mat-form-field-subscript-wrapper {
-    width: 200%;
+  width: 200%;
 }
 
 /* bootstrap */
 .breadcrumb {
-    margin-left: 20px;
-    background-color: transparent;
+  margin-left: 20px;
+  background-color: transparent;
 }
+
 .breadcrumb a {
-    color: var(--heading);
-    font-size: large;
+  color: var(--heading);
+  font-size: large;
 }
 
 .navbar-dark .navbar-toggler {
-    border-color: transparent;
-    margin-right: -10px;
+  border-color: transparent;
+  margin-right: -10px;
 }

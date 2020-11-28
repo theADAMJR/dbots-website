@@ -6,6 +6,7 @@ import { kebabToLowerCase, kebabToTitleCase } from 'src/app/utils';
 import { TagService } from 'src/app/services/tag.service';
 import { Location } from '@angular/common';
 import { SearchComponent } from 'src/app/search/search.component';
+import { ThemeService } from 'src/app/services/theme.service';
 
 @Component({
   selector: 'search-wrapper',
@@ -23,7 +24,8 @@ export class SearchWrapperComponent implements AfterViewInit {
     private route: ActivatedRoute,
     private location: Location,
     private seo: SEOService,
-    public tagService: TagService) {
+    public tagService: TagService,
+    private themeService: ThemeService) {
     this.placeholder = kebabToLowerCase(this.getRandomPlaceholder());
   }
 
@@ -38,6 +40,7 @@ export class SearchWrapperComponent implements AfterViewInit {
         if (tagName)
           this.searchByTag(tagName);
       });
+      this.themeService.setNavbarBackground();
     });
   }
 

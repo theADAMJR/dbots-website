@@ -6,6 +6,7 @@ import { ShowOnDirtyErrorStateMatcher, ErrorStateMatcher } from '@angular/materi
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+import { SocketIoModule } from 'ngx-socket-io';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -57,6 +58,7 @@ import { UserProfileComponent } from './users/user-profile/user-profile.componen
 import { SearchComponent } from './search/search.component';
 import { PacksComponent } from './packs/packs.component';
 import { PackCardComponent } from './packs/pack-card/pack-card.component';
+import { AnalyticsComponent } from './dashboard/bots/analytics/analytics.component';
 
 @Injectable()
 export class AlertErrorHandler implements ErrorHandler {
@@ -131,11 +133,13 @@ export class AlertErrorHandler implements ErrorHandler {
     UserProfileComponent,
     SearchComponent,
     PacksComponent,
-    PackCardComponent
+    PackCardComponent,
+    AnalyticsComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    SocketIoModule.forRoot({ url: environment.rootEndpoint }),
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

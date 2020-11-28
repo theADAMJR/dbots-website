@@ -42,7 +42,9 @@
     "ng2-charts": "^2.3.0",
     "ngx-color-picker": "^9.0.0",
     "ngx-highlightjs": "^4.1.0-beta",
+    "ngx-socket-io": "^3.2.0",
     "rxjs": "^6.6.2",
+    "socket.io-client": "^3.0.3",
     "tslib": "^2.0.0",
     "typescript": "^3.9.7",
     "zone.js": "~0.10.2"

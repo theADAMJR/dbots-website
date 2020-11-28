@@ -15,7 +15,6 @@
   padding: 22px 22px 22px 20px;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(65, 72, 86, 0.06);
-  transition: all 400ms ease-in-out;
 
   position: sticky;
   bottom: 0;

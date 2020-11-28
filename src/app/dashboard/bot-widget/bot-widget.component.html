@@ -1,18 +1,23 @@
-<bot-sidebar [bot]="bot"
-    [loaded]="bot && user"
-    [user]="user">
-  <div *ngIf="user && bot"
-    class="container">
-    <header>
-        <h1 class="display-4">{{ user.username }} Widget</h1>
-        <hr class="my-2">
+<bot-sidebar
+  [bot]="bot"
+  [loaded]="bot && user"
+  [user]="user"
+  #sidebar>
+  <div class="container">
+    <header
+      *ngIf="sidebar.loaded"
+      class="text-center">
+      <h1 class="display-4">{{ user?.username }} Widget</h1>
+      <hr class="my-2">
     </header>
     <div class="d-flex justify-content-center">
       <div>
         <a [href]="'/bots/' + id">
-          <img [src]="widgetURL" [alt]="user.username">
+          <img [src]="widgetURL" [alt]="user?.username">
         </a>
-        <form #f="ngForm" [formGroup]="form">
+        <form
+          #f="ngForm"
+          [formGroup]="form">
           <mat-form-field class="ml-5 mt-2" appearance="outline">
             <mat-label>Size</mat-label>
             <mat-select formControlName="size">

@@ -3,7 +3,10 @@
         <img [src]="user.displayAvatarURL">
         <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
         
-        <mat-form-field appearance="outline" class="float-right ml-3">
+        <mat-form-field
+            *ngIf="userService.user"
+            appearance="outline"
+            class="float-right ml-3">
             <mat-label>Add to Pack</mat-label>
             <mat-select>
                 <mat-option
@@ -31,7 +34,8 @@
             </mat-select>
         </mat-form-field>
         <div>
-            <span *ngIf="bot.stats?.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.stats?.guildCount | number }}</span>
+            <span
+                *ngIf="bot.stats?.guildCount"><i class="fas fa-server" matTooltip="Servers"></i> {{ bot.stats?.guildCount | number }}</span>
             <span class="pl-3"><i class="fas fa-chevron-circle-up" matTooltip="Votes"></i> {{ bot.votes.length | number }}</span>
             <span class="border border-dark py-1 mx-4"></span>
             <span>
@@ -78,7 +82,9 @@
         <button *ngIf="canManage"
             [routerLink]="['/dashboard/bots/' + user.id +'/edit']"
             class="bg-warning mr-4" color="warning" mat-button><i class="fas fa-pencil-alt"></i> Edit</button>
-        <a [href]="bot.listing.invite" rel="nofollow"
+        <a (click)="analytics.botInvite({ botId: user.id })"
+            [href]="bot.listing.invite"
+            rel="nofollow"
             class="rounded-lg bg-primary mr-2" mat-button><i class="fas fa-plus-circle"></i> Add</a>
         <button [routerLink]="['/bots/' + user.id +'/vote']"
             class="bg-secondary" mat-button><i class="fas fa-chevron-circle-up"></i> Vote</button>
