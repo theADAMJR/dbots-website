@@ -152,6 +152,6 @@ export class BotsComponent implements OnInit, AfterViewInit {
   }
   
   paginate(array: any[]) {
-    return array.slice((this.page - 1) * this.size, this.page * this.size);
+    return array?.slice((this.page - 1) * this.size, this.page * this.size);
   }
 }
