@@ -134,7 +134,7 @@
             <div class="col-lg-6 d-none d-sm-block border-left">
                 <div *ngIf="!editing"
                     class="alert alert-warning border-warning">
-                    Make sure you are in the <a class="text-primary" href="/server">DBots Discord server</a>, for your bot to be added.
+                    Make sure you are in the <a class="text-primary" [href]="environment.discordInvite">DBots Discord server</a>, for your bot to be added.
                     This is required for your bot to show on the list.
                 </div>
 

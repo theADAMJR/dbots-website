@@ -25,6 +25,7 @@ export class AddBotComponent implements OnInit, AfterViewInit {
   apiError = '';
   toIterable = toIterable;
   filteredTags = this.tagService.tags;
+  environment = environment;
 
   form = new FormGroup({
     body: new FormControl('', [ Validators.required, Validators.minLength(300) ]),
