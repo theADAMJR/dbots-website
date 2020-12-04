@@ -20,6 +20,8 @@ import { APIComponent } from './dashboard/api/api.component';
 import { BotWidgetComponent } from './dashboard/bot-widget/bot-widget.component';
 import { UserProfileComponent } from './users/user-profile/user-profile.component';
 import { AnalyticsComponent } from './dashboard/bots/analytics/analytics.component';
+import { PackComponent } from './packs/pack/pack.component';
+import { PackVoteComponent } from './packs/pack-vote/pack-vote.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,8 +36,8 @@ const routes: Routes = [
   { path: 'tags/:tag', component: SearchWrapperComponent },
   { path: 'tags', redirectTo: '/' },
 
-  { path: 'packs', component: SearchWrapperComponent },
-  { path: 'packs/:id', component: SearchWrapperComponent },
+  { path: 'packs/:id', component: PackComponent },
+  { path: 'packs/:id/vote', component: PackVoteComponent },
   { path: 'packs', redirectTo: '/' },
   
   { path: 'bots/:id', component: BotPageComponent },

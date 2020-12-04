@@ -81,7 +81,7 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     await this.botService.init();
     
     this.initNavbarToggle();
-    this.themeService.setNavbarBackground();
+    this.themeService.setNavbarBackground('transparent');
   }
 
   private initNavbarToggle() {
@@ -90,7 +90,7 @@ export class AddBotComponent implements OnInit, AfterViewInit {
     const stopPreviewButton = document.querySelector('#stopPreviewButton') as HTMLButtonElement;
 
     if (previewButton)
-      previewButton.onclick = () => navbar.style.backgroundColor = 'var(--background-secondary)';
+      previewButton.onclick = () => navbar.style.backgroundColor = 'var(--background-secondary) !important';
     if (stopPreviewButton)
       stopPreviewButton.onclick = () => navbar.style.backgroundColor = 'transparent';
   }
@@ -156,6 +156,7 @@ export class AddBotComponent implements OnInit, AfterViewInit {
       return this.form.setErrors({ invalid: true });
     
     await this.botService.updateBot(this.form.value.botId, this.form.value);
+    await this.botService.refreshBots();
   }
 
   navigateToBotListing() {

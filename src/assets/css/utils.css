@@ -32,7 +32,7 @@
 
 /* buttons */
 .btn-gradient {
-    background-image: linear-gradient(to right, var(--primary) 0%, var(--secondary) 100%);
+    background-image: linear-gradient(to right, var(--primary) 0%, var(--secondary) 100%) !important;
 }
 .btn-gradient:hover {
     background-position: right center;

@@ -1,12 +1,12 @@
+import { Router } from '@angular/router';
 import { Component, Input, OnInit } from '@angular/core';
-import marked from 'marked';
 import { UserService } from '../services/user.service';
 import { BotsService } from '../services/bots.service';
-import { Router } from '@angular/router';
 import { TagService } from '../services/tag.service';
 import { PackService } from '../services/pack.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AnalyticsService } from '../services/analytics.service';
+import marked from 'marked';
 
 @Component({
   selector: 'bot-preview',
@@ -42,7 +42,10 @@ export class BotPreviewComponent implements OnInit {
   }
 
   packForm = new FormGroup({
-    name: new FormControl('', [ Validators.required ])
+    name: new FormControl('', [ 
+      Validators.required,
+      Validators.pattern(/^([A-Za-z\d -])+$/),
+    ])
   });
 
   get markdown() {
@@ -68,13 +71,6 @@ export class BotPreviewComponent implements OnInit {
 
     this.ownerUser = this.ownerUser
       ?? await this.userService.getUser(this.bot.ownerId);
-
-    document
-      .querySelector('.navbar')
-      .setAttribute('style', `
-        background-color: var(--background-secondary);
-        margin-bottom: -5px;
-      `);
   }
 
   async delete() {
@@ -89,7 +85,8 @@ export class BotPreviewComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  async createPack(name: string) {
+  async createPack(name: string) {    
+    // if (this.packForm.invalid) return;
     await this.packs.create({ name, description: 'A pack of bots.' });
     await this.packs.refreshPacks();
   }
@@ -107,5 +104,9 @@ export class BotPreviewComponent implements OnInit {
       pack.bots.splice(index, 1);
 
     await this.packs.update(packId, pack);
+  }
+
+  inPack(pack: any) {
+    return pack.bots.some(id => id === this.user.id);
   }
 }

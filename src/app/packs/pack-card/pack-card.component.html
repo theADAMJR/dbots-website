@@ -9,7 +9,7 @@
       </a>
       <span><i class="fas fa-chevron-up" aria-hidden="true"></i> {{ pack.votes }} Votes</span>
     </div>
-    <h4>Pack for <a>{{ pack.name }}</a></h4>
+    <h4>Pack for <a [style.color]="randomColor">{{ pack.name }}</a></h4>
     <span>{{ pack.bots.length }} Bots</span>
     <div
       *ngFor="let botUser of botUsers"

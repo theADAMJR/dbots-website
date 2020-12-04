@@ -1,29 +1,37 @@
 <navbar></navbar>
 
-<div *ngIf="bot && user"
+<div *ngIf="pack"
   class="container">
   <div class="d-flex justify-content-center mb-3">
-    <a [href]="'/bots/' + id">
-      <img [src]="widgetURL" [alt]="user.username">
-    </a>
+    <pack-card
+      [pack]="pack"></pack-card>
   </div>
   <div class="d-flex justify-content-center">
-    <button [routerLink]="['/bots/' + id]"
-      class="bg-secondary mr-2" color="secondary" mat-button>
+    <button 
+      [routerLink]="['/packs/' + packId]"
+      class="bg-secondary mr-2" 
+      color="secondary" 
+      mat-button>
       <i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Back
     </button>
-    <button *ngIf="!userService.user" routerLink="/login"
-      class="bg-primary" mat-button>
+    <button 
+      *ngIf="!userService.user" 
+      routerLink="/login"
+      class="bg-primary" 
+      mat-button>
       <i class="fas fa-user-alt"></i> Login to Vote
     </button>
-    <button *ngIf="userService.user" id="vote" (click)="vote()"
+    <button 
+      *ngIf="userService.user" 
+      id="vote" 
+      (click)="vote()"
       color="success" mat-button>
       <i class="fas fa-chevron-circle-up"></i> Vote
     </button>
   </div>
 </div>
 
-<div *ngIf="!bot || !user"
+<div *ngIf="!pack"
   class="container">
   <spinner></spinner>
 </div>

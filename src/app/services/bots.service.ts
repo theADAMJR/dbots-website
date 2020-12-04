@@ -55,7 +55,8 @@ export class BotsService {
     const { saved, users } = await this.http.get(`${this.endpoint}`).toPromise() as any;
 
     this._savedBots = saved
-      .filter(sb => users.some(g => g.id === sb._id) && sb.approvedAt)
+      .filter(sb => users
+        .some(u => u.id === sb._id) && sb.approvedAt)
       .sort((a, b) => b.votes.length - a.votes.length);    
 
     this._bots = users
@@ -79,7 +80,6 @@ export class BotsService {
   getSavedLog(id: string) {
     return this.http.get(`${this.endpoint}/${id}/log`, this.headers).toPromise() as Promise<any>;
   }
-
   getBot(id: string) {
     return this.bots
       .concat(this.unreviewed.bots)
@@ -90,6 +90,16 @@ export class BotsService {
       .concat(this.unreviewed.saved)
       .find(b => b._id === id);
   }
+
+  getRandomBot() {
+    if (!this.bots) return null;
+
+    const bots = this.bots.filter(b => b.presence.status !== 'offline');
+    const index = Math.floor(Math.random() * bots.length);
+
+    return bots[index];
+  }
+
   
   vote(id: string) {
     return this.http

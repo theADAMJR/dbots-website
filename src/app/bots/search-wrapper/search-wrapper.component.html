@@ -18,6 +18,9 @@
                     <a href="#top">Top <i class="pl-1 fas fa-trophy"></i></a>
                     </mat-chip>
                 <mat-chip>
+                    <a href="#packs">Bot Packs <i class="pl-1 fas fa-cube"></i></a>
+                </mat-chip>
+                <mat-chip>
                     <a href="#trending">Trending <i class="pl-1 fas fa-star"></i></a>
                 </mat-chip>
                 <mat-chip class="more">
@@ -35,7 +38,7 @@
     <bots id="top" #bots></bots>
 
     <div *ngIf="!bots.query && !bots.tag">
-        <packs></packs>
+        <packs id="packs"></packs>
 
         <bots id="trending" [tag]="{
             description: 'Trending bots with the most votes.',

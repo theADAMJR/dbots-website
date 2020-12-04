@@ -2,20 +2,26 @@
     <waves></waves>
     <div class="content">
         <h3>Resources</h3>
-        <div class="nav navbar-nav">
-            <a class="nav-item nav-link" routerLink="/docs" routerLinkActive="active">
-                <i class="fas fa-book text-muted mr-1" aria-hidden="true"></i> Docs
-            </a>
-            <a class="nav-item nav-link"
-             [href]="environment.discordInvite"
-             routerLinkActive="active">
-                <i class="fab fa-discord text-muted mr-1"></i> Server
-            </a>
-            <a class="nav-item nav-link"
-             [href]="environment.githubURL"
-             routerLinkActive="active">
-                <i class="fab fa-github text-muted mr-1"></i> GitHub
-            </a>
+        <div class="row">
+            <div class="col">
+                <div class="nav navbar-nav">
+                    <a class="nav-item nav-link" routerLink="/docs" routerLinkActive="active">
+                        <i class="fas fa-book text-muted mr-1" aria-hidden="true"></i> Docs
+                    </a>
+                    <a class="nav-item nav-link"
+                     [href]="environment.discordInvite"
+                     routerLinkActive="active">
+                        <i class="fab fa-discord text-muted mr-1"></i> Server
+                    </a>
+                    <a class="nav-item nav-link"
+                     [href]="environment.githubURL"
+                     routerLinkActive="active">
+                        <i class="fab fa-github text-muted mr-1"></i> GitHub
+                    </a>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
         </div>
 
         <hr>
@@ -28,6 +34,10 @@
                 class="cursor-pointer"
                 routerLink="/docs/changelog"
                 [fragment]="anchorVersion">{{ environment.version }}</span>
+
+            <!-- You can replace this with your own repo LICENSE, just make sure it's a link to the license. -->
+            <a href="https://github.com/dbots-co/website/tree/stable/LICENSE"
+                class="d-block text-muted cursor-pointer">&copy; DBots - GNU AGPL</a>
         </span>
     </div>
 </footer>

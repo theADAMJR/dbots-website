@@ -39,7 +39,7 @@ export class UserService {
   }
 
   getUser(id: string) {
-    return this.http.get(`${this.endpoint}/${id}`).toPromise();
+    return this.http.get(`${this.endpoint}/${id}`).toPromise() as any;
   }
 
   resetUser() {

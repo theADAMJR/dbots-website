@@ -4,6 +4,7 @@ import { SEOService } from '../services/seo.service';
 import { BotsService } from '../services/bots.service';
 import { UserService } from '../services/user.service';
 import { environment } from 'src/environments/environment';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-bot-vote',
@@ -15,13 +16,14 @@ export class BotVoteComponent implements OnInit {
   user: any;
 
   get widgetURL() { return `${environment.endpoint}/bots/${this.id}/widget?size=medium`; }
-  get id() { return this.route.snapshot.paramMap.get('id') }
+  get id() { return this.route.snapshot.paramMap.get('id'); }
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private seo: SEOService,
     private service: BotsService,
+    private themeService: ThemeService,
     public userService: UserService) {}
 
   async ngOnInit() {
@@ -38,6 +40,8 @@ export class BotVoteComponent implements OnInit {
       titleSuffix: 'DBots',
       url: `bots/${this.id}`
     });
+
+    this.themeService.setNavbarBackground('transparent');
   }
 
   async vote() {
@@ -51,19 +55,5 @@ export class BotVoteComponent implements OnInit {
     await this.service.refreshBots();
 
     return this.router.navigate(['/bots/' + this.id]);
-  }
-
-  async remind() {
-    await Notification.requestPermission();
-
-    new Notification(`DBots - Vote Reminder`, {
-      badge: `${environment.url}/bots/${this.id}`,
-      body: `You can vote again for ${this.user.username}.`,
-      icon: this.user.displayAvatarURL,
-      image: `${environment.url}/assets/img/logo.png`,
-      renotify: true,
-      timestamp: new Date().getTime() + (12 * 60 * 60 * 1000),
-      tag: 'Vote Reminder'
-    });
   }
 }

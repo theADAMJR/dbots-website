@@ -1,0 +1,30 @@
+header {
+  background-color: var(--background-secondary);
+
+  margin-top: -65px;
+  padding-top: 125px;
+}
+
+h1 {
+  text-overflow: clip;
+}
+
+img {
+  float: left;
+
+  margin-right: 15px;
+  border-radius: 10px;
+  width: 96px;
+}
+
+#bots {
+  min-height: 480px;
+}
+
+a {
+  color: var(--heading);
+}
+
+.huge-icon {
+  font-size: 96px;
+}

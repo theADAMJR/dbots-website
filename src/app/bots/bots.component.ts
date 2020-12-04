@@ -4,6 +4,7 @@ import { kebabToTitleCase } from '../utils';
 import { Tag } from '../services/tag.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { PackService } from '../services/pack.service';
 
 @Component({
   selector: 'bots',
@@ -13,6 +14,7 @@ import { Location } from '@angular/common';
 export class BotsComponent implements OnInit, AfterViewInit {
   @Input() tag: Tag;
   @Input() ownerUser: any;
+  @Input() pack: any;
 
   page = 1;
   size = 8;
@@ -31,7 +33,8 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
   constructor(
     public service: BotsService,
-    private location: Location) {}
+    private location: Location,
+    private packs: PackService) {}
 
   async ngOnInit() {
     await this.service.init();
@@ -40,6 +43,8 @@ export class BotsComponent implements OnInit, AfterViewInit {
       this.searchByTag(this.tag);
     else if (this.ownerUser)
       this.showUserBots(this.ownerUser);
+    else if (this.pack)
+      this.showPackBots(this.pack);
     else
       this.loadTopBots();
 
@@ -98,6 +103,14 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
     this.setOwnerLayout(user);
   }
+  
+  showPackBots(pack: any) {
+    this.savedBots = pack.bots;
+    this.bots = this.service.bots
+      .filter(u => pack.bots.some(sb => sb._id === u.id));
+
+    this.setPackLayout(pack);
+  }
 
   private setDefaultLayout() {
     this.title = 'Top';
@@ -124,6 +137,11 @@ export class BotsComponent implements OnInit, AfterViewInit {
   private setOwnerLayout(user: any) {
     this.title = `${user.username} Bots`;
     this.description = `This user has ${this.bots.length} bots on DBots.`;
+  }
+  private setPackLayout(pack: any) {
+    this.title = `Pack for ${pack.name}`;
+    this.icon = 'fas fa-cube';
+    this.description = pack.description;
   }
 
   previousPage() {

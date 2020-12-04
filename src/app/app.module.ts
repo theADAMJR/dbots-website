@@ -59,6 +59,8 @@ import { SearchComponent } from './search/search.component';
 import { PacksComponent } from './packs/packs.component';
 import { PackCardComponent } from './packs/pack-card/pack-card.component';
 import { AnalyticsComponent } from './dashboard/bots/analytics/analytics.component';
+import { PackComponent } from './packs/pack/pack.component';
+import { PackVoteComponent } from './packs/pack-vote/pack-vote.component';
 
 @Injectable()
 export class AlertErrorHandler implements ErrorHandler {
@@ -134,7 +136,9 @@ export class AlertErrorHandler implements ErrorHandler {
     SearchComponent,
     PacksComponent,
     PackCardComponent,
-    AnalyticsComponent
+    AnalyticsComponent,
+    PackComponent,
+    PackVoteComponent
   ],
   imports: [
     AppRoutingModule,

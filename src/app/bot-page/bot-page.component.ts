@@ -41,7 +41,11 @@ export class BotPageComponent implements OnInit {
       url: `bots/${this.id}`
     });
 
-    this.themeService.setNavbarBackground('var(--background-secondary)');
     this.analytics.botPageView({ botId: this.user.id });
+    
+    this.themeService.setNavbarBackground('var(--background-secondary)');
+    document
+      .querySelector('.navbar')
+      .setAttribute('style', `margin-bottom: -5px;`);
   }
 }

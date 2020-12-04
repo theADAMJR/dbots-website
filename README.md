@@ -1,4 +1,5 @@
 # DBots Dashboard
+Make sure to leave the license in Docs as it is.
 
 Projects to Host Series - https://www.youtube.com/watch?v=ARkTLD_j2cM&list=PLGfT2ttRbfiyyci-6_mmKaTA0-2qm_U6H&index=1
 

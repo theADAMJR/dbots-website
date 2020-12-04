@@ -4,11 +4,11 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/bots">Bots</a></li>
-      <li class="breadcrumb-item"><a [routerLink]="['/bots/', user.id]">{{ user.id }}</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/bots/', user.id]">{{ user.username }}</a></li>
     </ol>
   </nav>
   <div *ngIf="!bot.approvedAt"
-    class="alert alert-info">
+    class="alert alert-info mx-5">
     <i class="fas fa-info-circle" aria-hidden="true"></i> Your bot will visible on the bot list if it is approved.
   </div>
   <bot-preview *ngIf="bot.listing"

@@ -18,14 +18,17 @@
 
 **Add**:
 - too much to list
-- better theme
+- updated theme
 - bot packs
 - real time bot analytics
 - many many integration tests
 - next gen theme
+- easier and quicker navigation
+- vote webhooks
 
 **Change/Fix**:
-- bots no longer appear if offline
+- bot guidelines updated
+- links from navbar moved to footer
 
 ---
 

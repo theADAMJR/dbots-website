@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
     this.user = await this.userService.getUser(id);
 
     if (!this.user || this.user?.bot)
-      this.router.navigate(['/']);
+      return this.router.navigate(['/']);
 
     this.seo.setTags({
       titlePrefix: this.user.username,
@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
     document
       .querySelector('.navbar')
       .setAttribute('style', `
-        background-color: var(--background-secondary);
+        background-color: var(--background-secondary) !important;
         margin-bottom: -5px;
       `);
   }

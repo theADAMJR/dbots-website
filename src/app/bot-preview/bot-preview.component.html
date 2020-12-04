@@ -4,7 +4,7 @@
         <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>
         
         <mat-form-field
-            *ngIf="userService.user"
+            *ngIf="userService.user && bot.approvedAt"
             appearance="outline"
             class="float-right ml-3">
             <mat-label>Add to Pack</mat-label>
@@ -12,10 +12,10 @@
                 <mat-option
                     *ngFor="let pack of packs.getUserPacks(userService.user.id)"
                     value="pack._id"
-                    selected="pack.bots.some(sb => sb._id === user.id)">
+                    [selected]="inPack(pack)">
                     <mat-checkbox
                         (click)="(inList.checked ? removeFromList(pack._id) : addToList(pack._id)) && $event.stopPropagation()"
-                        checked="pack.bots.some(sb => sb._id === user.id)"
+                        [checked]="inPack(pack)"
                         #inList></mat-checkbox>
                     {{ pack.name }}
                 </mat-option>

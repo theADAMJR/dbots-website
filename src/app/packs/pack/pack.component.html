@@ -1,0 +1,57 @@
+<navbar></navbar>
+
+<div *ngIf="pack && ownerUser">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/packs">Packs</a></li>
+      <li class="breadcrumb-item"><a [routerLink]="['/packs/', pack._id]">{{ pack.name }}</a></li>
+    </ol>
+  </nav>
+  <header class="jumbotron mb-0">
+  <div class="container">
+    <div class="d-flex justify-content-between ml">
+      <span>
+        <i class="fas fa-cube text-muted huge-icon float-left mr-3"></i>
+        <div class="float-left">
+          <h1>{{ pack.name }}</h1>
+          <p class="lead text-secondary">{{ pack.description }}</p>
+        </div>
+      </span>
+      <span>
+        <div><i class="fas fa-robot text-muted"></i> {{ pack.bots.length | number }} Bots</div>
+        <div><i class="fas fa-chevron-up text-muted pr-l"></i> {{ pack.votes | number }} Votes</div>
+
+        <div class="mt-3"></div>
+        <member-username [user]="ownerUser"></member-username>
+        
+        <div class="buttons mt-3">
+          <button
+            [routerLink]="'/packs/' + packId + '/vote'"
+            class="mr-2 btn-gradient"
+            mat-button>Vote</button>
+          <span
+            *ngIf="userService.user.id === ownerUser.id"
+            class="controls">
+            <button
+              (click)="delete()"
+              color="danger"
+              mat-button>Delete</button>
+          </span>
+        </div>
+      </span>
+    </div>
+  </div>
+  </header>
+  <waves [inverted]="true"></waves>
+
+  <div id="bots" class="container">
+    <bots [pack]="pack"></bots>
+  </div>
+</div>
+
+<div *ngIf="!pack || !ownerUser"
+  class="container">
+  <spinner></spinner>
+</div>
+
+<home-footer></home-footer>

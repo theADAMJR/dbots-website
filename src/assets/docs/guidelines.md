@@ -23,6 +23,10 @@ These guidelines apply to all listed bots, and may change at any time, without n
 - Be too similar to another bot, or 
 - Contain malicious code
 - Contain irrelevant tags
+- Describe main features in little detail
+
+## Bot Owners Must Not
+- Leave the DBots server, as this will delete your bot from the list
   
 By adding a bot to [DBots](/), you agree that if the bot breaks **any** of these guidelines, it will be **declined**. 
 

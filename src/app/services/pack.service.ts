@@ -30,6 +30,10 @@ export class PackService {
     this._packs = await this.http.get(this.endpoint).toPromise() as any;
   }
 
+  fetch(id: string) {
+    return this.http.get(`${this.endpoint}/${id}`).toPromise() as any;
+  }
+
   get(id: string) {
     return this.packs.find(p => p._id === id);
   }
@@ -37,7 +41,7 @@ export class PackService {
     return this.packs.filter(p => p.owner === userId);
   }
   getTopPacks() {
-    return this.packs.sort((a, b) => (a > b) ? 1 : -1);
+    return this.packs.sort((a, b) => (a.votes > b.votes) ? 1 : -1);
   }
 
   create(value: any): Promise<any> {
