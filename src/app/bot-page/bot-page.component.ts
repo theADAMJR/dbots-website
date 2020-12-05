@@ -31,8 +31,10 @@ export class BotPageComponent implements OnInit {
 
     this.user = this.service.getBot(this.id);
     this.bot = this.service.getSavedBot(this.id);
-    if (!this.user || !this.bot)
-      return this.router.navigate(['']);
+    if (!this.user || !this.bot) {
+      await this.router.navigate(['/']);
+      return;
+    }
 
     this.seo.setTags({
       description: this.bot.listing.overview,
