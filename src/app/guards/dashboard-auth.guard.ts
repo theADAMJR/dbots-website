@@ -11,7 +11,7 @@ export class DashboardAuthGuard implements CanActivate {
   async canActivate() {
     await this.userService.init();
     if (!this.userService.user)
-      this.router.navigate(['/']);
+      await this.router.navigate(['/']);
         
     return true;
   }  

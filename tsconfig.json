@@ -5,6 +5,11 @@
   To learn more about this file see: https://angular.io/config/solution-tsconfig.
 */
 {
+  "compilerOptions": {
+    "baseUrl": "./",
+    "typeRoots": [ "node_modules/@types" ],
+    "types": ["node"]
+  },
   "files": [],
   "references": [
     {

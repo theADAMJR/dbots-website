@@ -22,6 +22,10 @@ export class NavbarComponent implements OnInit {
 
   async ngOnInit() {
     await this.botsService.init();
+    this.updateRandomBotId();
+  }
+
+  updateRandomBotId() {
     this.randomBotId = this.botsService.getRandomBot()?.id;
   }
 }

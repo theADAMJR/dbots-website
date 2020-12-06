@@ -14,6 +14,14 @@
 
 ---
 
+## v1.0.1b
+
+**Change/Fix**:
+- random bot navigation
+
+
+---
+
 ## v1.0.0b
 
 **Add**:

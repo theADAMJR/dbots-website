@@ -15,7 +15,7 @@ export class BotPageComponent implements OnInit {
   bot: any;
   user: any;
 
-  get id() { return this.route.snapshot.paramMap.get('id') }
+  get id() { return this.route.snapshot.paramMap.get('id'); }
 
   constructor(
     private analytics: AnalyticsService,
@@ -31,10 +31,8 @@ export class BotPageComponent implements OnInit {
 
     this.user = this.service.getBot(this.id);
     this.bot = this.service.getSavedBot(this.id);
-    if (!this.user || !this.bot) {
-      await this.router.navigate(['/']);
-      return;
-    }
+    if (!this.user || !this.bot)
+      return this.router.navigate(['/']);
 
     this.seo.setTags({
       description: this.bot.listing.overview,

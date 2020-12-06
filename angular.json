@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/twopg-dashboard/browser",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "main": "src/main.server.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
