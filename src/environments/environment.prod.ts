@@ -4,7 +4,7 @@ export const environment = {
   rootEndpoint: 'http://localhost:3000',
   discordInvite: 'https://discord.gg/uDTgxyg',
   githubURL: 'https://github.com/DBots-co',
-  version: 'v1.0.0b',
+  version: 'v1.0.1b',
   url: 'https://dbots.co',
   guildId: '236608364333891585'
 };

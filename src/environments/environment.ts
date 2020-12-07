@@ -8,7 +8,7 @@ export const environment = {
   endpoint: 'http://localhost:3000/api/v1',
   discordInvite: 'https://discord.gg/uDTgxyg',
   githubURL: 'https://github.com/DBots-co',
-  version: 'v1.0.0b',
+  version: 'v1.0.1b',
   url: 'http://localhost:3000',
   guildId: '531196495584821314'
 };
