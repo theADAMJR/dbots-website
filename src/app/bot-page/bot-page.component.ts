@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { ThemeService } from '../services/theme.service';
 import { AnalyticsService } from '../services/analytics.service';
+import { param } from 'jquery';
 
 @Component({
   selector: 'app-bot-page',
@@ -14,8 +15,7 @@ import { AnalyticsService } from '../services/analytics.service';
 export class BotPageComponent implements OnInit {
   bot: any;
   user: any;
-
-  get id() { return this.route.snapshot.paramMap.get('id'); }
+  id: string;
 
   constructor(
     private analytics: AnalyticsService,
@@ -29,19 +29,23 @@ export class BotPageComponent implements OnInit {
   async ngOnInit() {
     await this.service.init();
 
-    this.user = this.service.getBot(this.id);
-    this.bot = this.service.getSavedBot(this.id);
-    if (!this.user || !this.bot)
-      return this.router.navigate(['/']);
+    this.route.paramMap.subscribe(paramMap => {
+      this.id = paramMap.get('id');
 
-    this.seo.setTags({
-      description: this.bot.listing.overview,
-      titlePrefix: this.user.username,
-      titleSuffix: 'DBots',
-      url: `bots/${this.id}`
+      this.user = this.service.getBot(this.id);
+      this.bot = this.service.getSavedBot(this.id);
+      if (!this.user || !this.bot)
+        return this.router.navigate(['/']);
+  
+      this.seo.setTags({
+        description: this.bot.listing.overview,
+        titlePrefix: this.user.username,
+        titleSuffix: 'DBots',
+        url: `bots/${this.id}`
+      });
+  
+      this.analytics.botPageView({ botId: this.user.id });
     });
-
-    this.analytics.botPageView({ botId: this.user.id });
     
     this.themeService.setNavbarBackground('var(--background-secondary)');
     document

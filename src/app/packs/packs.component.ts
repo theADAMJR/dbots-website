@@ -27,9 +27,9 @@ export class PacksComponent implements OnInit {
     if (this.ownerUser) {
       this.packs = this.service.getUserPacks(this.ownerUser.id);
       this.setOwnerLayout();
-    }
+    } else
+      this.packs = this.service.getTopPacks();
   
-    this.packs = this.service.getTopPacks();
     this.initialized = true;
   }
 

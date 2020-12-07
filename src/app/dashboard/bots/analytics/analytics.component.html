@@ -8,11 +8,44 @@
     class="container">
     <header class="text-center">
       <h1 class="display-4">{{ user.username }} Analytics</h1>
+      <p class="lead">View real time analytics for your bot.</p>
       <hr class="my-2">
     </header>
 
-    <section>
-      {{ log.analytics | json }}
+    <section id="summary">
+      <h2>Today's Summary</h2>
+      <p>This data is based from today.</p>
+      <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="stat bg-gradient">
+            <h3>Impressions</h3>
+            <p class="lead">How many times your bot card has been seen.</p>
+            <span>{{ last(log.analytics.impressions) || 'N/A' }} Impressions</span>
+          </div>          
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="stat bg-gradient">
+            <h3>Views</h3>
+            <p class="lead">How many times your bot page has been seen.</p>
+            <span>{{ last(log.analytics.views) || 'N/A' }} Views</span>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="stat bg-gradient">
+            <h3>CTR</h3>
+            <p class="lead">% of those who saw your bot card, that clicked it.</p>
+            <span>{{ last(log.analytics.ctr) || 'N/A' }}%</span>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-4 col-md-6">
+          <div class="stat bg-gradient">
+            <h3>Invites</h3>
+            <p class="lead">Number of invite link clicks.</p>
+            <span>{{ last(log.analytics.invites) || 'N/A' }} Invites</span>
+          </div>
+        </div>
+      </div>
+      <!-- {{ log.analytics | json }} -->
 
     <div class="text-warning mt-5">
       Very exciting real time analytics.

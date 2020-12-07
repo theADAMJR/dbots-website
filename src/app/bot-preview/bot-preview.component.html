@@ -1,4 +1,6 @@
-<header class="jumbotron mb-0">
+<header
+    *ngIf="bot?.listing"
+    class="jumbotron mb-0">
     <div class="container">
         <img [src]="user.displayAvatarURL">
         <h1>{{ user.username }}<span class="text-muted">#{{ user.discriminator }}</span></h1>

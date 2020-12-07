@@ -61,4 +61,8 @@ export class AnalyticsComponent implements OnInit {
       this.log = log;
     });
   }
+
+  last(arr: any[]) {
+    return arr[arr.length - 1];
+  }
 }

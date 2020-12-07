@@ -37,3 +37,7 @@
 .btn-gradient:hover {
     background-position: right center;
 }
+
+.bg-gradient {
+    background-image: linear-gradient(to right, var(--secondary) 0%, var(--primary) 100%) !important;
+}

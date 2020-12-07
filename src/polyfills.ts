@@ -61,22 +61,22 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
-import domino from 'domino';
-import fs from 'fs';
-import 'localstorage-polyfill';
-import fetch from 'node-fetch';
-import { join } from 'path';
+// import domino from 'domino';
+// import fs from 'fs';
+// import 'localstorage-polyfill';
+// import fetch from 'node-fetch';
+// import { join } from 'path';
 
-const template = fs.readFileSync(join(process.cwd(), 'dist/twopg-dashboard/browser', 'index.html')).toString();
-const win = domino.createWindow(template) as any;
+// const template = fs.readFileSync(join(process.cwd(), 'dist/twopg-dashboard/browser', 'index.html')).toString();
+// const win = domino.createWindow(template) as any;
 
-globalThis['fetch'] = fetch;
-globalThis['localStorage'] = localStorage;
+// globalThis['fetch'] = fetch;
+// globalThis['localStorage'] = localStorage;
 
-globalThis['window'] = win;
-globalThis['document'] = win.document;
-globalThis['DOMTokenList'] = win.DOMTokenList;
-globalThis['Node'] = win.Node;
-globalThis['Text'] = win.Text;
-globalThis['HTMLElement'] = win.HTMLElement;
-globalThis['navigator'] = win.navigator;
+// globalThis['window'] = win;
+// globalThis['document'] = win.document;
+// globalThis['DOMTokenList'] = win.DOMTokenList;
+// globalThis['Node'] = win.Node;
+// globalThis['Text'] = win.Text;
+// globalThis['HTMLElement'] = win.HTMLElement;
+// globalThis['navigator'] = win.navigator;

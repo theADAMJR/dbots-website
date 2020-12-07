@@ -1,0 +1,9 @@
+#summary .stat {
+  border-radius: 15px;
+  margin: 5px;
+  padding: 15px;
+}
+
+#summary .stat span {
+  color: var(--heading);
+}
