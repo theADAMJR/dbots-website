@@ -30,7 +30,7 @@
             class="mr-2 btn-gradient"
             mat-button>Vote</button>
           <span
-            *ngIf="userService.user.id === ownerUser.id"
+            *ngIf="userService.user?.id === ownerUser.id"
             class="controls">
             <button
               (click)="delete()"
