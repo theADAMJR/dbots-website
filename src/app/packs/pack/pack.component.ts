@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { BotsService } from 'src/app/services/bots.service';
 import { PackService } from 'src/app/services/pack.service';
 import { SEOService } from 'src/app/services/seo.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,6 +19,7 @@ export class PackComponent implements OnInit {
   }
   
   constructor(
+    private bots: BotsService,
     private packs: PackService,
     private route: ActivatedRoute,
     private seo: SEOService,
@@ -26,12 +28,13 @@ export class PackComponent implements OnInit {
 
   async ngOnInit() {
     await this.packs.init();
+    await this.bots.init();
 
     this.pack = await this.packs.fetch(this.packId);
     if (!this.pack)
       return this.router.navigate(['/']);
 
-    this.ownerUser = await this.userService.getUser(this.pack.owner._id);
+    this.ownerUser = await this.userService.getUser(this.pack.owner._id ?? this.pack.owner);
 
     this.seo.setTags({
       titlePrefix: this.pack.name,
