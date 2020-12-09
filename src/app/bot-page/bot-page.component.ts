@@ -29,10 +29,10 @@ export class BotPageComponent implements OnInit {
   async ngOnInit() {
     await this.service.init();
 
-    this.route.paramMap.subscribe(paramMap => {
+    this.route.paramMap.subscribe(async(paramMap) => {
       this.id = paramMap.get('id');
 
-      this.user = this.service.getBot(this.id);
+      this.user = await this.userService.getUser(this.id);
       this.bot = this.service.getSavedBot(this.id);
       if (!this.user || !this.bot)
         return this.router.navigate(['/']);

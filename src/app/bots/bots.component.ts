@@ -85,8 +85,8 @@ export class BotsComponent implements OnInit, AfterViewInit {
 
     if (tag.name === 'featured')
       var { bots, saved } = this.service.getFeaturedBots();
-    else if (tag.name === 'new')
-      var { bots, saved } = this.service.getNewBots();
+    else if (tag.name === 'featured')
+      var { bots, saved } = this.service.getTrendingBots();
     else
       var { bots, saved } = this.service.getTaggedBots(tag.name);
 

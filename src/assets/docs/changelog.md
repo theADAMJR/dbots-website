@@ -3,12 +3,7 @@
 <url>changelog</url>
 
 # Changelog
-
----
-
-## Release
-
----
+This changelog has been moved to the DBots Discord server and is now deprecated.
 
 ## Beta
 

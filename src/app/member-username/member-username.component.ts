@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'member-username',
@@ -8,4 +9,6 @@ import { Component, Input } from '@angular/core';
 export class MemberUsernameComponent {
   @Input() user;
   @Input() withAvatar = true;
+
+  constructor(public userService: UserService) {}
 }

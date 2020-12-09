@@ -52,7 +52,7 @@ export class BotsService {
   }
 
   async refreshBots() {
-    const { saved, users } = await this.http.get(`${this.endpoint}`).toPromise() as any;
+    const { saved, users } = await this.http.get(this.endpoint).toPromise() as any;
 
     this._savedBots = saved
       .filter(sb => users
@@ -69,13 +69,9 @@ export class BotsService {
   async refreshUserBots() {
     await this.userService.init();
 
-    // TODO: separate route
-    this._userSavedBots = this.savedBots
-      .concat(this.unreviewed.saved)
-      .filter(sb => sb.ownerId === this.userService.user.id);
-    this._userBots = this.bots
-      .concat(this.unreviewed.bots)
-      .filter(b => this.userSavedBots.some(sb => sb._id === b.id));      
+    const { saved, partialUsers } = await this.http.get(`${this.endpoint}/user`, this.headers).toPromise() as any;
+    this._userSavedBots = saved;
+    this._userBots = partialUsers;
   }
   getSavedLog(id: string) {
     return this.http.get(`${this.endpoint}/${id}/log`, this.headers).toPromise() as Promise<any>;
@@ -88,7 +84,8 @@ export class BotsService {
   getSavedBot(id: string) {
     return [...this.savedBots]
       .concat(this.unreviewed.saved)
-      .find(b => b._id === id);
+      .find(b => b._id === id)
+      ?? this.userSavedBots.find(sb => sb._id === id);
   }
 
   getRandomBot() {
@@ -99,7 +96,6 @@ export class BotsService {
 
     return bots[index];
   }
-
   
   vote(id: string) {
     return this.http
@@ -123,7 +119,7 @@ export class BotsService {
 
     return { bots, saved: savedBots };
   }
-  getNewBots() {
+  getTrendingBots() {
     const oneWeekAgo = new Date(Date.now() - 1000 * 60 * 60 * 24 * 7);
     const savedBots = this.savedBots
       .filter(b => new Date(b.approvedAt) > oneWeekAgo); 

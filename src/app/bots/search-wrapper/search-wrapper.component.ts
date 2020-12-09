@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { BotsComponent } from '../bots.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SEOService as SEOService, TypingSEO } from 'src/app/services/seo.service';
+import { SEOService as SEOService } from 'src/app/services/seo.service';
 import { kebabToLowerCase, kebabToTitleCase } from 'src/app/utils';
 import { TagService } from 'src/app/services/tag.service';
 import { Location } from '@angular/common';

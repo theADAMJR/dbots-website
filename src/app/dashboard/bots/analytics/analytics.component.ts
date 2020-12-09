@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AnalyticsService } from 'src/app/services/analytics.service';
 import { BotsService } from 'src/app/services/bots.service';
 import { SEOService } from 'src/app/services/seo.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-analytics',
@@ -22,6 +23,7 @@ export class AnalyticsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private botsService: BotsService,
+    private userService: UserService,
     private service: AnalyticsService,
     private seo: SEOService) {}
 
@@ -29,7 +31,7 @@ export class AnalyticsComponent implements OnInit {
     await this.botsService.init();
 
     this.bot = this.botsService.getSavedBot(this.id);
-    this.user = this.botsService.getBot(this.id);
+    this.user = await this.userService.getUser(this.id);
     this.stats = await this.botsService.getStats(this.id);
     this.log = await this.botsService.getSavedLog(this.id);
     

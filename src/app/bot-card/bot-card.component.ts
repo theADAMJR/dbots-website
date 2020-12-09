@@ -42,6 +42,7 @@ export class BotCardComponent implements AfterViewInit {
   async ngAfterViewInit() {
     await this.botsService.init();
 
-    this.analytics.botImpression({ botId: this.user.id });
+    if (this.user)
+      this.analytics.botImpression({ botId: this.user.id });
   }
 }

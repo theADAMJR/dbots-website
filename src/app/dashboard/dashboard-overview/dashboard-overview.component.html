@@ -14,15 +14,20 @@
                 <div *ngFor="let msg of feedback"
                     class="media mb-2 p-2 rounded"
                     [class]="msg.feedback.approved ? 'bg-success' : 'bg-danger'">
-                    <img class="mr-3 round" [src]="msg.bot.displayAvatarURL" [alt]="msg.bot.tag">
-                    <div class="media-body">
-                        <h5 class="mt-0">Bot {{ msg.feedback.approved ? 'Approved' : 'Not Approved' }}</h5>
-                        {{ msg.feedback.message }}
-                        <div class="d-flex justify-content-between">
-                            <span class="text-light">{{ msg.bot.username }}</span>
-                            <span class="float-right">
-                                <member-username class="float-right" [user]="msg.reviewer | async"></member-username>
-                            </span>
+                    <div *ngIf="msg.bot">
+                        <img
+                            class="mr-3 round"
+                            [src]="msg.bot.displayAvatarURL"
+                            [alt]="msg.bot.tag">
+                        <div class="media-body">
+                            <h5 class="mt-0">Bot {{ msg.feedback.approved ? 'Approved' : 'Not Approved' }}</h5>
+                            {{ msg.feedback.message }}
+                            <div class="d-flex justify-content-between">
+                                <span class="text-light">{{ msg.bot.username }}</span>
+                                <span class="float-right">
+                                    <member-username class="float-right" [user]="msg.reviewer | async"></member-username>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,8 @@
 <div *ngIf="user">
-  <img *ngIf="withAvatar" [src]="user.displayAvatarURL" [alt]="user.tag">
+  <img
+    *ngIf="withAvatar"
+    [src]="userService.getAvatarURL(user)"
+    [alt]="user.tag">
   <span class="username">{{ user.username }}</span>
   <span class="tag">#{{ user.discriminator }}</span>
 </div>

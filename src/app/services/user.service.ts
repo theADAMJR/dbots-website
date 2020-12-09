@@ -39,12 +39,16 @@ export class UserService {
   }
 
   getUser(id: string) {
-    return this.http.get(`${this.endpoint}/${id}`).toPromise() as any;
+    return this.http.get(`${this.endpoint}/${id}/partial`).toPromise() as any;
   }
 
   resetUser() {
     this._user = null;
     this._savedUser = null;
+  }
+
+  getAvatarURL({ id, avatar }) {
+    return `https://cdn.discordapp.com/avatars/${id}/${avatar}.webp`;
   }
 }
 
