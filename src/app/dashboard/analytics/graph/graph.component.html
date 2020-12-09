@@ -1,0 +1,12 @@
+<div class="d-flex">
+  <canvas
+    *ngIf="graphData"
+    baseChart
+    [datasets]="chartData"
+    [labels]="chartLabels"
+    [options]="chartOptions"
+    [plugins]="chartPlugins"
+    [legend]="chartLegend"
+    [chartType]="chartType">
+  </canvas>
+</div>

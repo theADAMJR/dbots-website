@@ -68,8 +68,9 @@ export class BotPreviewComponent implements OnInit {
   async ngOnInit() {
     await this.service.init();
     await this.packs.init();
-
-    this.ownerUser = this.ownerUser ?? await this.userService.getUser(this.bot.ownerId);
+    
+    this.ownerUser = this.ownerUser
+      ?? await this.userService.getUser(this.bot.ownerId);
   }
 
   async delete() {

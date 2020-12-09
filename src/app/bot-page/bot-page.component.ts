@@ -15,6 +15,7 @@ import { param } from 'jquery';
 export class BotPageComponent implements OnInit {
   bot: any;
   user: any;
+  ownerUser: any;
   id: string;
 
   constructor(
@@ -34,6 +35,7 @@ export class BotPageComponent implements OnInit {
 
       this.user = await this.userService.getUser(this.id);
       this.bot = this.service.getSavedBot(this.id);
+      this.ownerUser = await this.userService.getUser(this.bot.ownerId);
       if (!this.user || !this.bot)
         return this.router.navigate(['/']);
   

@@ -6,7 +6,6 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard-overview/dashboard-overview.component';
 import { DashboardAuthGuard } from './guards/dashboard-auth.guard';
-import { DocsComponent } from './docs/docs.component';
 import { AddBotComponent } from './dashboard/bots/add-bot/add-bot.component';
 import { SearchWrapperComponent } from './bots/search-wrapper/search-wrapper.component';
 import { BotAuthGuard } from './guards/bot-auth.guard';
@@ -26,8 +25,6 @@ import { PackVoteComponent } from './packs/pack-vote/pack-vote.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'auth', component: AuthComponent },
-  { path: 'docs', component: DocsComponent },
-  { path: 'docs/:page', component: DocsComponent },
 
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },

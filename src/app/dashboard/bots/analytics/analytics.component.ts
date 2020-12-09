@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AnalyticsService } from 'src/app/services/analytics.service';
 import { BotsService } from 'src/app/services/bots.service';
 import { SEOService } from 'src/app/services/seo.service';
 import { UserService } from 'src/app/services/user.service';
+import { GraphComponent } from '../../analytics/graph/graph.component';
 
 @Component({
   selector: 'app-analytics',
@@ -12,9 +13,28 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AnalyticsComponent implements OnInit {
   bot: any;
-  log: any;
   user: any;
   stats: any;
+  log: any;
+
+  private _days = 7;
+  get days() {
+    return this._days;
+  }
+  set days(value: number) {
+    this._days = value;
+    this.updateCharts();
+  }
+
+  @ViewChild('chart1') chart1: GraphComponent;
+  @ViewChild('chart2') chart2: GraphComponent;
+  @ViewChild('chart3') chart3: GraphComponent;
+  @ViewChild('chart4') chart4: GraphComponent;
+
+  set newLog(value: any) {
+    this.log = value;
+    this.updateCharts();
+  }
 
   get id() { 
     return this.route.snapshot.paramMap.get('id');
@@ -50,18 +70,25 @@ export class AnalyticsComponent implements OnInit {
     this.service.socket.on('BOT_IMPRESSION', async ({ log }) => {
       if (log._id !== this.user.id) return;
 
-      this.log = log;
+      this.newLog = log;
     });
     this.service.socket.on('BOT_PAGE_VIEW', async ({ log }) => {
       if (log._id !== this.user.id) return;
 
-      this.log = log;
+      this.newLog = log;
     });
     this.service.socket.on('BOT_INVITE', async ({ log }) => {
       if (log._id !== this.user.id) return;
 
-      this.log = log;
+      this.newLog = log;
     });
+  }
+
+  private updateCharts() {    
+    this.chart1.updateCharts(this._days);
+    this.chart2.updateCharts(this._days);
+    this.chart3.updateCharts(this._days);
+    this.chart4.updateCharts(this._days);
   }
 
   last(arr: any[]) {

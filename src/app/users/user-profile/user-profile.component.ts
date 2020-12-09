@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserProfileComponent implements OnInit {
   user: any;
+  savedUser: any;
   
   constructor(
     private packs: PackService,
@@ -24,6 +25,7 @@ export class UserProfileComponent implements OnInit {
 
     const id = this.route.snapshot.paramMap.get('id');
     this.user = await this.userService.getUser(id);
+    this.savedUser = await this.userService.getSavedUser(id);
 
     if (!this.user || this.user?.bot)
       return this.router.navigate(['/']);

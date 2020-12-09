@@ -11,12 +11,15 @@
     class="alert alert-info mx-5">
     <i class="fas fa-info-circle" aria-hidden="true"></i> Your bot will visible on the bot list if it is approved.
   </div>
-  <bot-preview *ngIf="bot.listing"
+  <bot-preview
+    *ngIf="bot.listing"
     [bot]="bot"
-    [user]="user"></bot-preview>
+    [user]="user"
+    [ownerUser]="ownerUser"></bot-preview>
 </div>
 
-<div *ngIf="!bot || !user"
+<div
+  *ngIf="!bot || !user"
   class="container">
   <spinner></spinner>
 </div>

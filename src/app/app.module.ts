@@ -25,10 +25,8 @@ import { DashboardSidebarComponent } from './dashboard/dashboard-sidebar/dashboa
 import { MaterialModule } from './material-module';
 import { SaveChangesComponent } from './dashboard/save-changes/save-changes.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { DocsComponent } from './docs/docs.component';
 import { CleanDateTimePipe } from './pipes/clean-date-time.pipe';
 import { MemberUsernameComponent } from './member-username/member-username.component';
-import { DocsSidebarComponent } from './docs-sidebar/docs-sidebar.component';
 import { ZippyComponent } from './zippy/zippy.component';
 import { AuditLogWidgetComponent } from './dashboard/widgets/audit-log-widget/audit-log-widget.component';
 import { TruncatedPipe } from './pipes/truncated.pipe';
@@ -61,6 +59,7 @@ import { PackCardComponent } from './packs/pack-card/pack-card.component';
 import { AnalyticsComponent } from './dashboard/bots/analytics/analytics.component';
 import { PackComponent } from './packs/pack/pack.component';
 import { PackVoteComponent } from './packs/pack-vote/pack-vote.component';
+import { GraphComponent } from './dashboard/analytics/graph/graph.component';
 
 @Injectable()
 export class AlertErrorHandler implements ErrorHandler {
@@ -105,10 +104,8 @@ export class AlertErrorHandler implements ErrorHandler {
     DashboardSidebarComponent,
     SaveChangesComponent,
     NotFoundComponent,
-    DocsComponent,
     CleanDateTimePipe,
     MemberUsernameComponent,
-    DocsSidebarComponent,
     ZippyComponent,
     AuditLogWidgetComponent,
     TruncatedPipe,
@@ -138,7 +135,8 @@ export class AlertErrorHandler implements ErrorHandler {
     PackCardComponent,
     AnalyticsComponent,
     PackComponent,
-    PackVoteComponent
+    PackVoteComponent,
+    GraphComponent
   ],
   imports: [
     AppRoutingModule,

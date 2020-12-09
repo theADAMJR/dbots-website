@@ -7,3 +7,14 @@
 #summary .stat span {
   color: var(--heading);
 }
+
+.stats {
+  color: var(--heading);
+  background-color: var(--tertiary);
+  border-radius: 3px;
+  margin: 5px;
+  padding: 25px;
+
+  text-transform: uppercase;
+  background-color: var(--background-tertiary);
+}

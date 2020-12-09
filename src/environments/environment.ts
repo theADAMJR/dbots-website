@@ -7,6 +7,7 @@ export const environment = {
   rootEndpoint: 'http://localhost:3000',
   endpoint: 'http://localhost:3000/api/v1',
   discordInvite: 'https://discord.gg/uDTgxyg',
+  docsURL: 'https://docs.dbots.co',
   githubURL: 'https://github.com/DBots-co',
   version: 'v1.0.2b',
   url: 'http://localhost:3000',

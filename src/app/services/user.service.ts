@@ -38,8 +38,12 @@ export class UserService {
     this._savedUser = saved;
   }
 
-  getUser(id: string) {
-    return this.http.get(`${this.endpoint}/${id}/partial`).toPromise() as any;
+  getUser(id: string): Promise<any> {
+    return this.http.get(`${this.endpoint}/${id}/partial`).toPromise();
+  }
+
+  getSavedUser(id: string): Promise<any> {
+    return this.http.get(`${this.endpoint}/${id}/saved`).toPromise();
   }
 
   resetUser() {
