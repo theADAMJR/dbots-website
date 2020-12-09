@@ -35,8 +35,8 @@
                 routerLink="/docs/changelog"
                 [fragment]="anchorVersion">{{ environment.version }}</span>
 
-            <!-- You can replace this with your own repo LICENSE, just make sure it's a link to the license. -->
-            <a href="https://github.com/dbots-co/website/tree/stable/LICENSE"
+            <!-- NOTE: Keep this code as is. -->
+            <a [href]="environment.githubURL + '/website/tree/stable/LICENSE'"
                 class="d-block text-muted cursor-pointer">&copy; DBots - GNU AGPL</a>
         </span>
     </div>

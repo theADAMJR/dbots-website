@@ -1,5 +1,6 @@
 import { Component, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'docs-sidebar',
@@ -9,6 +10,8 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class DocsSidebarComponent {
   @Output() search = new EventEmitter();
   @ViewChild('drawer') drawer: MatDrawer;
+
+  environment = environment;
 
   toggle() {
     const icon = document.querySelector('#nav-icon1');
