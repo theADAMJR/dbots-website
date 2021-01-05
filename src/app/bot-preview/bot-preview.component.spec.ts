@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BotPreviewComponent } from './bot-preview.component';
 import { By } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ describe('BotPreviewComponent', () => {
   let component: BotPreviewComponent;
   let fixture: ComponentFixture<BotPreviewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BotPreviewComponent ]
     })

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { CookieBannerComponent } from './cookie-banner.component';
 import { By } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ describe('CookieBannerComponent', () => {
   let component: CookieBannerComponent;
   let fixture: ComponentFixture<CookieBannerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CookieBannerComponent ]
     })

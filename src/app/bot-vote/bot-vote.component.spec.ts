@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BotVoteComponent } from './bot-vote.component';
 import { By } from '@angular/platform-browser';
@@ -7,7 +7,7 @@ describe('BotVoteComponent', () => {
   let component: BotVoteComponent;
   let fixture: ComponentFixture<BotVoteComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ BotVoteComponent ]
     })
