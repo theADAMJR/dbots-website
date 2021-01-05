@@ -38,10 +38,13 @@ export class PackService {
     return this.packs.find(p => p._id === id);
   }
   getUserPacks(userId: string) {
-    return this.packs.filter(p => p.owner === userId);
+    return this.packs
+      .filter(p => p.owner === userId)
+      .sort((a, b) => (a.votes > b.votes) ? -1 : 1);
   }
   getTopPacks() {
-    return this.packs.sort((a, b) => (a.votes > b.votes) ? 1 : -1);
+    return this.packs
+      .sort((a, b) => (a.votes > b.votes) ? -1 : 1);
   }
 
   create(value: any): Promise<any> {

@@ -14,16 +14,6 @@
 
     <section id="summary" class="mb-3">
       <div class="pb-3">
-        <div class="float-right">
-          <mat-form-field appearance="outline">
-            <mat-select [(value)]="days" #daySelect>
-              <mat-option [value]="7">7 Days</mat-option>
-              <mat-option [value]="30">1 Month</mat-option>
-              <mat-option [value]="120">4 Months</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>        
-
         <h2>Today's Summary</h2>
         <p>Last updated at <strong>{{ log.analytics.lastUpdatedAt | cleanDateTime }}</strong></p>
       </div>
@@ -60,9 +50,21 @@
       </div>
     </section>
 
+    <hr>
+
     <section
       *ngIf="log"
       id="graphs">
+      <div class="float-right d-inline">
+        <mat-form-field appearance="outline">
+          <mat-select [(value)]="days" #daySelect>
+            <mat-option [value]="7">7 Days</mat-option>
+            <!-- <mat-option [value]="30">1 Month</mat-option> -->
+            <!-- <mat-option [value]="120">4 Months</mat-option> -->
+          </mat-select>
+        </mat-form-field>
+      </div>
+
       <div [ngSwitch]="days">
         <h2 *ngSwitchCase="120">4 Months</h2>
         <h2 *ngSwitchCase="30">1 Months</h2>
@@ -70,7 +72,7 @@
       </div>
       <p>Data from last {{ days }} days.</p>
 
-      <div class="row">
+      <div class="row pt-5 mt-4">
         <div class="col-lg-6 col-md-12">
           <div class="row stats">
             <div class="col-md-3">
@@ -86,7 +88,7 @@
         </div>
 
         <div class="col-lg-6 col-md-12">      
-          <div class="row stats">
+          <div class="row stats mr-0">
             <div class="col-md-3">
               <h5>Views</h5>
             </div>

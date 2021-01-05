@@ -43,22 +43,31 @@ export class GraphComponent implements OnInit {
   buildLabels(): string[] {
     return Array(this.days)
       .fill(new Date())
-      .filter((_, i) => this.filterLabelIndex(i))
-      .map((today, i) => new Date(today - 8.64e7 * i)
+      .map((today, i) => this.filterLabelIndex(i) && new Date(today - 8.64e7 * i)
         .toLocaleDateString()
         .slice(0, 5))
+      .filter(str => str)
       .reverse();
   }
 
   filterLabelIndex(index: number) {
-    if (this.days === 7)
-      return true;
-    return index % Math.floor(this.days / 3) === 0;
+    return this.days === 7 || index % Math.round(this.days / 7) === 0;
   }
 
-  buildDataSets(): ChartDataSets[] {        
+  buildDataSets(): ChartDataSets[] {
+    // const data = (this.graphData.length < this.days)
+    //   ? new Array(this.days)
+    //     .fill(this.days - this.graphData.length)
+    //     .concat(this.graphData)
+    //   : this.graphData;
+
     return [
-      { data: [...this.graphData].map(x => (!x) ? 0 : x), label: 'All' }
+      {
+        data: this.graphData
+          .map(val => val || 0)
+          .reverse(),
+        label: 'All'
+      }
     ];
   }
 }
