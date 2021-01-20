@@ -5,7 +5,7 @@ export const environment = {
   discordInvite: 'https://discord.gg/uDTgxyg',
   docsURL: 'https://docs.dbots.co',
   githubURL: 'https://github.com/DBots-co',
-  version: 'v1.0.2b',
+  version: 'v1.0.3b',
   url: 'https://dbots.co',
   guildId: '236608364333891585'
 };

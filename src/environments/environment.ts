@@ -9,7 +9,7 @@ export const environment = {
   discordInvite: 'https://discord.gg/uDTgxyg',
   docsURL: 'https://docs.dbots.co',
   githubURL: 'https://github.com/DBots-co',
-  version: 'v1.0.2b',
+  version: 'v1.0.3b',
   url: 'http://localhost:3000',
   guildId: '531196495584821314'
 };
