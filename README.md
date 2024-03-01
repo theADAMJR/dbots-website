@@ -6,6 +6,6 @@ Quickly and easily find Discord bots. Use this repository to customize the websi
 ![Repo Stars](https://img.shields.io/github/stars/DBots-co/Website?color=6ca294&style=for-the-badge)
 
 ![Website Preview](https://i.ibb.co/mJKfRLK/image.png)
-
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/theADAMJR/dbots-website)
 ## Setup
 https://help.codea.live/projects/dbots
