@@ -38,7 +38,7 @@
     "highlight.js": "^9.18.1",
     "jquery": "^3.5.0",
     "localstorage-polyfill": "^1.0.1",
-    "marked": "^0.8.2",
+    "marked": "^4.0.10",
     "ng2-charts": "^2.3.0",
     "ngx-color-picker": "^9.0.0",
     "ngx-highlightjs": "^4.1.0-beta",
